@@ -80,7 +80,8 @@
         case['host_training', 'u']: 
             $tableName = 'traininghost';
             $host_name = $_POST['host_name'];
-            $id = $_SESSION['host_training_id'];
+            //$id = $_SESSION['host_training_id'];
+            $id = 2;
 
             $data = array(
                             'id_name'=>'cthostid',
