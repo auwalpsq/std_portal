@@ -11,18 +11,24 @@ class GenericGateway{
 
     public function genericFind($tableName, $data)
     {
-        $statement = $data['all'] === true ? "SELECT * FROM $tableName" : "SELECT * FROM $tableName WHERE $data[id_name] = :id_value";
+        $statement = $data['all'] === true ? "SELECT * FROM $tableName $data[limit]" : "SELECT * FROM $tableName WHERE $data[id_name] = :id_value";
 
         try {
             $statement = $this->db->prepare($statement);
             if($data['all'] !== true){
-                $statement->bindParam('id_value', $data['id_value']);
+                $statement->bindParam('id_value', $data['id_value'], \PDO::PARAM_STR);
             }
             $statement->execute();
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            return $result;
+            if($statement->rowCount() > 0){
+                $response = array('message'=>'success', 'result'=>$result);
+            }else{
+                $response = array('message'=>'success', 'result'=>array('message'=>'No data found'));
+            }
+            return $response;
         } catch (\PDOException $e) {
-            exit($e->getMessage());
+            $response = array('message'=>'failed', 'result'=>$e->getMessage());
+            return $response;
         }    
     }
 
@@ -44,9 +50,14 @@ class GenericGateway{
         try{
             $statement = $this->db->prepare($statement);
             $statement->execute($columns);
-            return $statement->rowCount();
+            if($statement->rowCount() > 0){
+                $response = array('message'=>'success', 'result'=>array('message'=>'Data inserted successfully'));
+            }else{
+                $response = array('message'=>'success', 'result'=>array('message'=>'Failed to insert data'));
+            }
+            return $response;
         }catch(\PDOException $e){
-            exit($e->getMessage());
+            return $response = array('message'=>'failed', 'result'=>array('result'=>$e->getMessage()));
         }
     }
     public function genericDelete($tableName, $data)

@@ -48,12 +48,13 @@
             $cadre = $_POST['cadre'];
             $evaluation = $_POST['evaluation'];
 
-            $data = array(  'vtfileno'=>$beneficiary,
+            $data = array(  'vfileno'=>$beneficiary,
                             'ctcode'=>$training,
                             'icadre'=>$cadre,
                             'ftevaluation'=>$evaluation
                         );
             $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
             break;
         case ['sponsorship', 'cr']:
             $tableName = 'sponsorshiptype';
@@ -67,6 +68,7 @@
                             'vspshipname'=>$sponsor
                         );
             $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
             break;
         case ['training_type', 'cr']:
             $tableName = 'trainingtype';
@@ -75,6 +77,7 @@
             $data = array(  'vttypename'=>$typeName);
 
             $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
             break;
 
         case['host_training', 'u']: 
@@ -89,6 +92,7 @@
                             'vthostname'=>$host_name
                         );
             $response = $gateway->genericUpdate($tableName, $data);
+            echo json_encode($response);
             break;
 
         case['register_training', 'u']:
@@ -160,7 +164,7 @@
         case['host_training', 'de']:
             $tableName = 'traininghost';
             //$id = $_SESSION['host_training_id'];
-            $id = 1;
+            $id = 'all';
             $data = array('id_name'=>'cthostid', 'id_value' => $id);
 
             $response = $gateway->genericDelete($tableName, $data);
@@ -199,7 +203,63 @@
             
             $data = array('id_name'=>'vttypename', 'id_value' => $id);
             
-            $response = $gateway->genericDelete($tableName, $data);
+            $result = $gateway->genericDelete($tableName, $data);
+            if($result > 0){
+                $response = array('message'=>'success');
+            }else{
+                $response = array('message'=>'failed');
+            }
+            echo json_encode($response);
+            break;
+        
+        case ['host_training', 'find']:
+            $tableName = 'traininghost';
+            $id = 2;
+            //$host_name = $_POST['host_name'];
+            $data = array('all' => false, 'limit' => '', 'id_name'=>'cthostid', 'id_value'=>$id);
+            
+            $result = $gateway->genericFind($tableName, $data);
+            echo json_encode($result);
+            break;
+            
+        case ['register_training', 'find']:
+            $tableName = 'trainingregister';
+            $id = $_SESSION['register_training_id'];
+            $training_name = $_POST['training_name'];
+            $data = array('all' => false, 'limit' => '', 'id_name'=>'ctcode', 'id_value'=>$id);
+            
+            $result = $gateway->genericFind($tableName, $data);
+            echo json_encode($result);
+            break;
+            
+        case ['beneficiary', 'find']:
+            $tableName = 'beneficiary';
+            $id = $_SESSION['beneficiary_id'];
+            $beneficiary = $_POST['beneficiary'];
+            $data = array('all' => false, 'limit' => '', 'id_name'=>'vtfileno', 'id_value'=>$id);
+            
+            $result = $gateway->genericFind($tableName, $data);
+            echo json_encode($result);
+            break;
+            
+        case ['sponsorship', 'find']:
+            $tableName = 'sponsorshiptype';
+            $id = $_SESSION['sponsorship_id'];
+            $email = $_POST['email'];
+            $data = array('all' => false, 'limit' => '', 'id_name'=>'vspshipemailid', 'id_value'=>$id);
+            
+            $result = $gateway->genericFind($tableName, $data);
+            echo json_encode($result);
+            break;
+            
+        case ['training_type', 'find']:
+            $tableName = 'trainingtype';
+            $id = $_SESSION['training_type_id'];
+            $typeName = $_POST['type_name'];
+            $data = array('all' => false, 'limit' => '', 'id_name'=>'vttypename', 'id_value'=>$id);
+            
+            $result = $gateway->genericFind($tableName, $data);
+            echo json_encode($result);
             break;
             
         default:
