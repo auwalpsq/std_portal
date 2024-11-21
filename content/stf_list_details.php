@@ -1,7 +1,7 @@
 
 <!-- begin #content -->
 <div id="content" class="content" style="margin-top:10px">
-<h1 class="page-header"><?php echo $_SESSION['title'];?> <br><br> NOUN Graduates <small><?php echo count($records['list']);?> results found</small></h1>
+<h1 class="page-header"><?php echo $_SESSION['title'];?> <br><br> NOUN St&d List <small><?php echo count($records['list']);?> results found</small></h1>
 <div class="row">
 	<!-- begin col-12 -->
 <div class="col-md-12">

@@ -83,8 +83,8 @@
 							<a href="javascript:;"><img src="assets/img/user.png" alt="" /></a>
 						</div>
 						<div class="info" style="margin-top:30px" >
-						<div style="font-size: 1em; "><?php echo $_SESSION['name']; ?></div>	
-							<small class="text-white" style="margin-left:50px"><?php echo $_SESSION['id']; ?></small>
+						<div style="font-size: 1em; "><?php // echo $_SESSION['name']; ?></div>	
+							<small class="text-white" style="margin-left:50px"><?php // echo $_SESSION['id']; ?></small>
 						</div>
 					</li>
 				</ul>
@@ -96,84 +96,20 @@
 					<li class="has-sub ">
 						<a href="javascript:;">
 						<b class="caret pull-right"></b>
-							  <i class="fa fa-laptop"></i>
-							<span>Dashboard</span>
+							  <i class="fa fa-tasks"></i>
+							<span>Task</span>
 						</a>
 						<ul class="sub-menu">   
-               <li><a href="gdash">General</a></li>
-               <li><a href="udash">Undergraduate</a></li>
-               <li><a href="pdash">Postgraduate</a></li>
+               <li><a href="add_tr">Add Training</a></li>
+               <li><a href="add_ben">beneficiary</a></li>
+               <li><a href="stf_info">staff info</a></li>
+               <li><a href="Stf_list">staff list</a></li>
+             
 						   <!-- <li><a href="graduate">Graduates</a></li> -->
 						</ul>
 					</li>
 
-          <li class="has-sub">
-						<a href="javascript:;">
-              <b class="caret pull-right"></b>
-							<i class="fa fa-search"></i>
-							<span>Search By</span>
-						</a>
-						 <ul class="sub-menu">
-                <li><a href="search_ctr">Study Centre</a></li>
-						    <li><a href="search_prog">Programme </a></li>
-						    <li><a href="search_fac">Faculty</a></li> 
-						</ul> 
-					</li>
-
-          <li class="has-sub">
-						<a href="javascript:;">
-              <b class="caret pull-right"></b>
-							<i class="fa fa-envelope"></i>
-							<span>Send Message</span>
-						</a>
-						 <ul class="sub-menu">
-                <li><a href="snd_email">Send Email</a></li>
-                <li><a href="snd_sms">Send SMS</a></li>
-						    
-						</ul> 
-					</li>
-          <li class="has-sub">
-						<a href="javascript:;">
-              <b class="caret pull-right"></b>
-							<i class=" fa fa-users"></i>
-							<span>Manage User</span>
-						</a>
-						 <ul class="sub-menu">
-                <li><a href="add_usr">Add User Account</a></li>
-                <li><a href="rst_usr">Reset User Account</a></li>
-                <li><a href="del_usr">Delete User Account</a></li> 
-						</ul> 
-					</li>
-
-          <li class="has-sub">
-						<a href="javascript:;">
-							<!-- <span class="badge pull-right">10</span> -->
-               <!-- fa fa-cog fa-4x -->
-                 <b class="caret pull-right"></b>
-							<i class=" fa fa-graduation-cap"></i>
-							<span>Manage Alumni</span>
-						</a>
-						 <ul class="sub-menu" style="display: none;">
-                <li><a href="chng_alum_email">Change Email</a></li>
-               
-						    
-						</ul> 
-					</li>
-          <li class="has-sub">
-						<a href="javascript:;">
-							<!-- <span class="badge pull-right">10</span> -->
-               <!-- fa fa-cog fa-4x -->
-                 <b class="caret pull-right"></b>
-							<i class=" fa fa-wrench"></i>
-							<span>Settings</span>
-						</a>
-						 <ul class="sub-menu" style="display: none;">
-              <li><a href="change_email">Change Email</a></li>
-                <li><a href="#">Change Phone No.</a></li>
-                <li><a href="chng_usr_pass">Change Password</a></li>
-						    
-						</ul> 
-					</li>
+          
 
           <li class="nav-profile" id="footer" style="max-height:50px">
           <div class="info" style="font-size:14px;margin-top:-5px">

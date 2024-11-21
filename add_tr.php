@@ -1,34 +1,21 @@
 <?php
   session_start();  
-  if (!isset($_SESSION['email'])) {
-    header("Location: login"); 
-    exit(); 
-}
 
-
-//include "encr_decr_api.php";
 $ddate = date('Y-m-d');
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 
-use alumni\TableGateways\AlumniGraduateGateway;
-
-
-require_once 'TableGateways/AlumniGraduateGateway.php';
-
-include_once 'config/DBConnection.php'; 
-$database = new DBConnection();      
+use std_portal\std_gateways\GenericGateway;
+require_once 'std_gateways/GenericGateway.php';
+include_once 'config/DatabaseConfig.php';
+$database = new DatabaseConfig();      
 $dbConnection = $database->dbConnect();
 
-$grad=new AlumniGraduateGateway($dbConnection);// AlumniGraduateGateway($dbConnection);
-
-
+$grad =new GenericGateway($dbConnect);
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +35,7 @@ include_once 'template/custom_style.html';
         <?php
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
-           include "wizard/add_usr_details.php";
+           include "content/add_tr_details.php";
         // include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';

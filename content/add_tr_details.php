@@ -8,11 +8,11 @@
 </style>
 
 <!-- begin #content -->
-    <div id="content" class="content" style="margin-top:50px;">
+    <div id="content" class="content" style="margin-top:5px;">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="dash">Home</a></li>
-				<li><a href="add_usr">Add User Account</a></li>
+				<li><a href="add_usr">Add Training</a></li>
 				<!-- <li class="active">Wizards</li> -->
 			</ol>
 			<!-- end breadcrumb -->
@@ -25,7 +25,7 @@
                 <!-- begin col-12 -->
 			    <div class="col-md-12">
 			        <!-- begin panel -->
-                    <div class="panel panel-success" style="margin-top:-50px">
+                    <div class="panel panel-success" >
     <!-- Your content here -->
 
                         <div class="panel-heading"style="background-color: #008000;"  > 
@@ -35,7 +35,7 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">Add User Account</h4>
+                            <h4 class="panel-title">Add Training</h4>
                         </div>
                         <div class="panel-body">
                             
@@ -50,56 +50,61 @@
 									<div class="wizard-step-1">
                                          <div class="alert alert-warning fade in m-b-15">
                                                 <strong>Warning!</strong>
-                                              You are about to create a new user. Please ensure that all required information is entered correctly before proceeding.
+                                              You are about to add a new Training. Please ensure that all required information is entered correctly before proceeding.
                                                 <span class="close" data-dismiss="alert">×</span>
                                                </div>
 										<fieldset>
-											<legend class="pull-left width-full">Add User Account</legend>
-                                                 <!-- Centered Icon -->
-                                                <div style="text-align: center; margin-bottom: 20px;">
-                                                    <i class="fa fa-user-plus" style="font-size: 7em;"></i>
-                                                </div>
-
+											<legend class="pull-left width-full">Add Training</legend>
+                                                
                                               
 
                                                 <div style="margin-top: 30px;" class="form-group">
                                                     
-                                        <label class="col-md-3 control-label">Full Name:<span class="text-danger">*</span></label>
+                                        <label class="col-md-3 control-label">Training Name:<span class="text-danger">*</span></label>
                                         <div class="col-md-6">
-                                            <input type="text" name="name" class="form-control input-lg" placeholder="Full Name" required />
+                                            <input type="text" name="name" class="form-control input-lg" placeholder="Training Name" required />
                                         </div>
                                     </div>
 
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label">Email address:</label>
+                                        <label class="col-md-3 control-label">Location:</label>
                                         <div class="col-md-6">
-                                            <input type="email" name="email" class="form-control input-lg" placeholder="someone@noun.edu.ng" required />
+                                            <input type="text" name="phone" class="form-control input-lg" placeholder="Location" required />
                                         </div>
                                     </div>
-
+                                          
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label">Phone Number:</label>
-                                        <div class="col-md-6">
-                                            <input type="tel" name="phone" class="form-control input-lg" placeholder="123-456-7890" required />
-                                        </div>
-                                    </div>
-                                      <div class="form-group">
-                                        <label class="col-md-3 control-label">Staff ID:</label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="staff_id" class="form-control input-lg" placeholder="01234" required />
-                                        </div>
-                                    </div>
-                                           
-                                      <div class="form-group">
-                                        <label class="col-md-3 control-label">User Category:</label>
+                                        <label class="col-md-3 control-label">Host ID:</label>
                                         <div class="col-md-6">
                                              <div>
                                             <select class="form-control input-lg" name="category"  required>
                                                 <option value="" disabled selected>--select--</option>
-                                                <option value="adm1">Admin</option>
-                                                <option value="alm">Alumni</option>
-                                               
-                                            
+                                                <option value="adm1">option 1</option>
+                                                <option value="adm1">option 2</option>
+                                            </select>
+                                        </div>
+                                       </div>
+                                    </div>
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label">Sponsorship ID:</label>
+                                        <div class="col-md-6">
+                                             <div>
+                                            <select class="form-control input-lg" name="category"  required>
+                                                <option value="" disabled selected>--select--</option>
+                                                <option value="adm1">option 1</option>
+                                                <option value="adm1">option 2</option>
+                                            </select>
+                                        </div>
+                                       </div>
+                                    </div>
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label">Training Type ID:</label>
+                                        <div class="col-md-6">
+                                             <div>
+                                            <select class="form-control input-lg" name="category"  required>
+                                                <option value="" disabled selected>--select--</option>
+                                                <option value="adm1">option 1</option>
+                                                <option value="adm1">option 2</option>
                                             </select>
                                         </div>
                                        </div>
@@ -109,7 +114,7 @@
 
                                         <div class="form-group">
                                         <div class="col-md-4 col-md-offset-4">
-                                           <input type="submit" value="Add User" id="save" class="btn-success form-control input-lg"/>
+                                           <input type="submit" value="Add Training" id="save" class="btn-success form-control input-lg"/>
 
                                            </div>
 									</div>

@@ -8,7 +8,7 @@
 
 </style>
   <!-- begin #content -->
-    <div id="content" class="content" style="margin-top:50px;">
+    <div id="content" class="content" style="margin-top:5px;">
 
 
 
@@ -16,17 +16,17 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="dash">Home</a></li>
-				<li><a href="rst_usr">Delete User Account</a></li>
+				<li><a href="add_ben">Add Beneficiary</a></li>
 				<!-- <li class="active">Wizards</li> -->
 			</ol>
-		>
+		
 			
 			<!-- begin row -->
 			<div class="row">
                 <!-- begin col-12 -->
 			    <div class="col-md-12">
 			        <!-- begin panel -->
-                    <div class="panel panel-success" style="margin-top:-50px">
+                    <div class="panel panel-success" >
     <!-- Your content here -->
 
                         <div class="panel-heading" style="background-color: #008000;"> 
@@ -36,7 +36,7 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">Delete User Account</h4>
+                            <h4 class="panel-title">Add Beneficiary</h4>
                         </div>
                         <div class="panel-body">
                    <form id="appForm"  class="form-horizontal" method="POST" >     
@@ -46,35 +46,39 @@
 									<div class="wizard-step-2">
                                          <div class="alert alert-warning fade in m-b-15">
                                                 <strong>Warning!</strong>
-                                               Ensure you are deleting the right User Account.
+                                               Ensure you are adding the right Beneficiary.
                                                 <span class="close" data-dismiss="alert">×</span>
                                                </div>
 										<fieldset>
-                                            <legend class="pull-left width-full">Delete User Account</legend>
+                                            <legend class="pull-left width-full">Add Beneficiary</legend>
 
-                                              <!-- Centered Icon -->
-                                                <div style="text-align: center; margin-bottom: 20px;">
-                                                    <i class="fa fa-user-times" style="font-size: 7em; "></i>
-                                                </div>
+                                          
                                                         
                                                 <div style="margin-top: 30px;" class="form-group">
-                                                <label class="col-md-3 control-label">User Email:</label>
+                                                <label class="col-md-3 control-label">Code:</label>
                                                 <div class="col-md-6">
-                                                    <input type="email" name="email" class="form-control input-lg" placeholder="someone@noun.edu.ng" required />
+                                                    <input type="text" name="email" class="form-control input-lg" placeholder="enter code" required />
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Staff ID:</label>
+                                                <label class="col-md-3 control-label">Cadre:</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" name="staff_id" class="form-control input-lg" placeholder="01234" required />
+                                                    <input type="text" name="staff_id" class="form-control input-lg" placeholder="enter cadre" required />
+                                                </div>
+                                            </div>  
+
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Evaluation:</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="staff_id" class="form-control input-lg" placeholder="enter evaluation" required />
                                                 </div>
                                             </div>  
                                           
 										</fieldset>
                           <div class="form-group">
                               <div class="col-md-4 col-md-offset-4">
-                                  <input type="submit" value="Delete User Account" id="save" class="btn-success form-control input-lg"/>
+                                  <input type="submit" value="Add Beneficiary" id="save" class="btn-success form-control input-lg"/>
                               </div>
                             </div>
                                         

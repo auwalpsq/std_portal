@@ -208,7 +208,7 @@ hi {
     <li class="dropdown navbar-user">
         <a href="javascript:;" class="dropdown-toggle"  data-toggle="dropdown">
             <img src="assets/img/svg/Icon_Color.svg" alt="" /> 
-            <span class="hidden-xs"><?php echo $_SESSION['name'];?></span> <b class="caret"></b>
+            <span class="hidden-xs"><?php // echo $_SESSION['name'];?></span> <b class="caret"></b>
         </a>
         <ul class="dropdown-menu animated fadeInLeft">
             <!-- <li class="arrow"></li>

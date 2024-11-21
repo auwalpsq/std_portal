@@ -1,36 +1,23 @@
 <?php
   session_start();  
-  if (!isset($_SESSION['id'])) {
-    header("Location: login"); 
-    exit(); 
-}
 
-// Turn on error reporting
-error_reporting(E_ALL & ~E_NOTICE);
-ini_set('display_errors', 0);       
+$ddate = date('Y-m-d');
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
-set_error_handler(function($error, $message, $file, $line) {
-    $logMessage = "[" . date("Y-m-d H:i:s") . "] error: [$error] - $message in $file on line $line";
-    error_log($logMessage . PHP_EOL . PHP_EOL, 3, "error_log.txt"); 
-});
-
-
-
-use alumni\TableGateways\AlumniGraduateGateway;
-
-
-require_once 'TableGateways/AlumniGraduateGateway.php';
-
-include_once 'config/DBConnection.php'; 
-$database = new DBConnection();      
+use std_portal\std_gateways\GenericGateway;
+require_once 'std_gateways/GenericGateway.php';
+include_once 'config/DatabaseConfig.php';
+$database = new DatabaseConfig();      
 $dbConnection = $database->dbConnect();
 
+$grad =new GenericGateway($dbConnect);
 
 
-$grad=new AlumniGraduateGateway($dbConnection);// AlumniGraduateGateway($dbConnection); 
 
 
-$resp=$grad->findAll_limit(30);
+// $resp=$grad->findAll_limit(30);
 
 $req_results=$resp;
 
@@ -45,7 +32,7 @@ if(!empty($req_results) && count($req_results)>0){
   }
 }
 
-$prog=$grad->findByProg();
+// $prog=$grad->findByProg();
 
 
 
@@ -54,7 +41,7 @@ $prog=$grad->findByProg();
   
 $title="Graduate List ";
 $json_data = array();
-$_SESSION['title']="Alumni Portal Management System";
+$_SESSION['title']="ST&D Portal Management System";
 
  ?>
 <!DOCTYPE html>
@@ -79,7 +66,7 @@ $_SESSION['title']="Alumni Portal Management System";
       <?php
         include "inc/mega_menu.php";		
         include "inc/a_sidebar.php";	
-        include "content/search_details.php";
+        include "content/stf_list_details.php";
       ?>
       <p>
           <a href="javascript:history.back(-1);" class="btn btn-success">

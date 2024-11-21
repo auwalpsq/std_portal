@@ -1,7 +1,7 @@
 
 <!-- begin #content -->
 <div id="content" class="content" style="margin-top:10px">
-<h1 class="page-header"><strong>Student Full Information</strong></h1>
+<h1 class="page-header"><strong>Staff Full Information</strong></h1>
 <div class="row">
 	<!-- begin col-12 -->
 <div class="col-md-12">
@@ -30,7 +30,7 @@
 				$desc="";
 				$badge ="";
 				$vtypeid="";
-				//$gclass =class_of_degree($value['cgpa']);
+			
 				$action ="";
 				$option="";
 				
@@ -49,14 +49,14 @@
 			 <!-- Display student image -->
      <div class="image">
     <a href="javascript:;">
-        <?php if (!empty($value['image'])): ?>
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($value['image']); ?>" alt="User Image">
-        <?php else: ?>
+        <?php // if (!empty($value['image'])): ?>
+            <!-- <img src="data:image/jpeg;base64,<?php echo base64_encode($value['image']); ?>" alt="User Image"> -->
+        <?php //else: ?>
             <img src="assets/img/user.png" alt="Default Image">
-        <?php endif; ?>
+        <?php //endif; ?>
     </a>
 		<br>
-		<strong> <?php echo $value['vMatricno'];?> </strong>
+		<strong> <?php //echo $value['Matric'];?> </strong>
 </div>
 
 
@@ -68,13 +68,13 @@
 					<table id="rrr_tb" class="table" style="font-size:18px">
                         <tbody>
                         <tr>
-                            <th class="<?php echo $tbg; ?>"> Graduate Name:</th>
-                            <td class="<?php echo $tbg; ?>"> <?php echo $value['vname'];?> </td>
+                            <th class="<?php echo $tbg; ?>"> Staff Name:</th>
+                            <td class="<?php echo $tbg; ?>"> <?php //echo $value['name'];?> </td>
                         </tr>
                         
                         <tr>
                             <th class="<?php echo $tbg; ?>">Date of Birth:</th>
-                            <td  class="<?php echo $tbg; ?>"> <?php echo $value['dob']; ?> ||  <b> Gender: </b>
+                            <td  class="<?php echo $tbg; ?>"> <?php //echo $value['dob']; ?> ||  <b> Gender: </b>
                             <?php 
 							$gender = $value['cgender']; 
                                 if($gender == 'M'){
@@ -88,15 +88,15 @@
                         </tr>
 												<tr>
                             <th class="<?php echo $tbg; ?>">State of Origin:</th>
-                            <td  class="<?php echo $tbg; ?>"> <?php echo $value['cstateid']; ?> ||  <b> Local Govt: </b> <?php echo $value['clgaid']; ?>  </td>
+                            <td  class="<?php echo $tbg; ?>"> <?php // echo $value['cstateid']; ?> ||  <b> Local Govt: </b> <?php //echo $value['clgaid']; ?>  </td>
                         </tr>
                         <!-- <tr>
                             <th class="<?php echo $tbg; ?>">Class of Degree:</th>
-                            <td  class="<?php echo $tbg; ?>"> <?php echo $value['classofdegree']; ?> 
+                            <td  class="<?php echo $tbg; ?>"> <?php // echo $value['classofdegree']; ?> 
                         </tr> -->
                         <tr>
                             <th class="<?php echo $tbg; ?>">Phone Number:</th>
-                            <td  class="<?php echo $tbg; ?>"><?php echo $value['phoneno']; ?>  ||  <b> Email: </b> <?php echo $value['email']; ?> </td> </td>
+                            <td  class="<?php echo $tbg; ?>"><?php //echo $value['phone']; ?>  ||  <b> Email: </b> <?php //echo $value['email']; ?> </td> </td>
                         </tr>
                         
                       
@@ -107,7 +107,7 @@
 				</li>
 
 				<br>
-		<li id ="1" class="<?php echo $page; ?> page" style="" height:auto">
+		<!-- <li id ="1" class="<?php echo $page; ?> page" style="" height:auto">
 
 	
 		<div class="result-price pull-right" style="font-size:20px;margin-top:15px">
@@ -115,11 +115,11 @@
 			<br>
 			<strong> Admission Year:</strong> 
 			<br>
-			<?php echo $value['adm_year'];?> 	
+			<?php // echo $value['adm_year'];?> 	
 			<br>
 			<strong> Graduation Year:</strong> 
 			<br>
-			<?php echo $value['vyear'];?> 	
+			<?php //echo $value['year'];?> 	
 			<br>
 	
 		</div>
@@ -156,49 +156,14 @@
                     </div>												
                       
 				</div>
-				</li>
+				</li> -->
 
 
 
-					<
+					
 
 
 		
-		<li id ="1" class="<?php echo $page; ?> page" style="" height:auto">
-
-	
-					<div class="result-info view_result" >
-					
-					 <p style="font-size:26px;font-weight:bold">Employment Information</p>
-					<div class="col-md-12" style="width:100%">
-					<table id="rrr_tb" class="table" style="font-size:18px">
-                        <tbody>
-                        <tr>
-                            <th class="<?php echo $bg; ?>"> Employment Status:</th>
-                            <td class="<?php echo $bg; ?>"> <?php echo $value['employment_status'] == 1 ? "Employed" : "Unemployed";?> </td>
-                        </tr>
-                        
-												<tr>
-                            <th class="<?php echo $bg; ?>">Organization:</th>
-                            <td  class="<?php echo $bg; ?>"> <?php echo $value['organization_name']; ?> </td>
-                        </tr>
-                         <tr>
-                            <th class="<?php echo $bg; ?>">Office Address:</th>
-                            <td  class="<?php echo $bg; ?>"> <?php echo $value['organization_address']; ?> 
-                        </tr> 
-                        <tr>
-                            <th class="<?php echo $bg; ?>">Office Phone No:</th>
-                            <td  class="<?php echo $bg; ?>"> <?php echo $value['organization_phone']; ?> ||  <b> Office Email: </b> <?php echo $value['organization_email']; ?> </td> </td>
-                        </tr>
-                        
-                      
-                        </tbody>
-                    </table>
-                    </div>												
-              
-                      
-				</div>
-				</li>
 		</div>	
 
 

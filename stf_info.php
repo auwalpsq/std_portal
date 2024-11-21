@@ -1,10 +1,6 @@
 <?php
   session_start();  
-    if (!isset($_SESSION['id'])) {
-    header("Location: login"); 
-    exit(); 
-}
-//include "encr_decr_api.php";
+
 $ddate = date('Y-m-d');
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -12,29 +8,23 @@ error_reporting(E_ALL);
 
 
 
-use alumni\TableGateways\AlumniGraduateGateway;
-
-
-require_once 'TableGateways/AlumniGraduateGateway.php';
-
-include_once 'config/DBConnection.php'; 
-$database = new DBConnection();      
+use std_portal\std_gateways\GenericGateway;
+require_once 'std_gateways/GenericGateway.php';
+include_once 'config/DatabaseConfig.php';
+$database = new DatabaseConfig();      
 $dbConnection = $database->dbConnect();
 
-
-
-
-$grad=new AlumniGraduateGateway($dbConnection);// AlumniGraduateGateway($dbConnection); 
+$grad =new GenericGateway($dbConnect);
 
 
 
 
 // Fetch the record for the current session ID
-$tableName = 'graduates';
-$field = 'vMatricno';	
-$id = $_SESSION['matric'];
+$tableName = '';
+$field = '';	
+$id = '';
 
-$resp = $grad->genericFind($tableName, $field, $id);
+// $resp = $grad->genericFind($tableName, $field, $id);
 $records = !empty($resp) ? $resp[0] : null;  // Get the first record if it exists
 
 if ($records) {
@@ -67,9 +57,9 @@ $rcnt = $records ? 1 : 0;  // Set $rcnt to 1 if a record exists, otherwise 0
 	<div id="page-container" class="fade page-with-sidebar page-header-fixed">
 
       <?php
-        include "inc/mega_menu.php";		
-        include "inc/a_sidebar.php";	
-        include "content/stud_info_details.php";
+        include "./inc/mega_menu.php";		
+        include "./inc/a_sidebar.php";	
+        include "./content/stf_info_details.php";
       ?>
       <p>
           <a href="javascript:history.back(-1);" class="btn btn-success">
