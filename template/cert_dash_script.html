@@ -1,0 +1,129 @@
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+  <script src="assets/crossbrowserjs/html5shiv.js"></script>
+  <script src="assets/crossbrowserjs/respond.min.js"></script>
+  <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+<![endif]-->
+<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+  <script src="assets/plugins/morris/raphael.min.js"></script>
+  <script src="assets/plugins/morris/morris.js"></script>
+  <script src="assets/plugins/jquery-jvectormap/jquery-jvectormap.min.js"></script>
+  <script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js"></script>
+  <script src="assets/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js"></script>
+<script src="assets/plugins/gritter/js/jquery.gritter.js"></script>
+
+<link href="assets/plugins/bootstrap-sweetalert/dist/sweetalert.css" rel="stylesheet" />
+  <script src="assets/plugins/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="assets/js/dashboard-v2.min.js"></script> -->
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+    <!-- <script src="inc/actions.js"></script> -->
+	<!-- ================== END PAGE LEVEL JS ================== -->
+
+	<script>
+		$(document).ready(function() {
+			App.init();
+			DashboardV2.init();
+     
+			
+		function checkLoginStatus(){
+		    var _delay = 3000;
+         $.get("checkStatus.php", function(data){
+            if(data=="0" || data==null) {
+                //alert("Session expired!");
+                //exit;
+                swal({title:"Expired",
+                            text:"Your session expired. You have to login afresh.",
+                            customClass:"swal-size-sm",
+                            showCancelButton: false,
+                            closeOnConfirm:true,
+                            titleClass:"text-green"
+                          },function(isConfirm){ 
+                            if (isConfirm){
+                              window.location = "./";
+                            }
+                        })
+                
+            }
+            setTimeout(function(){  checkLoginStatus(); }, _delay);
+            });
+        }
+        checkLoginStatus();
+		});
+
+        $(function(){
+            $("a.hidelink").each(function (index, element){
+                var href = $(this).attr("href");
+                $(this).attr("hiddenhref", href);
+                $(this).removeAttr("href");
+            });
+            $("a.hidelink").click(function(){
+                url = $(this).attr("hiddenhref");
+                window.open(url, '_self');
+            })
+        });
+
+
+handleVisitorsLineChart = function () {
+    var a = "#0D888B", b = "#00ACAC", c = "#348FE2", d = "#3273B1", e = "rgba(0,0,0,0.6)", f = "rgba(255,255,255,0.4)";
+    Morris.Line({
+        element: "visitors-line-chart",
+        data:<?php echo $data;?>,       
+    xkey: 'y',
+    xLabelMargin: 10,
+    gridTextFamily: 'mtsRegular',
+    parseTime: false,
+    ykeys: ['a', 'b', 'c','d'],  
+    labels: ['First Degree', 'PGD','Masters','Doctorate Degree'],
+    lineColors: [a, b, c],
+        pointFillColors: [b, d],
+        lineWidth: "2px",
+        pointStrokeColors: [e, e],
+        resize: !0,
+        gridTextFamily: "Open Sans",
+        gridTextColor: f,
+        gridTextWeight: "normal",
+        gridTextSize: "11px",
+        gridLineColor: "rgba(0,0,0,0.5)",
+        hideHover: "auto"
+});
+},
+ handleVisitorsDonutChart = function () {
+    var a = "#00acac", b = "#348fe2",c = "rgba(255,0,0,0.4)",d = "#00fcac";
+ 
+  var degree = <?php echo json_encode($degree); ?>;
+  var pgd = <?php echo json_encode($pgd); ?>;
+  var masters = <?php echo json_encode($masters); ?>;
+  var phd = <?php echo json_encode($phd); ?>;
+    Morris.Donut({
+        element: "visitors-donut-chart",
+        data: [{label: "First Degree", value:degree}, {label: "PGD", value:pgd}, {label: "Masters", value:masters},{label: "PhD", value:phd}],
+        colors: [a, b, c],d,
+        labelFamily: "Open Sans",
+        labelColor: "rgba(255,255,255,0.4)",
+        labelTextSize: "12px",
+        backgroundColor: "#242a30",
+        resize:true
+    });
+}
+
+DashboardV2 = function () {
+    "use strict";
+    return {
+        init: function () {
+            handleVisitorsLineChart(), handleVisitorsDonutChart()//, handleVisitorsVectorMap(), handleScheduleCalendar(), handleDashboardGritterNotification()
+        }
+    }
+}();
+
+
+</script>

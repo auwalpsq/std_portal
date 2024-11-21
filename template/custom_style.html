@@ -1,0 +1,292 @@
+<style>
+   
+   
+        a.hidelink {
+            cursor: pointer;
+            /* text-decoration: underline; */
+        }
+    
+    .input-lg {
+    height: 46px!important;
+    padding: 10px 16px;
+    font-size: 18px!important;
+    line-height: 1.3333333;
+    border-radius: 6px!important;
+}
+  .view_result {
+      cursor: pointer;
+
+      }
+      .viewresult {
+       display: none;
+      }
+
+      .view_result:hover .viewresult {
+        display: inline-block;
+      }
+
+      .viewresult{
+         display: none;
+      }
+       .view_result:hover .viewresult {
+        display: inline-block;
+      }
+      .progress{
+       height: 5px;
+     }
+     .modal-centered{
+     position: sticky;
+     }
+     .modal.left .modal-dialog,
+     .modal.right .modal-dialog,
+    .modal.center .modal-dialog{
+     position: fixed;
+     margin: auto;
+     width: 540px;
+     height: 100%;
+     -webkit-transform: translate3d(0%, 0, 0);
+     		-ms-transform: translate3d(0%, 0, 0);
+     		 -o-transform: translate3d(0%, 0, 0);
+     				transform: translate3d(0%, 0, 0);
+     }
+
+     .modal.left .modal-content,
+     .modal.right .modal-content,
+     .modal.center .modal-content {
+     height: 100%;
+     overflow-y: auto;
+     }
+     .modal.left .modal-body,
+     .modal.right .modal-body,
+     .modal.right .modal-body {
+     padding: 15px 15px 80px;
+     }
+
+     /*Left*/
+     .modal.left.fade .modal-dialog{
+     left: 0px;
+     -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+     	 -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+     		 -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+     				transition: opacity 0.3s linear, left 0.3s ease-out;
+     }
+
+     .modal.left.fade.in .modal-dialog{
+     left: 0;
+     }
+
+     /*Right*/
+     .modal.right.fade .modal-dialog {
+     right: -0px;
+     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+     	 -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+     		 -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+     				transition: opacity 0.3s linear, right 0.3s ease-out;
+     }
+
+     .modal.right.fade.in .modal-dialog {
+     right: 0;
+     }
+
+
+
+
+     .image
+     {
+         width:100%;
+         height:auto;
+     }
+
+     .image img
+     {
+         width:100%;
+         height:auto;
+         border-radius: 60%;
+     }
+
+     .swal-text {
+          background-color: #FEFAE3;
+          padding: 17px;
+          border: 1px solid #F0E1A1;
+          display: block;
+          margin: 22px;
+          text-align: center;
+          color: #61534e;
+        }
+
+
+
+     .swal-size-sm
+     {
+        width: 650px !important;
+     }
+
+     .swal-size-md
+     {
+        width: 750px !important;
+     }
+     .swal-size-lg
+     {
+        width: 950px !important;
+     }
+
+     .swal-wide{
+         width:550px !important;
+     }
+
+     .swal-text {
+  background-color: #FEFAE3;
+  padding: 17px;
+  border: 1px solid #F0E1A1;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: #61534e;
+}
+
+
+
+
+     /* Create a custom checkbox */
+     /* Customize the label (the container) */
+     .container {
+       display: block;
+       position: relative;
+       padding-left: 0px;
+       margin-bottom: 30px;
+       cursor: pointer;
+       width:0px!important;
+       font-size: 22px;
+       -webkit-user-select: none;
+       -moz-user-select: none;
+       -ms-user-select: none;
+       user-select: none;
+     }
+
+     /* Hide the browser's default checkbox */
+     .container input {
+       position: absolute;
+       opacity: 0;
+       cursor: pointer;
+       height: 0;
+       width: 0;
+     }
+
+     /* Create a custom checkbox */
+     .checkmark {
+       position: absolute;
+       top: 0;
+       left: 0;
+       height: 25px;
+       width: 25px;
+       background-color: #cee;
+     }
+
+     /* On mouse-over, add a grey background color */
+     .container:hover input ~ .checkmark {
+       background-color: #ccc;
+     }
+
+     /* When the checkbox is checked, add a blue background */
+     .container input:checked ~ .checkmark {
+       background-color: green;
+     }
+
+     /* Create the checkmark/indicator (hidden when not checked) */
+     .checkmark:after {
+       content: "";
+       position: absolute;
+       display: none;
+     }
+
+     /* Show the checkmark when checked */
+     .container input:checked ~ .checkmark:after {
+       display: block;
+     }
+
+     /* Style the checkmark/indicator */
+     .container .checkmark:after {
+       left: 9px;
+       top: 5px;
+       width: 5px;
+       height: 10px;
+       border: solid white;
+       border-width: 0 3px 3px 0;
+       -webkit-transform: rotate(45deg);
+       -ms-transform: rotate(45deg);
+       transform: rotate(45deg);
+     }
+     /* @media(min-width: 0px);
+      .container {
+          width:0px!important;
+      } */
+
+      #footer-content {
+        position:relative;
+        bottom: 0;
+        left: 0;
+
+      }
+
+      .modal-footer {
+        position:relative;
+        bottom: 0;
+        left: 0;
+
+      }
+
+      .footer {
+        z-index: 1020;
+        padding: 10px 0;
+        margin: 0 25px 0 245px;
+        border-top: 1px solid #CAD0D6;
+        line-height: 20px;
+    }
+      p.desc {
+        /* min-width: 85%!important; */
+      }
+
+      .result-list .desc {
+          margin-bottom: 20px;
+          max-height: 52px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 20px;
+      }
+
+      .result-list .desc {
+          margin-bottom: 20px;
+          max-height: 52px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 20px;
+      }
+
+ .loader{
+ 	position: fixed;
+ 	left: 0px;
+ 	top: 0px;
+ 	width: 100%;
+ 	height: 100%;
+ 	z-index: 9999;
+ 	/* opacity: 5; */
+ 	background: url('assets/img/preloader_trans.gif') 50% 50% no-repeat rgba(255, 255, 255, 0.8);
+ }
+.loading{
+ 	position: fixed;
+ 	left: 0px;
+ 	top: 0px;
+ 	width: 100%;
+ 	height: 100%;
+ 	z-index: 9999;
+ 	/* opacity: 5; */
+ 	background: url('assets/img/loading.gif') 50% 50% no-repeat rgba(255, 255, 255, 0.8);
+ }
+
+ .bg-tgrey {
+   /* background: #1e667021!important; */
+   background:#00bcd424!important;
+    /* #e9edf1!important; */
+   color:black;
+ }
+ </style>
