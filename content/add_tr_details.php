@@ -110,6 +110,20 @@
                                        </div>
                                     </div>
 
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">Start Date:</label>
+                                        <div class="col-md-6">
+                                            <input type="date" name="phone" class="form-control input-lg" placeholder="Location" required />
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">End Date:</label>
+                                        <div class="col-md-6">
+                                            <input type="date" name="phone" class="form-control input-lg" placeholder="Location" required />
+                                        </div>
+                                    </div>
+
 										</fieldset>
 
                                         <div class="form-group">
