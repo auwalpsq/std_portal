@@ -11,7 +11,7 @@ use std_portal\std_gateways\GenericGateway;
 require_once 'std_gateways/GenericGateway.php';
 include_once 'config/DatabaseConfig.php';
 $database = new DatabaseConfig();      
-$dbConnection = $database->dbConnect();
+$dbConnect = $database->dbConnect();
 
 $grad =new GenericGateway($dbConnect);
 

@@ -35,7 +35,7 @@ include_once 'template/custom_style.html';
         <?php
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
-           include "content/add_ben_details.php";
+           include "content/add_tr_type_details.php";
         // include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';

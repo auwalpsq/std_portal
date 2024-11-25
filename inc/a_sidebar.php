@@ -101,7 +101,10 @@
 						</a>
 						<ul class="sub-menu">   
                <li><a href="add_tr">Add Training</a></li>
-               <li><a href="add_ben">beneficiary</a></li>
+               <li><a href="add_ben">Add Beneficiary</a></li>
+               <li><a href="add_host">Add Host</a></li>
+               <li><a href="add_spn">Add Sponsor</a></li>
+               <li><a href="add_tr_type">Add Training Type</a></li>
                <li><a href="stf_info">staff info</a></li>
                <li><a href="Stf_list">staff list</a></li>
              
