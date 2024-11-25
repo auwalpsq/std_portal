@@ -39,11 +39,12 @@
                             'deed'=>$end_date
                         );
             $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
             break;
         case ['beneficiary', 'cr']:
             $tableName = 'beneficiary';
 
-            $beneficiary = $_POST['beneficiary'];
+            $beneficiary = $_POST['staff_id'];
             $training = $_POST['training'];
             $cadre = $_POST['cadre'];
             $evaluation = $_POST['evaluation'];
@@ -70,16 +71,37 @@
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
             break;
-        case ['training_type', 'cr']:
-            $tableName = 'trainingtype';
+        case ['staff', 'cr']:
+            $tableName = 'staff';
 
-            $typeName = $_POST['type_name'];
-            $data = array(  'vttypename'=>$typeName);
+            $firstName = $_POST['first_name'];
+            $surname = $_POST['surname'];
+            $otherNames = $_POST['other_names'];
+            $department = $_POST['department'];
+            $dateOfBirth = $_POST['date_of_birth'];
+
+            $data = array(  'first_name'=>$firstName, 'surname'=>$surname, 'other_names'=>$otherNames, 'department'=>$department, 'date_of_birth'=>$dateOfBirth);
 
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
             break;
-
+            case ['beneficiary', 'cr']:
+                $tableName = 'beneficiary';
+    
+                $beneficiary = $_POST['staff_id'];
+                $training = $_POST['training'];
+                $cadre = $_POST['cadre'];
+                $evaluation = $_POST['evaluation'];
+    
+                $data = array(  'vfileno'=>$beneficiary,
+                                'ctcode'=>$training,
+                                'icadre'=>$cadre,
+                                'ftevaluation'=>$evaluation
+                            );
+                $response = $gateway->genericInsert($tableName,$data);
+                echo json_encode($response);
+                break;
+            
         case['host_training', 'u']: 
             $tableName = 'traininghost';
             $host_name = $_POST['host_name'];
@@ -167,7 +189,9 @@
             $id = 'all';
             $data = array('id_name'=>'cthostid', 'id_value' => $id);
 
-            $response = $gateway->genericDelete($tableName, $data);
+            $result = $gateway->genericDelete($tableName, $data);
+            
+            echo json_encode($result);
             break;
             
         case ['register_training', 'de']:
@@ -176,7 +200,9 @@
             
             $data = array('id_name'=>'ctcode', 'id_value' => $id);
             
-            $response = $gateway->genericDelete($tableName, $data);
+            $result = $gateway->genericDelete($tableName, $data);
+            
+            echo json_encode($result);
             break;
             
         case ['beneficiary', 'de']:
@@ -185,7 +211,9 @@
             
             $data = array('id_name'=>'vtfileno', 'id_value' => $id);
             
-            $response = $gateway->genericDelete($tableName, $data);
+            $result = $gateway->genericDelete($tableName, $data);
+            
+            echo json_encode($result);
             break;
             
         case ['sponsorship', 'de']:
@@ -194,7 +222,9 @@
             
             $data = array('id_name'=>'vspshipemailid', 'id_value' => $id);
             
-            $response = $gateway->genericDelete($tableName, $data);
+            $result = $gateway->genericDelete($tableName, $data);
+            
+            echo json_encode($result);
             break;
             
         case ['training_type', 'de']:
@@ -204,12 +234,8 @@
             $data = array('id_name'=>'vttypename', 'id_value' => $id);
             
             $result = $gateway->genericDelete($tableName, $data);
-            if($result > 0){
-                $response = array('message'=>'success');
-            }else{
-                $response = array('message'=>'failed');
-            }
-            echo json_encode($response);
+            
+            echo json_encode($result);
             break;
         
         case ['host_training', 'find']:
@@ -254,14 +280,38 @@
             
         case ['training_type', 'find']:
             $tableName = 'trainingtype';
-            $id = $_SESSION['training_type_id'];
+            //$id = $_SESSION['training_type_id'];
+            $id = 1;
             $typeName = $_POST['type_name'];
             $data = array('all' => false, 'limit' => '', 'id_name'=>'vttypename', 'id_value'=>$id);
             
             $result = $gateway->genericFind($tableName, $data);
             echo json_encode($result);
             break;
+        case ['staff', 'find']:
+            $tableName = 'staff';
+            //$id = $_SESSION['training_type_id'];
+            $id = $_POST['staff_id'];
+            $data = array('id' => $id, 'limit' => '', 'field_name'=>'id');
             
+            $raw_results = $gateway->genericFind($tableName, $data);
+            if($raw_results['message'] === 'success'){
+                $result = ['message'=>'success'];
+                foreach($raw_results['result'] as $raw_result){
+                    $result[] = array(
+                                        'id'=>$raw_result['id'],
+                                        'first_name'=>$raw_result['first_name'],
+                                        'surname'=>$raw_result['surname'],
+                                        'other_names'=>$raw_result['other_names'],
+                                        'department'=>$raw_result['department'],
+                                        'dob'=>$raw_result['date_of_birth']
+                                    );
+                }
+                
+                echo json_encode($result);   
+            }else{
+                echo json_encode($raw_results);
+            }
         default:
         $response = array('error'=>true,'message'=>'Invalid action');
             

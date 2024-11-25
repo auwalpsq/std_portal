@@ -1,3 +1,4 @@
+
 <style>
 
 .swal-size-sm {
@@ -39,11 +40,12 @@
                         </div>
                         <div class="panel-body">
                             
-                            <form id="userForm" class="form-horizontal" method="POST" >
-                          
+                            <form id="add_training" class="form-horizontal" method="POST" >
+                                <input type="hidden" name="type" value="register_training" />
+                                <input type="hidden" name="operation" value="cr" />
 
                             
-								<div id="wizard">
+								<div>
 								
 									
 									<!-- begin wizard step-1 -->
@@ -62,49 +64,78 @@
                                                     
                                         <label class="col-md-3 control-label">Training Name:<span class="text-danger">*</span></label>
                                         <div class="col-md-6">
-                                            <input type="text" name="name" class="form-control input-lg" placeholder="Training Name" required />
+                                            <input type="text" name="training_name" class="form-control input-lg" placeholder="Training Name" required />
                                         </div>
                                     </div>
 
                                       <div class="form-group">
                                         <label class="col-md-3 control-label">Location:</label>
                                         <div class="col-md-6">
-                                            <input type="text" name="phone" class="form-control input-lg" placeholder="Location" required />
+                                            <input type="text" name="training_location" class="form-control input-lg" placeholder="Location" required />
                                         </div>
                                     </div>
                                           
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label">Host ID:</label>
+                                        <label class="col-md-3 control-label">Host</label>
                                         <div class="col-md-6">
                                              <div>
-                                            <select class="form-control input-lg" name="category"  required>
+                                            <select class="form-control input-lg" name="training_host"  required>
                                                 <option value="" disabled selected>--select--</option>
-                                                <option value="adm1">option 1</option>
-                                                <option value="adm1">option 2</option>
+                                                <?php
+                                                    $tableName = 'traininghost';
+                                                    $data = array('id'=>'all', 'limit'=>'');
+
+                                                    $response = $gateway->genericFind($tableName, $data);
+                                                    if($response['message'] === 'success'){
+                                                        $results = $response['result'];
+                                                        foreach($results as $result){
+                                                            echo "<option value=\"{$result['cthostid']}\">{$result['vthostname']}</option>";
+                                                        }
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                        </div>
                                     </div>
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label">Sponsorship ID:</label>
+                                        <label class="col-md-3 control-label">Sponsorship</label>
                                         <div class="col-md-6">
                                              <div>
-                                            <select class="form-control input-lg" name="category"  required>
+                                            <select class="form-control input-lg" name="training_sponsor"  required>
                                                 <option value="" disabled selected>--select--</option>
-                                                <option value="adm1">option 1</option>
-                                                <option value="adm1">option 2</option>
+                                                <?php
+                                                    $tableName = 'sponsorshiptype';
+                                                    $data = array('id'=>'all', 'limit'=>'');
+
+                                                    $response = $gateway->genericFind($tableName, $data);
+                                                    if($response['message'] === 'success'){
+                                                        $results = $response['result'];
+                                                        foreach($results as $result){
+                                                            echo "<option value=\"{$result['cspshipid']}\">{$result['vspshipname']}</option>";
+                                                        }
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                        </div>
                                     </div>
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label">Training Type ID:</label>
+                                        <label class="col-md-3 control-label">Training Type</label>
                                         <div class="col-md-6">
-                                             <div>
-                                            <select class="form-control input-lg" name="category"  required>
+                                            <select class="form-control input-lg" name="training_type"  required>
                                                 <option value="" disabled selected>--select--</option>
-                                                <option value="adm1">option 1</option>
-                                                <option value="adm1">option 2</option>
+                                                <?php
+                                                    $tableName = 'trainingtype';
+                                                    $data = array('id'=>'all', 'limit'=>'');
+
+                                                    $response = $gateway->genericFind($tableName, $data);
+                                                    if($response['message'] === 'success'){
+                                                        $results = $response['result'];
+                                                        foreach($results as $result){
+                                                            echo "<option value=\"{$result['cttypeid']}\">{$result['vttypename']}</option>";
+                                                        }
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                        </div>
@@ -113,14 +144,14 @@
                                      <div class="form-group">
                                         <label class="col-md-3 control-label">Start Date:</label>
                                         <div class="col-md-6">
-                                            <input type="date" name="phone" class="form-control input-lg" placeholder="Location" required />
+                                            <input type="date" name="start_date" class="form-control input-lg" placeholder="Location" required />
                                         </div>
                                     </div>
 
                                      <div class="form-group">
                                         <label class="col-md-3 control-label">End Date:</label>
                                         <div class="col-md-6">
-                                            <input type="date" name="phone" class="form-control input-lg" placeholder="Location" required />
+                                            <input type="date" name="end_date" class="form-control input-lg" placeholder="Location" required />
                                         </div>
                                     </div>
 
@@ -146,15 +177,15 @@
             <!-- end row -->
 	
 
-         <script>
+<script>
     $(document).ready(function(){
-        $("#userForm").on("submit", function(event) { 
+        $("#add_training").on("submit", function(event) { 
             event.preventDefault(); // Prevent the default form submission
 
             var formData = new FormData(this); // Prepare form data
 
             $.ajax({
-                url: 'ajax/ajax_add_user.php', // Ensure this path is correct
+                url: 'ajax/crud.php', // Ensure this path is correct
                 type: 'POST',
                 data: formData,
                 contentType: false, // Needed for FormData
@@ -165,7 +196,7 @@
                         // Show a loading indicator
                         Swal.fire({
                             title: 'Processing...',
-                            text: 'Please wait while we add user.',
+                            text: 'Please wait while we add training.',
                             customClass: "swal-size-sm",
                             allowOutsideClick: false,
                             didOpen: () => {
@@ -177,21 +208,21 @@
                      // Close the loading indicator
                     Swal.close();
         
-                    if (response.status === 'success') {
+                    if (response.message === 'success') {
                         Swal.fire({
                             icon: 'success',
                             title: 'Successful!',
-                            text: response.message,
+                            text: response.result.message,
                             customClass: "swal-size-sm",
                             showConfirmButton: 'OK'
                         }).then(() => {
-                            window.location.href = 'add_usr'; 
+                            //window.location.href = 'add_usr'; 
                         });
-                    } else {
+                    } else if(response.message === 'failed'){
                         Swal.fire({
                             icon: 'error',
                             title: 'Error!',
-                            text: response.message,
+                            text: response.result.message,
                             customClass: "swal-size-sm",
                             confirmButtonText: 'OK'
                         });

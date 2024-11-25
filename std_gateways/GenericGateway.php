@@ -11,23 +11,23 @@ class GenericGateway{
 
     public function genericFind($tableName, $data)
     {
-        $statement = $data['all'] === true ? "SELECT * FROM $tableName $data[limit]" : "SELECT * FROM $tableName WHERE $data[id_name] = :id_value";
+        $statement = $data['id'] === 'all' ? "SELECT * FROM $tableName $data[limit]" : "SELECT * FROM $tableName WHERE $data[field_name] = :id";
 
         try {
             $statement = $this->db->prepare($statement);
-            if($data['all'] !== true){
-                $statement->bindParam('id_value', $data['id_value'], \PDO::PARAM_STR);
+            if($data['id'] !== 'all'){
+                $statement->bindParam('id', $data['id'], \PDO::PARAM_STR);
             }
             $statement->execute();
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
             if($statement->rowCount() > 0){
                 $response = array('message'=>'success', 'result'=>$result);
             }else{
-                $response = array('message'=>'success', 'result'=>array('message'=>'No data found'));
+                $response = array('message'=>'failed', 'result'=>array('message'=>'Invalid ID'));
             }
             return $response;
         } catch (\PDOException $e) {
-            $response = array('message'=>'failed', 'result'=>$e->getMessage());
+            $response = array('message'=>'error', 'result'=>$e->getMessage());
             return $response;
         }    
     }
@@ -53,33 +53,38 @@ class GenericGateway{
             if($statement->rowCount() > 0){
                 $response = array('message'=>'success', 'result'=>array('message'=>'Data inserted successfully'));
             }else{
-                $response = array('message'=>'success', 'result'=>array('message'=>'Failed to insert data'));
+                $response = array('message'=>'failed', 'result'=>array('message'=>'Failed to insert data'));
             }
             return $response;
         }catch(\PDOException $e){
-            return $response = array('message'=>'failed', 'result'=>array('result'=>$e->getMessage()));
+            return array('message'=>'error', 'result'=>array('message'=>$e->getMessage()));
         }
     }
     public function genericDelete($tableName, $data)
     {
-        $statement = $data['id_value'] === 'all' ? "DELETE FROM $tableName" : "DELETE FROM $tableName WHERE $data[id_name] = :id";
+        $statement = $data['id'] === 'all' ? "DELETE FROM $tableName" : "DELETE FROM $tableName WHERE $data[id_name] = :id";
 
         try {
             $statement = $this->db->prepare($statement);
-            if($data['id_value'] !== 'all'){
-                $statement->bindParam(":id", $data['id_value']);
+            if($data['id'] !== 'all'){
+                $statement->bindParam(":id", $data['id']);
             }
             $statement->execute();
-            return $statement->rowCount();
+            if($statement->rowCount() > 0){
+                $response = array('message'=>'success', 'result'=>array('message'=>'Data deleted successfully'));
+            }else{
+                $response = array('message'=>'failed', 'result'=>array('message'=>'No data found to delete'));
+            }
+            return $response;
         } catch (\PDOException $e) {
-            exit($e->getMessage());
+            return array('message'=>'error', 'result'=>$e->getMessage());
         }    
     }
     public function genericUpdate($tableName, $data){
         // Build the SET part of the query dynamically based on the $data array
         $setPart = "";
         foreach ($data as $column => $value) {
-            if($column !== 'id_name' && $column !== 'id_value'){
+            if($column !== 'id_name' && $column !== 'id'){
                 $setPart .= "$column = :$column, ";
             }
         }
@@ -88,22 +93,28 @@ class GenericGateway{
         $setPart = rtrim($setPart, ", ");
 
         // Prepare the SQL statement
-        $statement = "UPDATE $tableName SET $setPart WHERE $data[id_name] = :id_value";
+        $statement = $data['id'] === 'all' ? "UPDATE $tableName SET $setPart" : "UPDATE $tableName SET $setPart WHERE $data[field_name] = :id";
         
         try {
             $statement = $this->db->prepare($statement);
             foreach($data as $column => $value){
-                if($column !== 'id_name'){
+                if($column !== 'field_name' && $column !== 'id'){
                     $statement->bindValue("$column", $value);
                 }
             }
-            
+            if($data['id'] !== 'all'){
+                $statement->bindParam('id', $data['id']);
+            }
             // Execute the statement with the combined data
             $statement->execute();
-            
-            return $statement->rowCount(); // Returns the number of rows affected
+            if($statement->rowCount() > 0){
+                $response = array('message'=>'success', 'result'=>array('message'=>'Data updated successfully'));
+            }else{
+                $response = array('message'=>'failed', 'result'=>array('message'=>'Failed to update data'));
+            }
+            return $response;
         } catch (\PDOException $e) {
-            exit($e->getMessage());
+            return array('message'=>'error', 'result'=>array('result'=>$e->getMessage()));
         }
     }
 }
