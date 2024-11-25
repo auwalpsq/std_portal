@@ -101,8 +101,15 @@
 						</a>
 						<ul class="sub-menu">   
                <li><a href="add_tr">Add Training</a></li>
+<<<<<<< HEAD
                <li><a href="add_ben">beneficiary</a></li>
                <li><a href="add_staff">add staff</a></li>
+=======
+               <li><a href="add_ben">Add Beneficiary</a></li>
+               <li><a href="add_host">Add Host</a></li>
+               <li><a href="add_spn">Add Sponsor</a></li>
+               <li><a href="add_tr_type">Add Training Type</a></li>
+>>>>>>> 5484de7aa859dfd0d236144ede8401e383fcb582
                <li><a href="stf_info">staff info</a></li>
                <li><a href="Stf_list">staff list</a></li>
 						   <!-- <li><a href="graduate">Graduates</a></li> -->
