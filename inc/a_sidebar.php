@@ -102,9 +102,9 @@
 						<ul class="sub-menu">   
                <li><a href="add_tr">Add Training</a></li>
                <li><a href="add_ben">beneficiary</a></li>
+               <li><a href="add_staff">add staff</a></li>
                <li><a href="stf_info">staff info</a></li>
                <li><a href="Stf_list">staff list</a></li>
-             
 						   <!-- <li><a href="graduate">Graduates</a></li> -->
 						</ul>
 					</li>

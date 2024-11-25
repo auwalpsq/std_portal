@@ -39,8 +39,10 @@
                             <h4 class="panel-title">Add Beneficiary</h4>
                         </div>
                         <div class="panel-body">
-                   <form id="appForm"  class="form-horizontal" method="POST" >     
-								      <div id="wizard">
+                   <form id="new_beneficiary"  class="form-horizontal" method="POST" >
+                        <input type="hidden" name="type" value="beneficiary" />
+                        <input type="hidden" name="operation" value="cr" />
+						<div>
 				
 									<!-- begin wizard step-2 -->
 									<div class="wizard-step-2">
@@ -51,27 +53,48 @@
                                                </div>
 										<fieldset>
                                             <legend class="pull-left width-full">Add Beneficiary</legend>
-
-                                          
                                                         
-                                                <div style="margin-top: 30px;" class="form-group">
-                                                <label class="col-md-3 control-label">Code:</label>
-                                                <div class="col-md-6">
-                                                    <input type="text" name="email" class="form-control input-lg" placeholder="enter code" required />
+                                            <div style="margin-top: 30px;" class="form-group">
+                                                <div class="form-inline">
+                                                    <label class="col-md-3 control-label">Staff ID</label>
+                                                    <input type="text" id="staff_id" style="width:50%" name="staff_id" class="col-md-6 form-control input-lg" placeholder="staff_id" required />
+                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success input-lg" />
+                                                </div>
+                                                <div class="form-inline">
+                                                    <label class="control-label col-md-3">Staff information</label>
+                                                    <input type="text" id="full_name" style="width:25%" name="full_name" class="form-control input-sm" placeholder="full_name" required disabled />
+                                                    <input type="text" id="department" name="full_name"class="form-control input-sm" placeholder="department" required disabled/>
+                                                    <input type="text" id="date_of_birth" name="date_of_birth"class="form-control input-sm"placeholder="date of birth" disabled />
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Training</label>
+                                                <div class="col-md-6">
+                                                    <select class="form-control input-lg" name="training">
+                                                        <option value="" disabled selected>--Select</option>
+                                                        <?php
+                                                            $tableName = 'trainingregister';
+                                                            $data = array('id'=>'all', 'limit'=>'');
 
+                                                            $trainings = $gateway->genericFind($tableName, $data);
+                                                            foreach($trainings['result'] as $training){
+                                                                echo "<option value=\"{$training['ctcode']}\">{$training['vtname']}</option>";
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Cadre:</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" name="staff_id" class="form-control input-lg" placeholder="enter cadre" required />
+                                                    <input type="text" name="cadre" class="form-control input-lg" placeholder="enter cadre" required />
                                                 </div>
                                             </div>  
 
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Evaluation:</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" name="staff_id" class="form-control input-lg" placeholder="enter evaluation" required />
+                                                    <input type="text" name="evaluation" class="form-control input-lg" placeholder="enter evaluation" required />
                                                 </div>
                                             </div>  
                                           
@@ -99,83 +122,114 @@
 		</div>
 		<!-- end #content -->
 
-       <script>
-$(document).ready(function(){
-    $("#appForm").on("submit", function(event) { 
-        event.preventDefault(); // Prevent the default form submission
+<script>
+    $(document).ready(function(){
+        $("#new_beneficiary").on("submit", function(event) { 
+            event.preventDefault(); // Prevent the default form submission
 
-        // Confirm before deletion
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This action cannot be undone.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#008000',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel',
-            customClass: "swal-size-sm"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Proceed with AJAX if confirmed
-                var formData = new FormData(this); // Prepare form data
+            var formData = new FormData(this); // Prepare form data
 
+            $.ajax({
+                url: 'ajax/crud.php', // Ensure this path is correct
+                type: 'POST',
+                data: formData,
+                contentType: false, // Needed for FormData
+                processData: false, // Needed for FormData
+                cache: false,
+                dataType: 'json', 
+                beforeSend: function() {
+                    // Show a loading indicator
+                    Swal.fire({
+                        title: 'Processing...',
+                        text: 'Please wait while we add training.',
+                        customClass: "swal-size-sm",
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    });
+                },
+                success: function(response) { 
+                        // Close the loading indicator
+                    Swal.close();
+        
+                    if (response.message === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Successful!',
+                            text: response.result.message,
+                            customClass: "swal-size-sm",
+                            showConfirmButton: 'OK'
+                        }).then(() => {
+                            $('#new_beneficiary')[0].reset();
+                            //window.location.href = 'add_usr'; 
+                        });
+                    } else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: response.result.message,
+                            customClass: "swal-size-sm",
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                // error: function(jqXHR, textStatus, errorThrown) {
+                //     console.error('AJAX Error:', textStatus, errorThrown); // Debugging
+                //     console.log('Response Text:', jqXHR.responseText); // Debugging
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'AJAX Error!',
+                //         text: 'An error occurred while processing your request.',
+                //         customClass: "swal-size-sm",
+                //         confirmButtonText: 'OK'
+                //     });
+                // }
+            });
+        });
+        $('#search_staff').on('click', function(){
+            let staff_id = $('#staff_id').val();
+            if(staff_id.length > 0){
+                let type = 'staff';
+                let operation = 'find';
                 $.ajax({
-                    url: 'ajax/ajax_delete_user.php', // Ensure this path is correct
+                    url: 'ajax/crud.php',
                     type: 'POST',
-                    data: formData,
-                    contentType: false, // Needed for FormData
-                    processData: false, // Needed for FormData
-                    cache: false,
-                    dataType: 'json', // Expect JSON response from server
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Successful!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                confirmButtonColor: '#008000',
-                                showConfirmButton: 'OK'
-                            }).then(() => {
-                                window.location.href = 'del_usr'; 
-                            });
-                        } else if (response.status === 'invalid') {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Invalid!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                 confirmButtonColor: '#008000',
-                                confirmButtonText: 'OK'
-                            });
-                        } else {
+                    data: {staff_id: staff_id, type: type, operation: operation},
+                    beforeSend: function(){
+                        Swal.fire({
+                            title: 'Processing...',
+                            text: 'Please wait while we find the staff.',
+                            customClass: "swal-size-sm",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                            }
+                        });
+                    },
+                    success: function(response){
+                        Swal.close();
+                        let data = JSON.parse(response);
+                        if(data['message'] == 'success'){
+                            let fullName = data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']
+                            $('#full_name').val(fullName);
+                            $('#department').val(data[0]['department']);
+                            $('#date_of_birth').val(data[0]['dob']);
+                        }else{
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Error!',
-                                text: response.message,
+                                title: data['message'],
+                                text: data['result']['message'],
                                 customClass: "swal-size-sm",
-                                 confirmButtonColor: '#008000',
                                 confirmButtonText: 'OK'
                             });
                         }
-                    },
-                    // Uncomment this block for debugging
-                    // error: function(jqXHR, textStatus, errorThrown) {
-                    //     console.error('AJAX Error:', textStatus, errorThrown);
-                    //     console.log('Response Text:', jqXHR.responseText);
-                    //     Swal.fire({
-                    //         icon: 'error',
-                    //         title: 'AJAX Error!',
-                    //         text: 'An error occurred while processing your request.',
-                    //         customClass: "swal-size-sm",
-                    //         confirmButtonText: 'OK'
-                    //     });
-                    // }
+                    }
                 });
+            }else{
+                alert('Staff cannot be empty');
             }
         });
     });
-});
 </script>
 

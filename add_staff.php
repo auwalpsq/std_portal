@@ -13,7 +13,7 @@ include_once 'config/DatabaseConfig.php';
 $database = new DatabaseConfig();      
 $dbConnect = $database->dbConnect();
 
-$gateway =new GenericGateway($dbConnect);
+$grad =new GenericGateway($dbConnect);
 
 ?>
 
@@ -35,7 +35,7 @@ include_once 'template/custom_style.html';
         <?php
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
-        include "content/add_ben_details.php";
+        include "content/add_staff_details.php";
         // include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';
