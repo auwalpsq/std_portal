@@ -123,21 +123,9 @@ $(document).ready(function(){
             processData: false, // Needed for FormData
             cache: false,
             dataType: 'json', 
-                beforeSend: function() {
-                    // Show a loading indicator
-                    Swal.fire({
-                        title: 'Processing...',
-                        text: 'Please wait while we add training.',
-                        customClass: "swal-size-sm",
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.showLoading()
-                        }
-                    });
-                },
+               
             success: function(response) { 
-                    // Close the loading indicator
-                Swal.close();
+                  
     
                 if (response.message === 'success') {
                     Swal.fire({
@@ -147,7 +135,7 @@ $(document).ready(function(){
                         customClass: "swal-size-sm",
                         showConfirmButton: 'OK'
                     }).then(() => {
-                        //window.location.href = 'add_usr'; 
+                        window.location.href = 'add_staff'; 
                     });
                 } else if(response.message === 'failed'){
                     Swal.fire({
