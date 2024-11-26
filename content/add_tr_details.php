@@ -165,8 +165,9 @@
 									</div>
 									</div>
 								 	<!-- end wizard -->
+                                     </form>
 								 </div>
-							</form>
+							
                         </div>
                     </div>
                     <!-- end panel -->
@@ -243,3 +244,60 @@
         });
     });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Training Name</th>
+                                        <th>Host</th>
+                                        <th>Location</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $tableName = 'trainingregister';
+                                        $data = array('id'=>'all', 'limit'=>'');
+
+                                        $trainings = $gateway->genericFind($tableName, $data);
+                                        foreach($trainings['result'] as $training){
+                                           ?>
+                                            <tr>
+                                                 <td><?php echo $training['ctcode'];?></td>
+                                                <td style="font-size:14px">
+                                                     <div class = "view_result">
+                                                    <a><?php echo $training['vtname'];?></a>
+                                                 <div class ="pull-bottom">
+                                                    <button type="button" class = "viewresult btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" >Edit</button>
+
+                                                    <button  class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
+
+                                                    <button class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
+                                                </div>
+                                                </div>
+                                                </td>
+                                               
+                                                <td><?php echo $training['cthostid'];?></td>
+                                                <td><?php echo $training['vtlocation'];?></td>
+                                                <td><?php echo $training['dedc'];?></td>
+                                                <td><?php echo $training['deed'];?></td>
+                                               
+                                            </tr>
+                                            <?php
+                                        }
+                                    ?>
+                                </tbody>
