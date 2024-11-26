@@ -146,22 +146,9 @@
                 processData: false, // Needed for FormData
                 cache: false,
                 dataType: 'json', 
-                beforeSend: function() {
-                    // Show a loading indicator
-                    Swal.fire({
-                        title: 'Processing...',
-                        text: 'Please wait while we add training.',
-                        customClass: "swal-size-sm",
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.showLoading()
-                        }
-                    });
-                },
+               
                 success: function(response) { 
-                        // Close the loading indicator
-                    Swal.close();
-        
+                   
                     if (response.message === 'success') {
                         Swal.fire({
                             icon: 'success',
@@ -205,19 +192,9 @@
                     url: 'ajax/crud.php',
                     type: 'POST',
                     data: {staff_id: staff_id, type: type, operation: operation},
-                    beforeSend: function(){
-                        Swal.fire({
-                            title: 'Processing...',
-                            text: 'Please wait while we find the staff.',
-                            customClass: "swal-size-sm",
-                            allowOutsideClick: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                            }
-                        });
-                    },
+
                     success: function(response){
-                        Swal.close();
+                      
                         let data = JSON.parse(response);
                         if(data['message'] == 'success'){
                             let fullName = data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']
@@ -236,7 +213,13 @@
                     }
                 });
             }else{
-                alert('Staff cannot be empty');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning',
+                    text: 'Staff ID cannot be empty',
+                    customClass: "swal-size-sm",
+                    confirmButtonText: 'OK'
+                });
             }
         });
     });
