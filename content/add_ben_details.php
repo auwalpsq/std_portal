@@ -55,19 +55,28 @@
                                             <legend class="pull-left width-full">Add Beneficiary</legend>
                                                         
                                             <div style="margin-top: 30px;" class="form-group">
-                                                <div class="form-inline">
-                                                    <label class="col-md-3 control-label">Staff ID</label>
-                                                    <input type="text" id="staff_id" style="width:50%" name="staff_id" class="col-md-6 form-control input-lg" placeholder="staff_id" required />
-                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success input-lg" />
+                                               <div class="form-group">
+                                                     <label class="col-md-3 control-label">Staff ID</label>
+                                                    <div class="col-md-6">
+                                                    <div class="form-inline">
+                                                    <input type="text" id="staff_id" style="width:80%" name="staff_id" class=" form-control input-lg" placeholder="staff id" required />
+                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success form-control input-lg" />
+                                                     </div>
+                                                    </div>
                                                 </div>
-                                                <div class="form-inline">
+
+                                                <div class="form-group">
                                                     <label class="control-label col-md-3">Staff information</label>
-                                                    <input type="text" id="full_name" style="width:25%" name="full_name" class="form-control input-sm" placeholder="full_name" required disabled />
-                                                    <input type="text" id="department" name="full_name"class="form-control input-sm" placeholder="department" required disabled/>
-                                                    <input type="text" id="date_of_birth" name="date_of_birth"class="form-control input-sm"placeholder="date of birth" disabled />
+                                                      <div class="col-md-6">
+                                                        <div class="form-inline">
+                                                        <input type="text" id="full_name" style="width:45%" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
+                                                         <input type="text" id="department" name="full_name"class="form-control input-lg" placeholder="department" required disabled/>
+                                                       <input type="text" id="date_of_birth" style="width:20%" name="date_of_birth"class="form-control input-lg"placeholder="date of birth" disabled />
+                                                        </div>
+                                                      </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-top:-10px" >
                                                 <label class="col-md-3 control-label">Training</label>
                                                 <div class="col-md-6">
                                                     <select class="form-control input-lg" name="training">
