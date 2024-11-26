@@ -36,84 +36,38 @@
                         
                         <div class="panel-body">
                             <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+
+                            <div class=" pull-right"> <a href="add_tr" class="btn btn-primary btn-md "><i class="fa fa-plus m-r-5"></i>Create New Training</a></div>
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Trainig Name</th>
+                                        <th>Training Name</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td>4</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr class="even gradeC">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.5</td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 6</td>
-                                        <td>Win 98+</td>
-                                        <td>6</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 7</td>
-                                        <td>Win XP SP2+</td>
-                                        <td>7</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>Trident</td>
-                                        <td>AOL browser (AOL desktop)</td>
-                                        <td>Win XP</td>
-                                        <td>6</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.5</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 2.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 3.0</td>
-                                        <td>Win 2k+ / OSX.3+</td>
-                                        <td>1.9</td>
-                                        <td>A</td>
-                                    </tr>
-                                    
+                                    <?php
+                                        $tableName = 'trainingregister';
+                                        $data = array('id'=>'all', 'limit'=>'');
+
+                                        $trainings = $gateway->genericFind($tableName, $data);
+                                        foreach($trainings['result'] as $training){
+                                           ?>
+                                            <tr>
+                                                <td><?php echo $training['ctcode'];?></td>
+                                                <td><?php echo $training['vtname'];?></td>
+                                                <td><?php echo $training['dedc'];?></td>
+                                                <td><?php echo $training['deed'];?></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-md edit-btn"><i class="fa fa-edit m-r-5"> Edit</i></button>
+                                                    <button class="btn btn-danger btn-md delete-btn"><i class="fa fa-trash-o m-r-5"> Delete</i></button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -125,3 +79,16 @@
             <!-- end row -->
 		</div>
 		<!-- end #content -->
+
+
+        <script>
+  $(document).ready(function () {
+    // Attach click event to dynamically added delete buttons
+    $('#data-table').on('click', '.delete-btn', function () {
+        // Remove the row containing the clicked button
+        $(this).closest('tr').remove();
+    });
+});
+
+
+        </script>

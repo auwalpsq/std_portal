@@ -55,19 +55,28 @@
                                             <legend class="pull-left width-full">Add Beneficiary</legend>
                                                         
                                             <div style="margin-top: 30px;" class="form-group">
-                                                <div class="form-inline">
-                                                    <label class="col-md-3 control-label">Staff ID</label>
-                                                    <input type="text" id="staff_id" style="width:50%" name="staff_id" class="col-md-6 form-control input-lg" placeholder="staff_id" required />
-                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success input-lg" />
+                                               <div class="form-group">
+                                                     <label class="col-md-3 control-label">Staff ID</label>
+                                                    <div class="col-md-6">
+                                                    <div class="form-inline">
+                                                    <input type="text" id="staff_id" style="width:80%" name="staff_id" class=" form-control input-lg" placeholder="staff id" required />
+                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success form-control input-lg" />
+                                                     </div>
+                                                    </div>
                                                 </div>
-                                                <div class="form-inline">
+
+                                                <div class="form-group">
                                                     <label class="control-label col-md-3">Staff information</label>
-                                                    <input type="text" id="full_name" style="width:25%" name="full_name" class="form-control input-lg" placeholder="full_name" required disabled />
-                                                    <input type="text" id="department" name="full_name"class="form-control input-lg" placeholder="department" required disabled/>
-                                                    <input type="text" id="date_of_birth" name="date_of_birth"class="form-control input-lg"placeholder="date of birth" disabled />
+                                                      <div class="col-md-6">
+                                                        <div class="form-inline">
+                                                        <input type="text" id="full_name" style="width:45%" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
+                                                         <input type="text" id="department" name="full_name"class="form-control input-lg" placeholder="department" required disabled/>
+                                                       <input type="text" id="date_of_birth" style="width:20%" name="date_of_birth"class="form-control input-lg"placeholder="date of birth" disabled />
+                                                        </div>
+                                                      </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-top:-10px" >
                                                 <label class="col-md-3 control-label">Training</label>
                                                 <div class="col-md-6">
                                                     <select class="form-control input-lg" name="training">
@@ -137,10 +146,9 @@
                 processData: false, // Needed for FormData
                 cache: false,
                 dataType: 'json', 
-              
+               
                 success: function(response) { 
-                      
-        
+                   
                     if (response.message === 'success') {
                         Swal.fire({
                             icon: 'success',
@@ -184,9 +192,9 @@
                     url: 'ajax/crud.php',
                     type: 'POST',
                     data: {staff_id: staff_id, type: type, operation: operation},
-                    
+
                     success: function(response){
-                        
+                      
                         let data = JSON.parse(response);
                         if(data['message'] == 'success'){
                             let fullName = data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']
@@ -205,7 +213,13 @@
                     }
                 });
             }else{
-                alert('Staff cannot be empty');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning',
+                    text: 'Staff ID cannot be empty',
+                    customClass: "swal-size-sm",
+                    confirmButtonText: 'OK'
+                });
             }
         });
     });
