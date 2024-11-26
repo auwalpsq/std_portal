@@ -196,7 +196,7 @@
             
         case ['register_training', 'de']:
             $tableName = 'trainingregister';
-            $id = $_SESSION['register_training_id'];
+            $id = $_POST['id'];
             
             $data = array('id_name'=>'ctcode', 'id_value' => $id);
             

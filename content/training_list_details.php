@@ -61,8 +61,20 @@
                                                 <td><?php echo $training['dedc'];?></td>
                                                 <td><?php echo $training['deed'];?></td>
                                                 <td>
-                                                    <button class="btn btn-success btn-md edit-btn"><i class="fa fa-edit m-r-5"> Edit</i></button>
-                                                    <button class="btn btn-danger btn-md delete-btn"><i class="fa fa-trash-o m-r-5"> Delete</i></button>
+                                                    <button 
+                                                        data-type="<?php echo 'training_register' ?>"
+                                                        data-operation="<?php echo 'u'; ?>"
+                                                        data-id="<?php echo $training['ctcode']; ?>"
+                                                        class="btn btn-success btn-md edit-btn training-btn">
+                                                        <i class="fa fa-edit m-r-5"> Edit</i>
+                                                    </button>
+                                                    <button 
+                                                        data-type="<?php echo 'training_register' ?>"
+                                                        data-operation="<?php echo 'de'; ?>"
+                                                        data-id="<?php echo $training['ctcode']; ?>"
+                                                        class="btn btn-danger btn-md training-btn delete-btn">
+                                                         <i class="fa fa-trash-o m-r-5"> Delete</i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -84,9 +96,32 @@
         <script>
   $(document).ready(function () {
     // Attach click event to dynamically added delete buttons
-    $('#data-table').on('click', '.delete-btn', function () {
-        // Remove the row containing the clicked button
-        $(this).closest('tr').remove();
+    // $('#data-table').on('click', '.delete-btn', function () {
+    //     alert($(this).val());
+    //     //$(this).closest('tr').remove();
+    // });
+    $(document).on('click', '.training-btn', function () {
+        let id =$(this).data('id');
+        let type = $(this).data('type');
+        let operation = $(this).data('operation');
+        //alert(id + type + operation);
+       $.ajax({
+        url: 'ajax/crud.php',
+        type: 'POST',
+        data: {id: id, type: type, operation: operation},
+        success: function(response){
+            if(response.message == 'success'){
+                Swal.fire({
+                    icon:'success',
+                    title: 'Success',
+                    text: response.result.message,
+                    customClass: "swal-size-sm",
+                    timer: 3000,
+                });
+                $(this).closest('tr').remove();
+            }
+        }
+       });
     });
 });
 
