@@ -53,45 +53,6 @@
                                                </div>
 										<fieldset>
                                             <legend class="pull-left width-full">Add Beneficiary</legend>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-                                                        
-                                            <div style="margin-top: 30px;" class="form-group">
-                                               <div class="form-group">
-                                                     <label class="col-md-3 control-label">Staff ID</label>
-                                                    <div class="col-md-6">
-                                                    <div class="form-inline">
-                                                    <input type="text" id="staff_id" style="width:80%" name="staff_id" class=" form-control input-lg" placeholder="staff id" required />
-                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success form-control input-lg" />
-                                                     </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">Staff information</label>
-                                                      <div class="col-md-6">
-                                                        <div class="form-inline">
-                                                        <input type="text" id="full_name" style="width:45%" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
-                                                         <input type="text" id="department" name="full_name"class="form-control input-lg" placeholder="department" required disabled/>
-                                                       <input type="text" id="date_of_birth" style="width:20%" name="date_of_birth"class="form-control input-lg"placeholder="date of birth" disabled />
-                                                        </div>
-                                                      </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group" style="margin-top:-10px" >
-                                                <label class="col-md-3 control-label">Training</label>
-                                                <div class="col-md-6">
-                                                    <select class="form-control input-lg" name="training">
-                                                        <option value="" disabled selected>--Select</option>
-                                                        <?php
-                                                            $tableName = 'trainingregister';
-                                                            $data = array('id'=>'all', 'limit'=>'');
->>>>>>> Stashed changes
-
-                                          
-=======
->>>>>>> 0ed345252dd37b8c0c37c7b8d96d95cb44ab4091
                                                         
                                             <div style="margin-top: 30px;" class="form-group">
                                                 <div class="form-inline">
@@ -168,11 +129,6 @@
 
             var formData = new FormData(this); // Prepare form data
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 0ed345252dd37b8c0c37c7b8d96d95cb44ab4091
             $.ajax({
                 url: 'ajax/crud.php', // Ensure this path is correct
                 type: 'POST',
@@ -181,11 +137,6 @@
                 processData: false, // Needed for FormData
                 cache: false,
                 dataType: 'json', 
-<<<<<<< HEAD
-               
-                success: function(response) { 
-                   
-=======
                 beforeSend: function() {
                     // Show a loading indicator
                     Swal.fire({
@@ -201,7 +152,6 @@
                 success: function(response) { 
                         // Close the loading indicator
                     Swal.close();
->>>>>>> 0ed345252dd37b8c0c37c7b8d96d95cb44ab4091
         
                     if (response.message === 'success') {
                         Swal.fire({
@@ -224,8 +174,6 @@
                         });
                     }
                 },
-<<<<<<< HEAD
-=======
                 // error: function(jqXHR, textStatus, errorThrown) {
                 //     console.error('AJAX Error:', textStatus, errorThrown); // Debugging
                 //     console.log('Response Text:', jqXHR.responseText); // Debugging
@@ -237,7 +185,6 @@
                 //         confirmButtonText: 'OK'
                 //     });
                 // }
->>>>>>> 0ed345252dd37b8c0c37c7b8d96d95cb44ab4091
             });
         });
         $('#search_staff').on('click', function(){
@@ -245,47 +192,9 @@
             if(staff_id.length > 0){
                 let type = 'staff';
                 let operation = 'find';
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 0ed345252dd37b8c0c37c7b8d96d95cb44ab4091
                 $.ajax({
                     url: 'ajax/crud.php',
                     type: 'POST',
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-                    data: formData,
-                    contentType: false, // Needed for FormData
-                    processData: false, // Needed for FormData
-                    cache: false,
-                    dataType: 'json', // Expect JSON response from server
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Successful!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                confirmButtonColor: '#008000',
-                                showConfirmButton: 'OK'
-                            }).then(() => {
-                                window.location.href = 'del_usr'; 
-                            });
-                        } else if (response.status === 'invalid') {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Invalid!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                 confirmButtonColor: '#008000',
-                                confirmButtonText: 'OK'
-                            });
-                        } else {
-=======
-                    data: {staff_id: staff_id, type: type, operation: operation},
-                   
-                    success: function(response){
-=======
                     data: {staff_id: staff_id, type: type, operation: operation},
                     beforeSend: function(){
                         Swal.fire({
@@ -300,7 +209,6 @@
                     },
                     success: function(response){
                         Swal.close();
->>>>>>> 0ed345252dd37b8c0c37c7b8d96d95cb44ab4091
                         let data = JSON.parse(response);
                         if(data['message'] == 'success'){
                             let fullName = data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']
@@ -308,10 +216,6 @@
                             $('#department').val(data[0]['department']);
                             $('#date_of_birth').val(data[0]['dob']);
                         }else{
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 0ed345252dd37b8c0c37c7b8d96d95cb44ab4091
                             Swal.fire({
                                 icon: 'error',
                                 title: data['message'],
