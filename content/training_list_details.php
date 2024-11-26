@@ -1,11 +1,152 @@
-		<!-- begin #content -->
+		<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLongTitle">Edit Training</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add_training" class="form-horizontal" method="POST" >
+                                <input type="hidden" name="type" value="register_training" />
+                                <input type="hidden" name="operation" value="cr" />
+
+                            
+								<div>
+								
+									
+									<!-- begin wizard step-1 -->
+									<div class="wizard-step-1">
+                                         <div class="alert alert-warning fade in m-b-15">
+                                                <strong>Warning!</strong>
+                                              You are about to edit a Training. Please ensure that all required information is entered correctly before proceeding.
+                                                <span class="close" data-dismiss="alert">×</span>
+                                               </div>
+										<fieldset>
+											
+                                                
+                                              
+
+                                                <div style="margin-top: 30px;" class="form-group">
+                                                    
+                                        <label class="col-md-3 control-label">Training Name:<span class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="training_name" class="form-control input-lg" placeholder="Training Name" required />
+                                        </div>
+                                    </div>
+
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label">Location:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="training_location" class="form-control input-lg" placeholder="Location" required />
+                                        </div>
+                                    </div>
+                                          
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label">Host</label>
+                                        <div class="col-md-8">
+                                             <div>
+                                            <select class="form-control input-lg" name="training_host"  required>
+                                                <option value="" disabled selected>--select--</option>
+                                                <?php
+                                                    $tableName = 'traininghost';
+                                                    $data = array('id'=>'all', 'limit'=>'');
+
+                                                    $response = $gateway->genericFind($tableName, $data);
+                                                    if($response['message'] === 'success'){
+                                                        $results = $response['result'];
+                                                        foreach($results as $result){
+                                                            echo "<option value=\"{$result['cthostid']}\">{$result['vthostname']}</option>";
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                       </div>
+                                    </div>
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label">Sponsorship</label>
+                                        <div class="col-md-8">
+                                             <div>
+                                            <select class="form-control input-lg" name="training_sponsor"  required>
+                                                <option value="" disabled selected>--select--</option>
+                                                <?php
+                                                    $tableName = 'sponsorshiptype';
+                                                    $data = array('id'=>'all', 'limit'=>'');
+
+                                                    $response = $gateway->genericFind($tableName, $data);
+                                                    if($response['message'] === 'success'){
+                                                        $results = $response['result'];
+                                                        foreach($results as $result){
+                                                            echo "<option value=\"{$result['cspshipid']}\">{$result['vspshipname']}</option>";
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                       </div>
+                                    </div>
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label">Training Type</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control input-lg" name="training_type"  required>
+                                                <option value="" disabled selected>--select--</option>
+                                                <?php
+                                                    $tableName = 'trainingtype';
+                                                    $data = array('id'=>'all', 'limit'=>'');
+
+                                                    $response = $gateway->genericFind($tableName, $data);
+                                                    if($response['message'] === 'success'){
+                                                        $results = $response['result'];
+                                                        foreach($results as $result){
+                                                            echo "<option value=\"{$result['cttypeid']}\">{$result['vttypename']}</option>";
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                       </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">Start Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" name="start_date" class="form-control input-lg" placeholder="Location" required />
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">End Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" name="end_date" class="form-control input-lg" placeholder="Location" required />
+                                        </div>
+                                    </div>
+
+										</fieldset>
+
+                                       
+									</div>
+								 	<!-- end wizard -->
+                                     </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- begin #content -->
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Tables</a></li>
-				<li><a href="javascript:;">Managed Tables</a></li>
-				<li class="active">Select</li>
+				<li><a href="javascript:;">Training</a></li>
+				<li><a href="javascript:;">Training List</a></li>
+			
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
@@ -19,14 +160,15 @@
 			        <!-- begin panel -->
                     <div class="panel panel-inverse" >
                         <div class="panel-heading" style="background-color: #008000;">
-                            <div class="panel-heading-btn">
+                            <!-- <div class="panel-heading-btn">
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                            </div>
+                            </div> -->
                             <h4 class="panel-title">Training List</h4>
                         </div>
+                        
                         <!-- <div class="alert alert-info fade in">
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">&times;</span>
@@ -34,17 +176,21 @@
                             Select adds item selection capabilities to a DataTable. Items can be rows, columns or cells, which can be selected independently, or together. Item selection can be particularly useful in interactive tables where users can perform some action on the table, such as editing rows or marking items to perform an action on.
                         </div> -->
                         
+                        
                         <div class="panel-body">
-                            <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+                            <table id="data-table" class="table table-striped table-bordered" width="100%">
+                                 <div class=" pull-right" style="margin-bottom: 10px;"> <a href="add_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</a></div>
 
-                            <div class=" pull-right"> <a href="add_tr" class="btn btn-primary btn-md "><i class="fa fa-plus m-r-5"></i>Create New Training</a></div>
+                           
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Training Name</th>
+                                        <th>Host</th>
+                                        <th>Location</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-                                        <th>Action</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,26 +202,25 @@
                                         foreach($trainings['result'] as $training){
                                            ?>
                                             <tr>
-                                                <td><?php echo $training['ctcode'];?></td>
-                                                <td><?php echo $training['vtname'];?></td>
+                                                 <td><?php echo $training['ctcode'];?></td>
+                                                <td style="font-size:14px">
+                                                     <div class = "view_result">
+                                                    <a><?php echo $training['vtname'];?></a>
+                                                 <div class ="pull-bottom">
+                                                    <button type="button" class = "viewresult btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" >Edit</button>
+
+                                                    <button  class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
+
+                                                    <button class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
+                                                </div>
+                                                </div>
+                                                </td>
+                                               
+                                                <td><?php echo $training['cthostid'];?></td>
+                                                <td><?php echo $training['vtlocation'];?></td>
                                                 <td><?php echo $training['dedc'];?></td>
                                                 <td><?php echo $training['deed'];?></td>
-                                                <td>
-                                                    <button 
-                                                        data-type="<?php echo 'training_register' ?>"
-                                                        data-operation="<?php echo 'u'; ?>"
-                                                        data-id="<?php echo $training['ctcode']; ?>"
-                                                        class="btn btn-success btn-md edit-btn training-btn">
-                                                        <i class="fa fa-edit m-r-5"> Edit</i>
-                                                    </button>
-                                                    <button 
-                                                        data-type="<?php echo 'training_register' ?>"
-                                                        data-operation="<?php echo 'de'; ?>"
-                                                        data-id="<?php echo $training['ctcode']; ?>"
-                                                        class="btn btn-danger btn-md training-btn delete-btn">
-                                                         <i class="fa fa-trash-o m-r-5"> Delete</i>
-                                                    </button>
-                                                </td>
+                                               
                                             </tr>
                                             <?php
                                         }
@@ -95,33 +240,35 @@
 
         <script>
   $(document).ready(function () {
+
+      
+    $('#data-table').on('click', '.edit-btn', function () {
+       
+        $('#myModal').modal('show');
+    }); 
+
     // Attach click event to dynamically added delete buttons
-    // $('#data-table').on('click', '.delete-btn', function () {
-    //     alert($(this).val());
-    //     //$(this).closest('tr').remove();
-    // });
-    $(document).on('click', '.training-btn', function () {
-        let id =$(this).data('id');
-        let type = $(this).data('type');
-        let operation = $(this).data('operation');
-        //alert(id + type + operation);
-       $.ajax({
-        url: 'ajax/crud.php',
-        type: 'POST',
-        data: {id: id, type: type, operation: operation},
-        success: function(response){
-            if(response.message == 'success'){
-                Swal.fire({
-                    icon:'success',
-                    title: 'Success',
-                    text: response.result.message,
-                    customClass: "swal-size-sm",
-                    timer: 3000,
-                });
-                $(this).closest('tr').remove();
+    $('#data-table').on('click', '.delete-btn', function () {
+        // Remove the row containing the clicked button
+         // Confirm before deletion
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#008000',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel',
+            customClass: "swal-size-sm"
+        }).then((result) => {
+            if (result.isConfirmed) {
+               $(this).closest('tr').remove();
+
+               
             }
-        }
-       });
+        });
+        
     });
 });
 

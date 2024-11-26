@@ -62,12 +62,11 @@ $trainings = $gateway->genericFind($tableName, $data);
 
 <!-- Initialize App Scripts -->
 <script>
-  $(document).ready(function () {
-    App.init();
-   
-  });
-</script>
-    <script>
+		$(document).ready(function() {
+			App.init();
+			TableManageTableSelect.init();
+		});
+
     $(window).on('load', function() {
         $('#page-loader').fadeOut();
     });
