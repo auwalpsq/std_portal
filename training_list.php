@@ -7,10 +7,17 @@
 <?php
   session_start();  
 
-$ddate = date('Y-m-d');
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL); require_once 'config/MyConnection.php';
+// Turn on error reporting
+error_reporting(E_ALL & ~E_NOTICE);
+ini_set('display_errors', 0);       
+
+set_error_handler(function($error, $message, $file, $line) {
+    $logMessage = "[" . date("Y-m-d H:i:s") . "] error: [$error] - $message in $file on line $line";
+    error_log($logMessage . PHP_EOL . PHP_EOL, 3, "error_log.txt"); 
+});
+
+
+require_once 'config/MyConnection.php';
 
 $tableName = "trainingregister";
 $data = array('id'=>'all', 'limit'=>'');

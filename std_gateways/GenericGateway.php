@@ -84,7 +84,7 @@ class GenericGateway{
         // Build the SET part of the query dynamically based on the $data array
         $setPart = "";
         foreach ($data as $column => $value) {
-            if($column !== 'id_name' && $column !== 'id'){
+            if($column !== 'field_name' && $column !== 'id'){
                 $setPart .= "$column = :$column, ";
             }
         }

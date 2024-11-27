@@ -119,7 +119,7 @@
 
         case['register_training', 'u']:
             $tableName = 'trainingregister';
-            $id = $_SESSION['register_training_id'];
+            $id = $_POST['id'];
 
             $training_name = $_POST['training_name'];
             $training_host = $_POST['training_host'];
@@ -129,8 +129,8 @@
             $start_date = $_POST['start_date'];
             $end_date = $_POST['end_date'];
 
-            $data = array(  'id_name'=>'ctcode',
-                            'id_value'=>$id,
+            $data = array(  'field_name'=>'ctcode',
+                            'id'=>$id,
                             'vtname'=>$training_name,
                             'cthostid'=>$training_host,
                             'vtlocation'=>$training_location,
@@ -196,9 +196,9 @@
             
         case ['register_training', 'de']:
             $tableName = 'trainingregister';
-            $id = $_SESSION['register_training_id'];
+            $id = $_POST['id'];
             
-            $data = array('id_name'=>'ctcode', 'id_value' => $id);
+            $data = array('id_name'=>'ctcode', 'id' => $id);
             
             $result = $gateway->genericDelete($tableName, $data);
             
@@ -250,11 +250,25 @@
             
         case ['register_training', 'find']:
             $tableName = 'trainingregister';
-            $id = $_SESSION['register_training_id'];
-            $training_name = $_POST['training_name'];
-            $data = array('all' => false, 'limit' => '', 'id_name'=>'ctcode', 'id_value'=>$id);
+            $id = $_POST['id'];
+            $data = array('id' => $id, 'limit' => '', 'field_name'=>'ctcode');
             
-            $result = $gateway->genericFind($tableName, $data);
+            $raw_results = $gateway->genericFind($tableName, $data);
+            if($raw_results['message'] === 'success'){
+                $result = ['message'=>'success'];
+                foreach($raw_results['result'] as $raw_result){
+                    $result[] = array(
+                                        'id'=>$raw_result['ctcode'],
+                                        'training_name'=>$raw_result['vtname'],
+                                        'training_host'=>$raw_result['cthostid'],
+                                        'training_location'=>$raw_result['vtlocation'],
+                                        'training_sponsor'=>$raw_result['cspshipid'],
+                                        'training_type'=>$raw_result['cttypeid'],
+                                        'training_start_date'=>$raw_result['dedc'],
+                                        'training_end_date'=>$raw_result['deed']
+                    );
+                }
+            }
             echo json_encode($result);
             break;
             
