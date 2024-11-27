@@ -93,24 +93,58 @@
 				<ul class="nav" >
 					<li class="nav-header" style="font-size:16px;color:white">Navigation</li>
 
-					<li class="has-sub ">
+				
+
+          <li class="has-sub">
 						<a href="javascript:;">
-						<b class="caret pull-right"></b>
-							  <i class="fa fa-tasks"></i>
-							<span>Task</span>
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-align-left"></i> 
+						    <span>Task</span>
 						</a>
-						<ul class="sub-menu">   
-               <li><a href="add_tr">Add Training</a></li>
-               <li><a href="add_ben">Add Beneficiary</a></li>
-               <li><a href="add_host">Add Host</a></li>
+						<ul class="sub-menu">
+							<li class="has-sub">
+								<a href="javascript:;">
+						            <b class="caret pull-right"></b>
+						            Beneficiary
+						        </a>
+								<ul class="sub-menu">
+									 <li><a href="add_ben">Add Beneficiary</a></li>
+                    <li><a href="ben">Beneficiary List</a></li>
+									</li>
+									<!-- <li><a href="javascript:;">Menu 2.2</a></li> -->
+									<!-- <li><a href="javascript:;">Menu 2.3</a></li> -->
+								</ul>
+							</li>
+							<li class="has-sub">
+								<a href="javascript:;">
+						            <b class="caret pull-right"></b>
+						            Training
+						        </a>
+								<ul class="sub-menu">
+									 <li><a href="add_tr">Add Training</a></li>
+                   <li><a href="add_tr_type">Add Type</a></li>
+                   <li><a href="training_list">Training List</a></li>
+                   <li><a href="add_host">Add Host</a></li>
                <li><a href="add_spn">Add Sponsor</a></li>
-               <li><a href="add_tr_type">Add Training Type</a></li>
-               <li><a href="training_list">Training List</a></li>
-               <li><a href="stf_info">staff info</a></li>
-               <li><a href="Stf_list">staff list</a></li>
-						   <!-- <li><a href="graduate">Graduates</a></li> -->
+									</li>
+									<!-- <li><a href="javascript:;">Menu 2.2</a></li> -->
+									<!-- <li><a href="javascript:;">Menu 2.3</a></li> -->
+								</ul>
+							</li>
+	
+							 
 						</ul>
 					</li>
+         
+         
+
+            <li>
+            <a href="stf_info">         
+                <i class="fa fa-user-o"></i>
+                <span>staff info</span>
+            </a>
+        </li>
+            
 
           
 

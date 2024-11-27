@@ -42,7 +42,7 @@ $trainings = $gateway->genericFind($tableName, $data);
       <?php
         include "inc/mega_menu.php";		
         include "inc/a_sidebar.php";	
-        include "content/training_list_details.php";
+        include "content/ben_details.php";
       ?>
       <!-- <p>
           <a href="javascript:history.back(-1);" class="btn btn-success">
