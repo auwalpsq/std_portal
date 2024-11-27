@@ -193,7 +193,7 @@
                 processData: false, // Needed for FormData
                 cache: false,
                 dataType: 'json', 
-                 beforeSend: function() {
+                beforeSend: function() {
                         // Show a loading indicator
                         Swal.fire({
                             title: 'Processing...',
