@@ -30,20 +30,21 @@
     <!-- Your content here -->
 
                         <div class="panel-heading" style="background-color: #008000;"> 
-                            <div class="panel-heading-btn" >
+                            <!-- <div class="panel-heading-btn" >
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                            </div>
+                            </div> -->
                             <h4 class="panel-title">Add Sponsorship</h4>
                         </div>
-                        <div class="panel-body">
-                   <form id="appForm"  class="form-horizontal" method="POST" >     
-								      <div id="wizard">
-				
+        <div class="panel-body">
+                   <form id="form_sponsorship"  class="form-horizontal" method="POST" >     
+						<input type="hidden" name="type" value="sponsorship" />
+                        <input type="hidden" name="operation" value="cr">
+                        <div>
 									<!-- begin wizard step-2 -->
-									<div class="wizard-step-2">
+									<div class="">
                                          <div class="alert alert-warning fade in m-b-15">
                                                 <strong>Warning!</strong>
                                                Ensure you are adding the right Sponsorship.
@@ -55,23 +56,23 @@
                                           
                                                         
                                                 <div style="margin-top: 30px;" class="form-group">
-                                                <label class="col-md-3 control-label">Name:</label>
+                                                <label class="col-md-3 control-label">Sponsor Name</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" name="email" class="form-control input-lg" placeholder="enter Sponsor" required />
+                                                    <input type="text" name="sponsor_name" class="form-control input-lg" placeholder="enter Sponsor" required />
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Email:</label>
                                                 <div class="col-md-6">
-                                                    <input type="email" name="staff_id" class="form-control input-lg" placeholder="name@example.com" required />
+                                                    <input type="email" name="sponsor_email" class="form-control input-lg" placeholder="name@example.com" required />
                                                 </div>
                                             </div>  
 
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Phone:</label>
                                                 <div class="col-md-6">
-                                                    <input type="tel" name="staff_id" class="form-control input-lg" placeholder="+2342645376" required />
+                                                    <input type="tel" name="sponsor_phone" class="form-control input-lg" placeholder="+2348012345678" required />
                                                 </div>
                                             </div>  
                                           
@@ -86,8 +87,8 @@
 									<!-- end wizard step-2 -->
 							</div>
 									<!-- end wizard step-4 -->
-								</div>
-							</form>
+                                    </form>
+		</div>
                         </div>
                     </div>
                     <!-- end panel -->
@@ -101,80 +102,28 @@
 
        <script>
 $(document).ready(function(){
-    $("#appForm").on("submit", function(event) { 
+    $("#form_sponsorship").on("submit", function(event) { 
         event.preventDefault(); // Prevent the default form submission
 
-        // Confirm before deletion
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This action cannot be undone.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#008000',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel',
-            customClass: "swal-size-sm"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Proceed with AJAX if confirmed
-                var formData = new FormData(this); // Prepare form data
+        let formData = new FormData(this);
 
-                $.ajax({
-                    url: 'ajax/ajax_delete_user.php', // Ensure this path is correct
-                    type: 'POST',
-                    data: formData,
-                    contentType: false, // Needed for FormData
-                    processData: false, // Needed for FormData
-                    cache: false,
-                    dataType: 'json', // Expect JSON response from server
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Successful!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                confirmButtonColor: '#008000',
-                                showConfirmButton: 'OK'
-                            }).then(() => {
-                                window.location.href = 'del_usr'; 
-                            });
-                        } else if (response.status === 'invalid') {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Invalid!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                 confirmButtonColor: '#008000',
-                                confirmButtonText: 'OK'
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                 confirmButtonColor: '#008000',
-                                confirmButtonText: 'OK'
-                            });
-                        }
-                    },
-                    // Uncomment this block for debugging
-                    // error: function(jqXHR, textStatus, errorThrown) {
-                    //     console.error('AJAX Error:', textStatus, errorThrown);
-                    //     console.log('Response Text:', jqXHR.responseText);
-                    //     Swal.fire({
-                    //         icon: 'error',
-                    //         title: 'AJAX Error!',
-                    //         text: 'An error occurred while processing your request.',
-                    //         customClass: "swal-size-sm",
-                    //         confirmButtonText: 'OK'
-                    //     });
-                    // }
-                });
+        $.ajax({
+            url: 'ajax/crud.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(response){
+                if(response.message == 'success'){
+                    Swal.fire({
+                        icon: 'success',
+                        
+                    });
+                }
             }
         });
+        
     });
 });
 </script>

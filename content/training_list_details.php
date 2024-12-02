@@ -127,12 +127,13 @@
                             
                         </div>
                         <!-- end wizard -->
-                            </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
+                        </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn-success" />
-            </div>
+            
         </div>
     </div>
 </div>
@@ -304,19 +305,37 @@
     });
     $('#edit_training').on('submit', function(event){
         event.preventDefault();
-        alert('Hello');
-        // let formData = new FormData(this);
+        //alert('Hello');
+        let formData = new FormData(this);
 
-        // $.ajax({
-        //     url: 'ajax/crud.php',
-        //     type: 'POST',
-        //     data: formData,
-        //     contentType: false,
-        //     processData: false,
-        //     success: function(response){
-        //         alert(response);
-        //     }
-        // });
+        $.ajax({
+            url: 'ajax/crud.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                let data = JSON.parse(response);
+                if(data.message == 'success'){
+                    Swal.fire({
+                        icon:'success',
+                        title: data.message,
+                        text: data.result.message,
+                        customClass: "swal-size-sm",
+                        confirmButtonText: 'OK'
+                    });
+                    location.reload();
+                }else if(data.message == 'failed'){
+                    Swal.fire({
+                        icon: 'error',
+                        title: data.message,
+                        text: data.result.message,
+                        customClass: "swal-size-sm",
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        });
     });
 });
 

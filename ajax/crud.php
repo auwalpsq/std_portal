@@ -25,6 +25,7 @@
             $training_name = $_POST['training_name'];
             $training_host = $_POST['training_host'];
             $training_location = $_POST['training_location'];
+            $training_slots = $_POST['training_slots'];
             $training_sponsor = $_POST['training_sponsor'];
             $training_type = $_POST['training_type'];
             $start_date = $_POST['start_date'];
@@ -33,6 +34,7 @@
             $data = array(  'vtname'=>$training_name,
                             'cthostid'=>$training_host,
                             'vtlocation'=>$training_location,
+                            'islots'=>$training_slots,
                             'cspshipid'=>$training_sponsor,
                             'cttypeid'=>$training_type,
                             'dedc'=>$start_date,
@@ -60,9 +62,9 @@
         case ['sponsorship', 'cr']:
             $tableName = 'sponsorshiptype';
 
-            $email = $_POST['email'];
-            $phone = $_POST['phone'];
-            $sponsor = $_POST['sponsor'];
+            $email = $_POST['sponsor_email'];
+            $phone = $_POST['sponsor_phone'];
+            $sponsor = $_POST['sponsor_name'];
 
             $data = array(  'vspshipemailid'=>$email,
                             'vspshiphone'=>$phone,
@@ -85,23 +87,32 @@
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
             break;
-            case ['beneficiary', 'cr']:
-                $tableName = 'beneficiary';
-    
-                $beneficiary = $_POST['staff_id'];
-                $training = $_POST['training'];
-                $cadre = $_POST['cadre'];
-                $evaluation = $_POST['evaluation'];
-    
-                $data = array(  'vfileno'=>$beneficiary,
-                                'ctcode'=>$training,
-                                'icadre'=>$cadre,
-                                'ftevaluation'=>$evaluation
-                            );
-                $response = $gateway->genericInsert($tableName,$data);
-                echo json_encode($response);
-                break;
-            
+        case ['beneficiary', 'cr']:
+            $tableName = 'beneficiary';
+
+            $beneficiary = $_POST['staff_id'];
+            $training = $_POST['training'];
+            $cadre = $_POST['cadre'];
+            $evaluation = $_POST['evaluation'];
+
+            $data = array(  'vfileno'=>$beneficiary,
+                            'ctcode'=>$training,
+                            'icadre'=>$cadre,
+                            'ftevaluation'=>$evaluation
+                        );
+            $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
+            break;
+        case['training_type', 'cr']:
+            $tableName = 'trainingtype';
+
+            $trainingName = $_POST['training_type_name'];
+
+            $data = array('vttypename' => $trainingName);
+
+            $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
+            break;
         case['host_training', 'u']: 
             $tableName = 'traininghost';
             $host_name = $_POST['host_name'];
@@ -140,6 +151,7 @@
                             'deed'=>$end_date
                         );
             $response = $gateway->genericUpdate($tableName, $data);
+            echo json_encode($response);
             break;
             
         case ['beneficiary', 'u']:
