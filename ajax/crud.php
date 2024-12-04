@@ -18,6 +18,7 @@
             $data = array('vthostname' => $host_name);
 
             $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
             break;
         case ['register_training', 'cr']:
             $tableName = 'trainingregister';
@@ -34,7 +35,7 @@
             $data = array(  'vtname'=>$training_name,
                             'cthostid'=>$training_host,
                             'vtlocation'=>$training_location,
-                            'islots'=>$training_slots,
+                            'islot'=>$training_slots,
                             'cspshipid'=>$training_sponsor,
                             'cttypeid'=>$training_type,
                             'dedc'=>$start_date,

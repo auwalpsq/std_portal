@@ -165,7 +165,7 @@
 
                                         <div class="form-group">
                                         <div class="col-md-4 col-md-offset-4">
-                                           <input type="submit" value="Add Training" id="save" class="btn-success form-control input-lg"/>
+                                        <input type="submit" value="Add Training" id="save" class="btn-success form-control input-lg"/>
 
                                            </div>
 									</div>
@@ -197,24 +197,8 @@
                 data: formData,
                 contentType: false, // Needed for FormData
                 processData: false, // Needed for FormData
-                cache: false,
                 dataType: 'json', 
-                beforeSend: function() {
-                        // Show a loading indicator
-                        Swal.fire({
-                            title: 'Processing...',
-                            text: 'Please wait while we add training.',
-                            customClass: "swal-size-sm",
-                            allowOutsideClick: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                            }
-                        });
-                    },
                 success: function(response) { 
-                     // Close the loading indicator
-                    Swal.close();
-        
                     if (response.message === 'success') {
                         Swal.fire({
                             icon: 'success',
@@ -222,8 +206,6 @@
                             text: response.result.message,
                             customClass: "swal-size-sm",
                             showConfirmButton: 'OK'
-                        }).then(() => {
-                            //window.location.href = 'add_usr'; 
                         });
                     } else if(response.message === 'failed'){
                         Swal.fire({

@@ -118,7 +118,12 @@ $(document).ready(function(){
                 if(response.message == 'success'){
                     Swal.fire({
                         icon: 'success',
+                        title: 'Successfull',
+                        text: response.result.message,
+                        customClass: "swal-size-sm",
+                        showConfirmButton: 'OK'
                         
+
                     });
                 }
             }

@@ -205,7 +205,7 @@
                                                 <td style="font-size:14px">
                                                      <div class = "view_result">
                                                     <a><?php echo $beneficiary['ctcode'];?></a>
-                                                 <div class ="pull-bottom">
+                                                <div class ="pull-bottom">
                                                     <!-- <button type="button" class = "viewresult btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" >Edit</button> -->
 
                                                     <button  class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
@@ -269,6 +269,4 @@
         
     });
 });
-
-
-        </script>
+</script>

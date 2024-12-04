@@ -56,12 +56,12 @@
                                                         
                                             <div style="margin-top: 30px;" class="form-group">
                                                <div class="form-group">
-                                                     <label class="col-md-3 control-label">Staff ID</label>
+                                                    <label class="col-md-3 control-label">Staff ID</label>
                                                     <div class="col-md-6">
                                                     <div class="form-inline">
-                                                    <input type="text" id="staff_id" style="width:80%" name="staff_id" class=" form-control input-lg" placeholder="staff id" required />
-                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success form-control input-lg" />
-                                                     </div>
+                                                    <input type="text" id="staff_id" style="width:80%" name="staff_id" class="input-lg" placeholder="staff id" required />
+                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success input-lg" />
+                                                    </div>
                                                     </div>
                                                 </div>
 
@@ -83,7 +83,7 @@
                                                         <option value="" disabled selected>--Select</option>
                                                         <?php
                                                             $tableName = 'trainingregister';
-                                                            $data = array('id'=>'1', 'limit'=>'');
+                                                            $data = array('id'=>'all', 'limit'=>'');
 
                                                             $trainings = $gateway->genericFind($tableName, $data);
                                                             foreach($trainings['result'] as $training){

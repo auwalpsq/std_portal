@@ -194,31 +194,31 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $tableName = 'trainingregister';
+                                    $tableName = 'vw_training_details';
                                     $data = array('id'=>'all', 'limit'=>'');
 
                                     $trainings = $gateway->genericFind($tableName, $data);
                                     foreach($trainings['result'] as $training){
                                         ?>
                                         <tr>
-                                            <td><?php echo $training['ctcode'];?></td>
+                                            <td><?php echo $training['id'];?></td>
                                             <td style="font-size:14px">
                                             <div class = "view_result">
-                                                <a><?php echo $training['vtname'];?></a>
+                                                <a><?php echo $training['training_name'];?></a>
                                             <div class ="pull-bottom">
-                                                <button data-id="<?php echo $training['ctcode'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
+                                                <button data-id="<?php echo $training['id'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
 
-                                                <button data-id="<?php echo $training['ctcode'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
+                                                <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
 
-                                                <button data-id="<?php echo $training['ctcode'] ?>" class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
+                                                <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
                                             </div>
                                             </div>
                                             </td>
                                             
-                                            <td><?php echo $training['cthostid'];?></td>
-                                            <td><?php echo $training['vtlocation'];?></td>
-                                            <td><?php echo $training['dedc'];?></td>
-                                            <td><?php echo $training['deed'];?></td>
+                                            <td><?php echo $training['host_name'];?></td>
+                                            <td><?php echo $training['training_location'];?></td>
+                                            <td><?php echo $training['start_date'];?></td>
+                                            <td><?php echo $training['end_date'];?></td>
                                             
                                         </tr>
                                         <?php
