@@ -56,28 +56,30 @@
                                                         
                                             <div style="margin-top: 30px;" class="form-group">
                                                <div class="form-group">
-                                                     <label class="col-md-3 control-label">Staff ID</label>
-                                                    <div class="col-md-6">
+                                                     <label class="col-md-3 control-label">Staff ID:</label>
+                                                    <div class="col-md-8">
                                                     <div class="form-inline">
-                                                    <input type="text" id="staff_id" style="width:80%" name="staff_id" class=" form-control input-lg" placeholder="staff id" required />
-                                                    <input type="button" id="search_staff" value="Search staff" class="btn-success form-control input-lg" />
+                                                    <input type="text" id="staff_id" style="width:54%" name="staff_id" class=" form-control input-lg" placeholder="staff id" required />
+                                                   <button type="button" id="search_staff" class="btn-success form-control input-lg"><i class="fa fa-search"></i> Search Staff</button>
+
                                                      </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3">Staff information</label>
+                                                    <label class="control-label col-md-3">Staff information:</label>
                                                       <div class="col-md-6">
                                                         <div class="form-inline">
-                                                        <input type="text" id="full_name" style="width:45%" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
-                                                         <input type="text" id="department" name="full_name"class="form-control input-lg" placeholder="department" required disabled/>
-                                                       <input type="text" id="date_of_birth" style="width:20%" name="date_of_birth"class="form-control input-lg"placeholder="date of birth" disabled />
+                                                        <input type="text" id="full_name" style="width:40%;font-size:small !important;" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
+                                                         <input type="text" id="department" name="department" style="width:40%;font-size:small !important;" class="form-control input-lg" placeholder="department" required disabled/>
+                                                      <input type="text" id="date_of_birth" style="width:18%;font-size:small !important;" name="date_of_birth" class="form-control input-lg" placeholder="date of birth" disabled />
+
                                                         </div>
                                                       </div>
                                                 </div>
                                             </div>
                                             <div class="form-group" style="margin-top:-10px" >
-                                                <label class="col-md-3 control-label">Training</label>
+                                                <label class="col-md-3 control-label">Training:</label>
                                                 <div class="col-md-6">
                                                     <select class="form-control input-lg" name="training">
                                                         <option value="" disabled selected>--Select</option>
