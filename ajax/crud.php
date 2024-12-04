@@ -154,7 +154,7 @@
             $response = $gateway->genericUpdate($tableName, $data);
             break;
         
-        case['sponsorhip', 'u']:
+        case['sponsorship', 'u']:
             $tableName = 'sponsorshiptype';
 
             $id = $_SESSION['sponsorship_id'];

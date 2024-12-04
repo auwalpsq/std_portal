@@ -30,7 +30,7 @@ $configs = array(
             "host" => "localhost",
         ),
         "prod" => array(
-            "dbname" => "std_db",
+            "dbname" => "st&d_db",
             "username" => "root",
             "password" => "",
             "host" => "localhost",

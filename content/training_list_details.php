@@ -158,15 +158,10 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse" >
                     <div class="panel-heading" style="background-color: #008000;">
-                        <!-- <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                        </div> -->
+                       
                         <h4 class="panel-title">Training List</h4>
                     </div>
-                    
+                   
                     <!-- <div class="alert alert-info fade in">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
@@ -174,10 +169,17 @@
                         Select adds item selection capabilities to a DataTable. Items can be rows, columns or cells, which can be selected independently, or together. Item selection can be particularly useful in interactive tables where users can perform some action on the table, such as editing rows or marking items to perform an action on.
                     </div> -->
                     
-                    
+                   
                     <div class="panel-body">
-                        <table id="data-table" class="table table-striped table-bordered" width="100%">
-                                <div class=" pull-right" style="margin-bottom: 10px;"> <a href="add_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</a></div>
+                         
+                    <row>                      
+                    <div class=" pull-right" > <a href="add_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</a></div>
+                    </row>
+
+                        <br><br><br>
+                       <div class = "responsive">
+                         <table id="data-table" class="table table-striped table-bordered" width="100%">
+                                
 
                         
                             <thead>
@@ -225,6 +227,7 @@
                                 ?>
                             </tbody>
                         </table>
+                       </div>
                     </div>
                 </div>
                 <!-- end panel -->
