@@ -70,9 +70,9 @@
                                                     <label class="control-label col-md-3">Staff information:</label>
                                                       <div class="col-md-6">
                                                         <div class="form-inline">
-                                                        <input type="text" id="full_name" style="width:40%;font-size:small !important;" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
-                                                         <input type="text" id="department" name="department" style="width:40%;font-size:small !important;" class="form-control input-lg" placeholder="department" required disabled/>
-                                                      <input type="text" id="date_of_birth" style="width:18%;font-size:small !important;" name="date_of_birth" class="form-control input-lg" placeholder="date of birth" disabled />
+                                                        <input type="text" id="full_name" style="width:40%;font-size:small !important;font-weight:bold;" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
+                                                         <input type="text" id="department" name="department" style="width:40%;font-size:small !important;font-weight:bold;" class="form-control input-lg" placeholder="department" required disabled/>
+                                                      <input type="text" id="date_of_birth" style="width:18%;font-size:small !important;font-weight:bold;" name="date_of_birth" class="form-control input-lg" placeholder="dob" disabled />
 
                                                         </div>
                                                       </div>
@@ -82,7 +82,7 @@
                                                 <label class="col-md-3 control-label">Training:</label>
                                                 <div class="col-md-6">
                                                     <select class="form-control input-lg" name="training">
-                                                        <option value="" disabled selected>--Select</option>
+                                                        <option value="" required disabled selected>--Select</option>
                                                         <?php
                                                             $tableName = 'trainingregister';
                                                             $data = array('id'=>'all', 'limit'=>'');
