@@ -68,10 +68,16 @@
                                         </div>
                                     </div>
 
-                                      <div class="form-group">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">Location:</label>
                                         <div class="col-md-6">
                                             <input type="text" name="training_location" class="form-control input-lg" placeholder="Location" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Slots:</label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="training_slots" class="form-control input-lg" placeholder="Enter maximum number of beneficiaries" required />
                                         </div>
                                     </div>
                                           
@@ -159,7 +165,7 @@
 
                                         <div class="form-group">
                                         <div class="col-md-4 col-md-offset-4">
-                                           <input type="submit" value="Add Training" id="save" class="btn-success form-control input-lg"/>
+                                        <input type="submit" value="Add Training" id="save" class="btn-success form-control input-lg"/>
 
                                            </div>
 									</div>
@@ -191,24 +197,8 @@
                 data: formData,
                 contentType: false, // Needed for FormData
                 processData: false, // Needed for FormData
-                cache: false,
                 dataType: 'json', 
-                beforeSend: function() {
-                        // Show a loading indicator
-                        Swal.fire({
-                            title: 'Processing...',
-                            text: 'Please wait while we add training.',
-                            customClass: "swal-size-sm",
-                            allowOutsideClick: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                            }
-                        });
-                    },
                 success: function(response) { 
-                     // Close the loading indicator
-                    Swal.close();
-        
                     if (response.message === 'success') {
                         Swal.fire({
                             icon: 'success',
@@ -216,8 +206,6 @@
                             text: response.result.message,
                             customClass: "swal-size-sm",
                             showConfirmButton: 'OK'
-                        }).then(() => {
-                            //window.location.href = 'add_usr'; 
                         });
                     } else if(response.message === 'failed'){
                         Swal.fire({
@@ -229,75 +217,7 @@
                         });
                     }
                 },
-                // error: function(jqXHR, textStatus, errorThrown) {
-                //     console.error('AJAX Error:', textStatus, errorThrown); // Debugging
-                //     console.log('Response Text:', jqXHR.responseText); // Debugging
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'AJAX Error!',
-                //         text: 'An error occurred while processing your request.',
-                //         customClass: "swal-size-sm",
-                //         confirmButtonText: 'OK'
-                //     });
-                // }
             });
         });
     });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
- <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Training Name</th>
-                                        <th>Host</th>
-                                        <th>Location</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $tableName = 'trainingregister';
-                                        $data = array('id'=>'all', 'limit'=>'');
-
-                                        $trainings = $gateway->genericFind($tableName, $data);
-                                        foreach($trainings['result'] as $training){
-                                           ?>
-                                            <tr>
-                                                 <td><?php echo $training['ctcode'];?></td>
-                                                <td style="font-size:14px">
-                                                     <div class = "view_result">
-                                                    <a><?php echo $training['vtname'];?></a>
-                                                 <div class ="pull-bottom">
-                                                    <button type="button" class = "viewresult btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" >Edit</button>
-
-                                                    <button  class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
-
-                                                    <button class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
-                                                </div>
-                                                </div>
-                                                </td>
-                                               
-                                                <td><?php echo $training['cthostid'];?></td>
-                                                <td><?php echo $training['vtlocation'];?></td>
-                                                <td><?php echo $training['dedc'];?></td>
-                                                <td><?php echo $training['deed'];?></td>
-                                               
-                                            </tr>
-                                            <?php
-                                        }
-                                    ?>
-                                </tbody>

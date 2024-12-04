@@ -39,11 +39,13 @@
                             <h4 class="panel-title">Add Training Host</h4>
                         </div>
                         <div class="panel-body">
-                   <form id="appForm"  class="form-horizontal" method="POST" >     
-								      <div id="wizard">
+                   <form id="form_host"  class="form-horizontal" method="POST" >   
+                        <input type="hidden" name="type" value="host_training" />
+                        <input type="hidden" name="operation" value="cr" />  
+						<div>
 				
 									<!-- begin wizard step-2 -->
-									<div class="wizard-step-2">
+					<div class="wizard-step-2">
                                          <div class="alert alert-warning fade in m-b-15">
                                                 <strong>Warning!</strong>
                                                Ensure you are adding the right Training Host.
@@ -58,7 +60,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Training Host name:</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" name="staff_id" class="form-control input-lg" placeholder="enter Training Host name" required />
+                                                    <input type="text" name="host_name" class="form-control input-lg" placeholder="enter training host name" required />
                                                 </div>
                                             </div>  
                                           
@@ -69,12 +71,12 @@
                               </div>
                             </div>
                                         
-									</div>
+				</div>
 									<!-- end wizard step-2 -->
 							</div>
+                            </form>
 									<!-- end wizard step-4 -->
-								</div>
-							</form>
+				</div>
                         </div>
                     </div>
                     <!-- end panel -->
@@ -88,77 +90,24 @@
 
        <script>
 $(document).ready(function(){
-    $("#appForm").on("submit", function(event) { 
+    $("#form_host").on("submit", function(event) { 
         event.preventDefault(); // Prevent the default form submission
 
-        // Confirm before deletion
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This action cannot be undone.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#008000',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel',
-            customClass: "swal-size-sm"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Proceed with AJAX if confirmed
-                var formData = new FormData(this); // Prepare form data
+        let formData = new FormData(this);
 
-                $.ajax({
-                    url: 'ajax/ajax_delete_user.php', // Ensure this path is correct
-                    type: 'POST',
-                    data: formData,
-                    contentType: false, // Needed for FormData
-                    processData: false, // Needed for FormData
-                    cache: false,
-                    dataType: 'json', // Expect JSON response from server
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Successful!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                confirmButtonColor: '#008000',
-                                showConfirmButton: 'OK'
-                            }).then(() => {
-                                window.location.href = 'del_usr'; 
-                            });
-                        } else if (response.status === 'invalid') {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Invalid!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                 confirmButtonColor: '#008000',
-                                confirmButtonText: 'OK'
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error!',
-                                text: response.message,
-                                customClass: "swal-size-sm",
-                                 confirmButtonColor: '#008000',
-                                confirmButtonText: 'OK'
-                            });
-                        }
-                    },
-                    // Uncomment this block for debugging
-                    // error: function(jqXHR, textStatus, errorThrown) {
-                    //     console.error('AJAX Error:', textStatus, errorThrown);
-                    //     console.log('Response Text:', jqXHR.responseText);
-                    //     Swal.fire({
-                    //         icon: 'error',
-                    //         title: 'AJAX Error!',
-                    //         text: 'An error occurred while processing your request.',
-                    //         customClass: "swal-size-sm",
-                    //         confirmButtonText: 'OK'
-                    //     });
-                    // }
+        $.ajax({
+            url: 'ajax/crud.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(response){
+                Swal.fire({
+                    icon: 'success',
+                    title: response.message,
+                    text: response.result.message,
+                    customClass: 'swal-size-sm'
                 });
             }
         });

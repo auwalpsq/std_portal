@@ -127,12 +127,13 @@
                             
                         </div>
                         <!-- end wizard -->
-                            </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
+                        </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn-success" />
-            </div>
+            
         </div>
     </div>
 </div>
@@ -195,31 +196,31 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $tableName = 'trainingregister';
+                                    $tableName = 'vw_training_details';
                                     $data = array('id'=>'all', 'limit'=>'');
 
                                     $trainings = $gateway->genericFind($tableName, $data);
                                     foreach($trainings['result'] as $training){
                                         ?>
                                         <tr>
-                                            <td><?php echo $training['ctcode'];?></td>
+                                            <td><?php echo $training['id'];?></td>
                                             <td style="font-size:14px">
                                             <div class = "view_result">
-                                                <a><?php echo $training['vtname'];?></a>
+                                                <a><?php echo $training['training_name'];?></a>
                                             <div class ="pull-bottom">
-                                                <button data-id="<?php echo $training['ctcode'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
+                                                <button data-id="<?php echo $training['id'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
 
-                                                <button data-id="<?php echo $training['ctcode'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
+                                                <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
 
-                                                <button data-id="<?php echo $training['ctcode'] ?>" class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
+                                                <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
                                             </div>
                                             </div>
                                             </td>
                                             
-                                            <td><?php echo $training['cthostid'];?></td>
-                                            <td><?php echo $training['vtlocation'];?></td>
-                                            <td><?php echo $training['dedc'];?></td>
-                                            <td><?php echo $training['deed'];?></td>
+                                            <td><?php echo $training['host_name'];?></td>
+                                            <td><?php echo $training['training_location'];?></td>
+                                            <td><?php echo $training['start_date'];?></td>
+                                            <td><?php echo $training['end_date'];?></td>
                                             
                                         </tr>
                                         <?php
@@ -307,19 +308,37 @@
     });
     $('#edit_training').on('submit', function(event){
         event.preventDefault();
-        alert('Hello');
-        // let formData = new FormData(this);
+        //alert('Hello');
+        let formData = new FormData(this);
 
-        // $.ajax({
-        //     url: 'ajax/crud.php',
-        //     type: 'POST',
-        //     data: formData,
-        //     contentType: false,
-        //     processData: false,
-        //     success: function(response){
-        //         alert(response);
-        //     }
-        // });
+        $.ajax({
+            url: 'ajax/crud.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                let data = JSON.parse(response);
+                if(data.message == 'success'){
+                    Swal.fire({
+                        icon:'success',
+                        title: data.message,
+                        text: data.result.message,
+                        customClass: "swal-size-sm",
+                        confirmButtonText: 'OK'
+                    });
+                    location.reload();
+                }else if(data.message == 'failed'){
+                    Swal.fire({
+                        icon: 'error',
+                        title: data.message,
+                        text: data.result.message,
+                        customClass: "swal-size-sm",
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        });
     });
 });
 

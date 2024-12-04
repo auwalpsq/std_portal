@@ -85,7 +85,7 @@
                                                         <option value="" disabled selected>--Select</option>
                                                         <?php
                                                             $tableName = 'trainingregister';
-                                                            $data = array('id'=>'1', 'limit'=>'');
+                                                            $data = array('id'=>'all', 'limit'=>'');
 
                                                             $trainings = $gateway->genericFind($tableName, $data);
                                                             foreach($trainings['result'] as $training){
