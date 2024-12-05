@@ -199,8 +199,8 @@
         case['host_training', 'de']:
             $tableName = 'traininghost';
             //$id = $_SESSION['host_training_id'];
-            $id = 'all';
-            $data = array('id_name'=>'cthostid', 'id_value' => $id);
+            $id = $_POST['id'];
+            $data = array('id'=>'', 'condition'=>'', 'cthostid'=>$id);
 
             $result = $gateway->genericDelete($tableName, $data);
             
@@ -211,7 +211,7 @@
             $tableName = 'trainingregister';
             $id = $_POST['id'];
             
-            $data = array('id_name'=>'ctcode', 'id' => $id);
+            $data = array('id'=>'', 'condition'=>'', 'ctcode'=>$id);
             
             $result = $gateway->genericDelete($tableName, $data);
             
@@ -220,20 +220,22 @@
             
         case ['beneficiary', 'de']:
             $tableName = 'beneficiary';
-            $id = $_SESSION['beneficiary_id'];
+            $training_id = $_POST['training_id'];
+            $staff_id = $_POST['staff_id'];
             
-            $data = array('id_name'=>'vtfileno', 'id_value' => $id);
+            $data = array('id'=>'', 'condition'=>'and', 'vfileno'=>$staff_id, 'ctcode'=>$training_id);
             
             $result = $gateway->genericDelete($tableName, $data);
-            
+            // echo $result;
+            // exit();
             echo json_encode($result);
             break;
             
         case ['sponsorship', 'de']:
             $tableName = 'sponsorshiptype';
-            $id = $_SESSION['sponsorship_id'];
+            $id = $_POST['id'];
             
-            $data = array('id_name'=>'vspshipemailid', 'id_value' => $id);
+            $data = array('id'=>'', 'condition'=>'', 'cspshipid'=>$id);
             
             $result = $gateway->genericDelete($tableName, $data);
             
@@ -242,9 +244,9 @@
             
         case ['training_type', 'de']:
             $tableName = 'trainingtype';
-            $id = $_SESSION['training_type_id'];
+            $id = $_POST['id'];
             
-            $data = array('id_name'=>'vttypename', 'id_value' => $id);
+            $data = array('id'=>'', 'condition' =>'', 'cttypeid'=>$id);
             
             $result = $gateway->genericDelete($tableName, $data);
             

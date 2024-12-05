@@ -109,7 +109,7 @@
 						        </a>
 								<ul class="sub-menu">
 									 <li><a href="add_ben">Add Beneficiary</a></li>
-                    <li><a href="ben">Beneficiary List</a></li>
+                    <li><a href="ben_list">Beneficiary List</a></li>
 									</li>
 									<!-- <li><a href="javascript:;">Menu 2.2</a></li> -->
 									<!-- <li><a href="javascript:;">Menu 2.3</a></li> -->

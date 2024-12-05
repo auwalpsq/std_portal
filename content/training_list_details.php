@@ -35,13 +35,18 @@
                             </div>
                         </div>
 
-                            <div class="form-group">
+                        <div class="form-group">
                             <label class="col-md-3 control-label">Location:</label>
                             <div class="col-md-8">
                                 <input type="text" id="training_location" name="training_location" class="form-control input-lg" placeholder="Location" required />
                             </div>
                         </div>
-                                
+                        <div class="form-group">
+                                <label class="col-md-3 control-label">Slots:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="training_slots" class="form-control input-lg" placeholder="Enter maximum number of beneficiaries" required />
+                                </div>
+                        </div>        
                             <div class="form-group">
                             <label class="col-md-3 control-label">Host</label>
                             <div class="col-md-8">
@@ -174,7 +179,7 @@
                     <div class="panel-body">
                          
                     <row>                      
-                    <div class=" pull-right" > <a href="add_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</a></div>
+                    <div class=" pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</button></div>
                     </row>
 
                         <br><br><br>
@@ -211,8 +216,11 @@
                                                 <button data-id="<?php echo $training['id'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
 
                                                 <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
-
-                                                <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-primary btn-xs" >Beneficiaries</button>
+                                                <form action="ben_list.php" method="post" class="viewresult">
+                                                    <input type="hidden" name="id" value="<?php echo $training['id'] ?>">
+                                                    <button type="submit" class="viewresult btn btn-primary btn-xs">Beneficiaries</button>
+                                                    <!-- <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-primary btn-xs Beneficiaries-btn" >Beneficiaries</button> -->
+                                                </form>
                                             </div>
                                             </div>
                                             </td>
@@ -318,6 +326,7 @@
             contentType: false,
             processData: false,
             success: function(response){
+                alert(response);
                 let data = JSON.parse(response);
                 if(data.message == 'success'){
                     Swal.fire({
@@ -339,6 +348,11 @@
                 }
             }
         });
+    });
+    $('#add_new_tr').on('click', function(){
+        $('#type').val('register_training');
+        $('#operation').val('cr');
+        $('#myModal').modal('show');
     });
 });
 

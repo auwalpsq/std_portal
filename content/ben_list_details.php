@@ -12,7 +12,7 @@
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">put name of training here <small>header small text goes here...</small></h1>
+			<h1 class="page-header"><?php echo $training_name ?> <small>header small text goes here...</small></h1>
 			<!-- end page-header -->
 			
 			<!-- begin row -->
@@ -49,39 +49,38 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Beneficiary Name</th>
-                                        <th>Host</th>
-                                        <th>Location</th>
-                                       
-                                       
+                                        <th>Department</th>
+                                        <th>Date of Birth</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $tableName = 'beneficiary';
-                                        $data = array('id'=>'all', 'limit'=>'');
+                                        $tableName = 'vw_beneficiary_list';
+                                        $id = $_POST['id'];
+                                        $data = array('id'=>$id, 'limit'=>'', 'field_name'=>'ctcode');
 
                                         $beneficiaries = $gateway->genericFind($tableName, $data);
                                         foreach($beneficiaries['result'] as $beneficiary){
                                            ?>
                                             <tr>
-                                                 <td><?php echo $beneficiary['vfileno'];?></td>
+                                                 <td><?php echo $beneficiary['id'];?></td>
                                                 <td style="font-size:14px">
-                                                     <div class = "view_result">
-                                                    <a><?php echo $beneficiary['ctcode'];?></a>
+                                                    <div class = "view_result">
+                                                    <a><?php echo $beneficiary['first_name'] ." ".$beneficiary['surname'] ." ". $beneficiary['other_names'];?></a>
                                                  <div class ="pull-bottom">
                                                     <!-- <button type="button" class = "viewresult btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" >Edit</button> -->
 
-                                                    <button  class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
-
+                                                    <button
+                                                        data-training_id="<?php echo $beneficiary['ctcode'] ?>"
+                                                        data-staff_id="<?php echo $beneficiary['id'] ?>"
+                                                        class = "viewresult btn btn-danger remove-btn btn-xs"  >Remove
+                                                    </button>
                                                     
                                                 </div>
                                                 </div>
-                                                </td>
-                                               
-                                                <td><?php echo $beneficiary['icadre'];?></td>
-                                                <td><?php echo $beneficiary['ftevaluation'];?></td>
-                                               
-                                               
+                                                </td> 
+                                                <td><?php echo $beneficiary['department'] ?></td>
+                                                <td><?php echo $beneficiary['date_of_birth'] ?></td> 
                                             </tr>
                                             <?php
                                         }
@@ -101,17 +100,7 @@
 
         <script>
   $(document).ready(function () {
-
-      
-    $('#data-table').on('click', '.edit-btn', function () {
-       
-        $('#myModal').modal('show');
-    }); 
-
-    // Attach click event to dynamically added delete buttons
-    $('#data-table').on('click', '.delete-btn', function () {
-        // Remove the row containing the clicked button
-         // Confirm before deletion
+    $('#data-table').on('click', '.remove-btn', function () {
         Swal.fire({
             title: 'Are you sure?',
             text: "This action cannot be undone.",
@@ -124,14 +113,37 @@
             customClass: "swal-size-sm"
         }).then((result) => {
             if (result.isConfirmed) {
-               $(this).closest('tr').remove();
+                let type = 'beneficiary';
+                let operation = 'de';
+                let staff_id = $(this).data('staff_id');
+                let training_id = $(this).data('training_id');
 
-               
+                $.ajax({
+                    url: 'ajax/crud.php',
+                    type: 'POST',
+                    data: {
+                        staff_id: staff_id,
+                        training_id: training_id,
+                        type: type,
+                        operation: operation
+                    },
+                    dataType: 'json',
+                    success: function(response){
+                        if(response.message == 'success'){
+                            Swal.fire({
+                                icon: 'success',
+                                text: response.result.message,
+                                customClass: "swal-size-sm",
+                                showConfirmButton: 'OK'  
+                            }).then(() => {
+                                location.reload();
+                            });
+                        }
+                    }
+                })
             }
         });
         
     });
 });
-
-
-        </script>
+</script>

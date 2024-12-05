@@ -1,25 +1,18 @@
 <?php
-   
-?>
-
-
-
-<?php
   session_start();  
 
-$ddate = date('Y-m-d');
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL); require_once 'config/MyConnection.php';
+  $ddate = date('Y-m-d');
+  ini_set('display_errors', '1');
+  ini_set('display_startup_errors', '1');
+  error_reporting(E_ALL);
+  require_once 'config/MyConnection.php';
 
-$tableName = "trainingregister";
-$data = array('id'=>'all', 'limit'=>'');
-$trainings = $gateway->genericFind($tableName, $data);
-
-
-
-
- ?>
+  $tableName = "trainingregister";
+  $id = $_POST['id'];
+  $data = array('id'=>$id, 'limit'=>'', 'field_name'=>'ctcode');
+  $training = $gateway->genericFind($tableName, $data);
+  $training_name = $training['result'][0]['vtname'];
+?>
 <!DOCTYPE html>
 
 <html lang="en">

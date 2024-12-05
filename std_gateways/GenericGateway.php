@@ -62,12 +62,28 @@ class GenericGateway{
     }
     public function genericDelete($tableName, $data)
     {
-        $statement = $data['id'] === 'all' ? "DELETE FROM $tableName" : "DELETE FROM $tableName WHERE $data[id_name] = :id";
+        $statement = $data['id'] === 'all' ? "DELETE FROM $tableName" : "DELETE FROM $tableName WHERE";
 
         try {
+            if($data['id'] !== 'all'){
+                $where = "";
+                foreach($data as $key=>$value){
+                    if($key !== 'condition' && $key !== 'id'){
+                        $where .= " $key = :$key $data[condition]";
+                    }
+                }
+                $where = rtrim($where, "$data[condition]");
+                $statement .= $where;
+            }
+            // echo $statement;
+            // exit();
             $statement = $this->db->prepare($statement);
             if($data['id'] !== 'all'){
-                $statement->bindParam(":id", $data['id']);
+                foreach($data as $key=>$value){
+                    if($key !== 'condition' && $key !== 'id'){
+                        $statement->bindValue($key, $value);
+                    }
+                }
             }
             $statement->execute();
             if($statement->rowCount() > 0){
