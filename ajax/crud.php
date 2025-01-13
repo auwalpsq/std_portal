@@ -48,14 +48,10 @@
             $tableName = 'beneficiary';
 
             $beneficiary = $_POST['staff_id'];
-            $training = $_POST['training'];
-            $cadre = $_POST['cadre'];
-            $evaluation = $_POST['evaluation'];
+            $training = $_POST['training_id'];
 
             $data = array(  'vfileno'=>$beneficiary,
-                            'ctcode'=>$training,
-                            'icadre'=>$cadre,
-                            'ftevaluation'=>$evaluation
+                            'ctcode'=>$training
                         );
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -117,12 +113,11 @@
         case['host_training', 'u']: 
             $tableName = 'traininghost';
             $host_name = $_POST['host_name'];
-            //$id = $_SESSION['host_training_id'];
-            $id = 2;
+            $id = $_POST['id'];
 
             $data = array(
-                            'id_name'=>'cthostid',
-                            'id_value'=>$id,
+                            'field_name'=>'cthostid',
+                            'id'=>$id,
                             'vthostname'=>$host_name
                         );
             $response = $gateway->genericUpdate($tableName, $data);
@@ -198,7 +193,6 @@
         
         case['host_training', 'de']:
             $tableName = 'traininghost';
-            //$id = $_SESSION['host_training_id'];
             $id = $_POST['id'];
             $data = array('id'=>'', 'condition'=>'', 'cthostid'=>$id);
 
@@ -255,12 +249,24 @@
         
         case ['host_training', 'find']:
             $tableName = 'traininghost';
-            $id = 2;
-            //$host_name = $_POST['host_name'];
-            $data = array('all' => false, 'limit' => '', 'id_name'=>'cthostid', 'id_value'=>$id);
+            $id = $_POST['id'];
             
-            $result = $gateway->genericFind($tableName, $data);
-            echo json_encode($result);
+            $data = array('id' => $id, 'limit' => '', 'field_name'=>'cthostid');
+            
+            $results = $gateway->genericFind($tableName, $data);
+            if($results['message'] === 'success'){
+                $clientresult = ['message'=>'success'];
+                foreach($results['result'] as $result){
+                    $clientresult[] = array(
+                        'id'=>$result['cthostid'],
+                        'host_name'=>$result['vthostname']
+                    );
+                }
+                echo json_encode($clientresult);
+            }else{
+                echo json_encode($results);
+            }
+            
             break;
             
         case ['register_training', 'find']:
@@ -299,12 +305,20 @@
             
         case ['sponsorship', 'find']:
             $tableName = 'sponsorshiptype';
-            $id = $_SESSION['sponsorship_id'];
-            $email = $_POST['email'];
-            $data = array('all' => false, 'limit' => '', 'id_name'=>'vspshipemailid', 'id_value'=>$id);
+            $id = $_POST['id'];
             
-            $result = $gateway->genericFind($tableName, $data);
-            echo json_encode($result);
+            $data = array('id' => $id, 'limit' => '', 'field_name'=>'cspshipid');
+            
+            $results = $gateway->genericFind($tableName, $data);
+            $response = ['message'=>$results['message']];
+            foreach($results['result'] as $result){
+                $response[] = array(
+                                'sponsor_name'=>$result['vspshipname'],
+                                'sponsor_email'=>$result['vspshipemailid'],
+                                'sponsor_phone'=>$result['vspshiphone']
+                            );
+            }
+            echo json_encode($response);
             break;
             
         case ['training_type', 'find']:
@@ -312,7 +326,7 @@
             //$id = $_SESSION['training_type_id'];
             $id = 1;
             $typeName = $_POST['type_name'];
-            $data = array('all' => false, 'limit' => '', 'id_name'=>'vttypename', 'id_value'=>$id);
+            $data = array('id' => $id, 'limit' => '', 'id_name'=>'vttypename', 'id_value'=>$id);
             
             $result = $gateway->genericFind($tableName, $data);
             echo json_encode($result);

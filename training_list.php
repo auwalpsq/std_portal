@@ -1,10 +1,4 @@
 <?php
-   
-?>
-
-
-
-<?php
   session_start();  
 
 // Turn on error reporting
@@ -22,9 +16,6 @@ require_once 'config/MyConnection.php';
 $tableName = "trainingregister";
 $data = array('id'=>'all', 'limit'=>'');
 $trainings = $gateway->genericFind($tableName, $data);
-
-
-
 
  ?>
 <!DOCTYPE html>

@@ -13,7 +13,7 @@ include_once 'config/DatabaseConfig.php';
 $database = new DatabaseConfig();      
 $dbConnect = $database->dbConnect();
 
-$grad =new GenericGateway($dbConnect);
+$gateway =new GenericGateway($dbConnect);
 
 ?>
 
@@ -35,7 +35,7 @@ include_once 'template/custom_style.html';
         <?php
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
-           include "content/add_spn_details.php";
+        include "content/add_spn_details.php";
         // include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';
@@ -51,7 +51,6 @@ include_once 'template/custom_style.html';
 <script>
 		$(document).ready(function() {
 			App.init();
-			FormWizardValidation.init();
 		});
 	</script>
 

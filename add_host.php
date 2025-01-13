@@ -1,11 +1,10 @@
 <?php
-  session_start();  
+session_start();  
 
 $ddate = date('Y-m-d');
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-
 
 use std_portal\std_gateways\GenericGateway;
 require_once 'std_gateways/GenericGateway.php';
@@ -13,8 +12,7 @@ include_once 'config/DatabaseConfig.php';
 $database = new DatabaseConfig();      
 $dbConnect = $database->dbConnect();
 
-$grad =new GenericGateway($dbConnect);
-
+$gateway =new GenericGateway($dbConnect);
 ?>
 
 <!DOCTYPE html>
@@ -30,28 +28,20 @@ include_once 'template/custom_style.html';
     <!-- end #page-loader -->
 
     <div id="page-container" class="fade page-with-sidebar page-header-fixed">
-   
-
         <?php
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
-           include "content/add_host_details.php";
+        include "content/add_host_details.php";
         // include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';
          ?>
-    <script>
-
-    
-    
-    </script>
-
     </div>
 </body>
 <script>
 		$(document).ready(function() {
 			App.init();
-			FormWizardValidation.init();
+            //TableManageTableSelect.init();
 		});
 	</script>
 

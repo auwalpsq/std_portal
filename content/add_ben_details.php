@@ -119,9 +119,10 @@
 									</div>
 									<!-- end wizard step-2 -->
 							</div>
+                            </form>
 									<!-- end wizard step-4 -->
 								</div>
-							</form>
+							
                         </div>
                     </div>
                     <!-- end panel -->

@@ -99,43 +99,16 @@
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
 						    <i class="fa fa-align-left"></i> 
-						    <span>Task</span>
-						</a>
-						<ul class="sub-menu">
-							<li class="has-sub">
-								<a href="javascript:;">
-						            <b class="caret pull-right"></b>
-						            Beneficiary
-						        </a>
-								<ul class="sub-menu">
-									 <li><a href="add_ben">Add Beneficiary</a></li>
-                    <li><a href="ben_list">Beneficiary List</a></li>
-									</li>
-									<!-- <li><a href="javascript:;">Menu 2.2</a></li> -->
-									<!-- <li><a href="javascript:;">Menu 2.3</a></li> -->
-								</ul>
-							</li>
-							<li class="has-sub">
-								<a href="javascript:;">
-						            <b class="caret pull-right"></b>
 						            Training
 						        </a>
 								<ul class="sub-menu">
-									 <li><a href="add_tr">Add Training</a></li>
-                   <li><a href="add_tr_type">Add Type</a></li>
                    <li><a href="training_list">Training List</a></li>
                    <li><a href="add_host">Add Host</a></li>
                <li><a href="add_spn">Add Sponsor</a></li>
-									</li>
-									<!-- <li><a href="javascript:;">Menu 2.2</a></li> -->
-									<!-- <li><a href="javascript:;">Menu 2.3</a></li> -->
 								</ul>
 							</li>
 	
-							 
-						</ul>
-					</li>
-         
+			
          
 
             <li>

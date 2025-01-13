@@ -23,7 +23,7 @@ class GenericGateway{
             if($statement->rowCount() > 0){
                 $response = array('message'=>'success', 'result'=>$result);
             }else{
-                $response = array('message'=>'failed', 'result'=>array('message'=>'Invalid ID'));
+                $response = array('message'=>'failed', 'result'=>array('message'=>'No Record Available'));
             }
             return $response;
         } catch (\PDOException $e) {

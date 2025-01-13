@@ -1,9 +1,15 @@
-		<!-- Modal -->
+<style>
+.swal-size-sm {
+	   width: 650px !important;
+       font-size: medium;
+	}
+</style>
+<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="myModalLongTitle">Edit Training</h3>
+                <h3 class="modal-title" id="myModalLongTitle"></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -154,7 +160,7 @@
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Training List <small>header small text goes here...</small></h1>
+        <h1 class="page-header">Training List</h1>
         <!-- end page-header -->
         
         <!-- begin row -->
@@ -212,16 +218,16 @@
                                             <td style="font-size:14px">
                                             <div class = "view_result">
                                                 <a><?php echo $training['training_name'];?></a>
-                                            <div class ="pull-bottom">
-                                                <button data-id="<?php echo $training['id'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
+                                                <div class ="pull-bottom">
+                                                    <button data-id="<?php echo $training['id'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
 
-                                                <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
-                                                <form action="ben_list.php" method="post" class="viewresult">
-                                                    <input type="hidden" name="id" value="<?php echo $training['id'] ?>">
-                                                    <button type="submit" class="viewresult btn btn-primary btn-xs">Beneficiaries</button>
-                                                    <!-- <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-primary btn-xs Beneficiaries-btn" >Beneficiaries</button> -->
-                                                </form>
-                                            </div>
+                                                    <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
+                                                    <form action="ben_list.php" method="post" class="viewresult">
+                                                        <input type="hidden" name="id" value="<?php echo $training['id'] ?>">
+                                                        <button type="submit" class="btn btn-primary btn-xs">Beneficiaries</button>
+                                                        <!-- <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-primary btn-xs Beneficiaries-btn" >Beneficiaries</button> -->
+                                                    </form>
+                                                </div>
                                             </div>
                                             </td>
                                             
@@ -268,6 +274,7 @@
                 $('#training_type').val(data[0]['training_type']);
                 $('#start_date').val(data[0]['training_start_date']);
                 $('#end_date').val(data[0]['training_end_date']);
+                $('#myModalLongTitle').text('Edit Training');
                 $('#myModal').modal('show');
             }
         });
@@ -326,7 +333,7 @@
             contentType: false,
             processData: false,
             success: function(response){
-                alert(response);
+                // alert(response);
                 let data = JSON.parse(response);
                 if(data.message == 'success'){
                     Swal.fire({
@@ -352,6 +359,7 @@
     $('#add_new_tr').on('click', function(){
         $('#type').val('register_training');
         $('#operation').val('cr');
+        $('#myModalLongTitle').text('New Training');
         $('#myModal').modal('show');
     });
 });
