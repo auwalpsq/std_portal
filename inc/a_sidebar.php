@@ -93,7 +93,12 @@
 				<ul class="nav" >
 					<li class="nav-header" style="font-size:16px;color:white">Navigation</li>
 
-				
+				 <li>
+            <a href="dash">         
+                <i class="fa fa-desktop"></i>
+                <span>dash</span>
+            </a>
+        </li>
 
           <li class="has-sub">
 						<a href="javascript:;">
