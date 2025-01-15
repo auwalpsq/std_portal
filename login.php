@@ -60,8 +60,6 @@ session_start();
   <link href="assets/plugins/bootstrap-sweetalert/dist/sweetalert.css" rel="stylesheet" />
 	<script src="assets/plugins/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
-
-
 </head>
 
 <style>
@@ -262,7 +260,7 @@ right: 0;
                        
                         
                          <div class="">
-							            <a class="btn btn-primary btn-block btn-lg" id="pwd_btn" href="chng_pass" ></i>Forgot Password</a>
+							            <a class="btn btn-primary btn-block btn-lg" id="pwd_btn" href="chng_pass" >Forgot Password</a>
                         </div>
                        
                         <hr />
@@ -338,11 +336,11 @@ $(document).ready(function(){
 });
 </script>
 	<script>
-			$(document).ready(function() {
+		$(document).ready(function() {
 			App.init();
-        $("#bsumit").click(function(){
-        var matric = $('#username').val();
-        var pass = $('#t_pwd').val();
+            $("#bsumit").click(function(){
+            var matric = $('#username').val();
+            var pass = $('#t_pwd').val();
 
             if (matric === '' || pass ==='') {
               Swal.fire({
@@ -451,28 +449,26 @@ $(document).ready(function(){
             sendAjaxRequest(ajaxUrl, formData);
         });
 
-  });
+    });
 	
 	
-  function myFunction() {
-          var x = document.getElementById("t_pwd");
+    function myFunction() {
+        var x = document.getElementById("t_pwd");
         //   var r=document.getElementById("");
-          if (x.type === "password") {
+        if (x.type === "password") {
             x.type = "text";
-             $("#togglePassword").removeClass("fa fa-eye pull-right");
+            $("#togglePassword").removeClass("fa fa-eye pull-right");
             $("#togglePassword").addClass("fa fa-eye-slash pull-right");
             
-          } else {
+        } else {
             x.type = "password";
             //this.classList.toggle('fa fa-eye');
             $("#togglePassword").removeClass("fa fa-eye-slash pull-right");
-             $("#togglePassword").addClass("fa fa-eye pull-right");
+            $("#togglePassword").addClass("fa fa-eye pull-right");
             
-          }
         }
+    }
 
-	</script>
-
-</body>
+	    </script>
+    </body>
 </html>
- 

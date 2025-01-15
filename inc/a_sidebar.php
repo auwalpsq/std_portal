@@ -123,6 +123,13 @@
             </a>
         </li>
             
+            <li>
+            <a href="add_usr">         
+                <i class="fa fa-user-o"></i>
+                <span>Add User</span>
+            </a>
+        </li>
+            
 
           
 
