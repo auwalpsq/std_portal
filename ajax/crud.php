@@ -11,6 +11,37 @@
     $operation = $_POST['operation'];
     $type = $_POST['type'];
     switch([$type, $operation]){
+        case['user', 'u']:{
+            $tableName = 'users';
+            $user_id = $_POST['user_id'];
+
+            $data = array('id'=>$user_id, 'password'=>'default', 'activated'=>0, 'field_name'=>'user_id');
+
+            $response = $gateway->genericUpdate($tableName, $data);
+            echo json_encode($response);
+            break;
+        }
+        case['user', 'de']:{
+            $tableName = 'users';
+            $user_id = $_POST['user_id'];
+
+            $data = array('id'=>'', 'condition'=>'', 'user_id'=>$user_id);
+            
+            $response = $gateway->genericDelete($tableName, $data);
+            echo json_encode($response);
+            break;
+        }
+        case['user', 'cr']:{
+            $tableName = 'users';
+            $staff_id = $_POST['staff_id'];
+            $user_type = $_POST['user_type'];
+            
+            $data = array('staff_id'=>$staff_id, 'user_type'=>$user_type);
+
+            $response = $gateway->genericInsert($tableName,$data);
+            echo json_encode($response);
+            break;
+        }
         case ['host_training', 'cr']:
             $tableName = 'traininghost';
             $host_name = $_POST['host_name'];
@@ -26,7 +57,7 @@
             $training_name = $_POST['training_name'];
             $training_host = $_POST['training_host'];
             $training_location = $_POST['training_location'];
-            $training_slots = $_POST['training_slots'];
+            $training_slot = $_POST['training_slot'];
             $training_sponsor = $_POST['training_sponsor'];
             $training_type = $_POST['training_type'];
             $start_date = $_POST['start_date'];
@@ -35,7 +66,7 @@
             $data = array(  'vtname'=>$training_name,
                             'cthostid'=>$training_host,
                             'vtlocation'=>$training_location,
-                            'islot'=>$training_slots,
+                            'islot'=>$training_slot,
                             'cspshipid'=>$training_sponsor,
                             'cttypeid'=>$training_type,
                             'dedc'=>$start_date,
@@ -133,6 +164,7 @@
             $training_location = $_POST['training_location'];
             $training_sponsor = $_POST['training_sponsor'];
             $training_type = $_POST['training_type'];
+            $training_slot = $_POST['training_slot'];
             $start_date = $_POST['start_date'];
             $end_date = $_POST['end_date'];
 
@@ -143,6 +175,7 @@
                             'vtlocation'=>$training_location,
                             'cspshipid'=>$training_sponsor,
                             'cttypeid'=>$training_type,
+                            'islot'=>$training_slot,
                             'dedc'=>$start_date,
                             'deed'=>$end_date
                         );
@@ -285,6 +318,7 @@
                                         'training_location'=>$raw_result['vtlocation'],
                                         'training_sponsor'=>$raw_result['cspshipid'],
                                         'training_type'=>$raw_result['cttypeid'],
+                                        'training_slot'=>$raw_result['islot'],
                                         'training_start_date'=>$raw_result['dedc'],
                                         'training_end_date'=>$raw_result['deed']
                     );

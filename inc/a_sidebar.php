@@ -96,7 +96,7 @@
 				 <li>
             <a href="dash">         
                 <i class="fa fa-desktop"></i>
-                <span>dash</span>
+                <span>Dashboard</span>
             </a>
         </li>
 
@@ -104,12 +104,12 @@
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
 						    <i class="fa fa-align-left"></i> 
-						            Training
-						        </a>
+						            <span>Training</span>
+						</a>
 								<ul class="sub-menu">
                    <li><a href="training_list">Training List</a></li>
-                   <li><a href="add_host">Add Host</a></li>
-               <li><a href="add_spn">Add Sponsor</a></li>
+                   <li><a href="add_host">Training Host</a></li>
+                      <li><a href="add_spn">Training Sponsor</a></li>
 								</ul>
 							</li>
 	
@@ -119,17 +119,20 @@
             <li>
             <a href="stf_info">         
                 <i class="fa fa-user-o"></i>
-                <span>staff info</span>
+                <span>Staff info</span>
             </a>
         </li>
+         <?php
+          if($_SESSION['user_type'] == 'admin'){?>
             
             <li>
-            <a href="add_usr">         
-                <i class="fa fa-user-o"></i>
-                <span>Add User</span>
-            </a>
-        </li>
-            
+              <a href="add_usr">         
+                  <i class="fa fa-user-o"></i>
+                  <span>Users List</span>
+              </a>
+            </li>
+          <?php
+          }?>
 
           
 

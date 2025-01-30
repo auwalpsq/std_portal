@@ -11,7 +11,7 @@
             <div class="modal-header" >
                 <h5 class="modal-title">Add New Training Host</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-            </div>b
+            </div>
             <div class="modal-body">
                 <form id="form_host"  class="form-horizontal" method="POST" >   
                     <input type="hidden" name="type" value="host_training" />

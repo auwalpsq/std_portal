@@ -50,7 +50,7 @@
                         <div class="form-group">
                                 <label class="col-md-3 control-label">Slots:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="training_slots" class="form-control input-lg" placeholder="Enter maximum number of beneficiaries" required />
+                                    <input type="text" name="training_slot" id="training_slot" class="form-control input-lg" placeholder="Enter maximum number of beneficiaries" required />
                                 </div>
                         </div>        
                             <div class="form-group">
@@ -197,9 +197,12 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Training Name</th>
+                                    <th>Name</th>
                                     <th>Host</th>
-                                    <th>Location</th>
+                                    <th> Sponsor </th>
+                                    <th>Beneficiary Count</th>
+                                    <th>Slots Remaining</th>
+                                    <th>Slots Allocated</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     
@@ -209,9 +212,11 @@
                                 <?php
                                     $tableName = 'vw_training_details';
                                     $data = array('id'=>'all', 'limit'=>'');
-
                                     $trainings = $gateway->genericFind($tableName, $data);
                                     foreach($trainings['result'] as $training){
+                                        $tableName1 = 'beneficiary_counter';
+                                        $data1 = array('id'=>$training['training_name'], 'field_name'=>'name', 'limit'=>'');
+                                        $beneficiary_counter = $gateway->genericFind($tableName1, $data1);
                                         ?>
                                         <tr>
                                             <td><?php echo $training['id'];?></td>
@@ -232,7 +237,10 @@
                                             </td>
                                             
                                             <td><?php echo $training['host_name'];?></td>
-                                            <td><?php echo $training['training_location'];?></td>
+                                            <td><?php echo $training['sponsor_name'];?></td>
+                                            <td><?php echo $beneficiary_counter['result'][0]['beneficiary_count'];?></td>
+                                            <td><?php echo $beneficiary_counter['result'][0]['slots_available'];?></td>
+                                            <td><?php echo $training['slot'];?></td>
                                             <td><?php echo $training['start_date'];?></td>
                                             <td><?php echo $training['end_date'];?></td>
                                             
@@ -271,6 +279,7 @@
                 $('#training_host').val(data[0]['training_host']);
                 $('#training_location').val(data[0]['training_location']);
                 $('#training_sponsor').val(data[0]['training_sponsor']);
+                $('#training_slot').val(data[0]['training_slot']);
                 $('#training_type').val(data[0]['training_type']);
                 $('#start_date').val(data[0]['training_start_date']);
                 $('#end_date').val(data[0]['training_end_date']);

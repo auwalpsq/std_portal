@@ -13,6 +13,12 @@ $database = new DatabaseConfig();
 $dbConnect = $database->dbConnect();
 
 $gateway =new GenericGateway($dbConnect);
+
+if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
+    $_SESSION['login_error'] = 'Please login first';
+    header('Location: login');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +29,21 @@ include_once 'template/custom_style.html';
 ?>
 
 <body>
+<?php
+    if(isset($_SESSION['password_change_success'])){ ?>
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '<?php echo $_SESSION['password_change_success'];?>',
+                icon: 'success',
+                confirmButtonText: 'Okay',
+                customClass: 'swal-size-sm'
+            });
+        </script>
+    <?php
+    unset($_SESSION['password_change_success']);
+    }
+?>
     <!-- begin #page-loader -->
     <div id="page-loader" class="fade in"><span class="spinner"></span></div>
     <!-- end #page-loader -->

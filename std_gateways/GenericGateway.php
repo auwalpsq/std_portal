@@ -9,6 +9,14 @@ class GenericGateway{
         $this->db = $db;
     }
 
+    public function validateUser($userName, $password){
+        $statement = $this->db->prepare("SELECT * FROM users WHERE user_id = :user_id AND password = :password");
+        $statement->bindParam(':user_id', $userName, \PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, \PDO::PARAM_STR);
+        $statement->execute();
+        $rowCount = $statement->rowCount();
+        return $rowCount > 0;
+    }
     public function genericFind($tableName, $data)
     {
         $statement = $data['id'] === 'all' ? "SELECT * FROM $tableName $data[limit]" : "SELECT * FROM $tableName WHERE $data[field_name] = :id";

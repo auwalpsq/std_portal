@@ -12,6 +12,12 @@
   $data = array('id'=>$id, 'limit'=>'', 'field_name'=>'ctcode');
   $training = $gateway->genericFind($tableName, $data);
   $training_name = $training['result'][0]['vtname'];
+
+  if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
+    $_SESSION['login_error'] = 'Please login first';
+    header('Location: login');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 

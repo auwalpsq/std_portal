@@ -17,7 +17,12 @@ $tableName = "trainingregister";
 $data = array('id'=>'all', 'limit'=>'');
 $trainings = $gateway->genericFind($tableName, $data);
 
- ?>
+if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
+  $_SESSION['login_error'] = 'Please login first';
+  header('Location: login');
+  exit();
+}
+?>
 <!DOCTYPE html>
 
 <html lang="en">

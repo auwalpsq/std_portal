@@ -15,6 +15,11 @@ $dbConnect = $database->dbConnect();
 
 $gateway =new GenericGateway($dbConnect);
 
+if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
+  $_SESSION['login_error'] = 'Please login first';
+  header('Location: login');
+  exit();
+}
 ?>
 
 <!DOCTYPE html>

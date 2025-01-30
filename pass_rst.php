@@ -1,5 +1,13 @@
 <?php
-session_start();
+    session_start();
+    $userName = $_SESSION['username'];
+    $password = $_SESSION['password'];
+
+    if(!isset($userName) && !isset($password)){
+        $_SESSION['login_error'] = "Invalid credentials. Please try again.";
+        header('Location: login');
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -8,7 +16,7 @@ session_start();
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>ST&D Portal | Login Page</title>
+	<title>ST&D | Login Page</title>
 	<link rel="icon" type="image/png" href="assets/img/login-bg/nou.png" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
@@ -42,11 +50,15 @@ session_start();
     <!-- SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
+
+
+
+
   <link href="assets/plugins/bootstrap-sweetalert/dist/sweetalert.css" rel="stylesheet" />
 	<script src="assets/plugins/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
 </head>
+
 <style>
 .news-caption {
     background: linear-gradient(45deg, black, transparent)!important;
@@ -174,28 +186,9 @@ right: 0;
 }
 </style>
 <body class="pace-top bg-white">
-<?php
-    if(isset($_SESSION['login_error'])){ ?>
-        <script>
-            Swal.fire({
-                title: 'Error!',
-                text: '<?php echo $_SESSION['login_error'];?>',
-                icon: 'error',
-                confirmButtonText: 'Okay',
-                customClass: 'swal-size-sm'
-            });
-        </script>
-    <?php
-    unset($_SESSION['login_error']);
-    }
-?>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
-	<!-- end #page-loader -->
-	<?php
-// 	include 'modal/modal_ticket.php';
-	 ?>
-	<!-- begin #page-container -->
+	
 	<div id="page-container" class="fade">
 	    <!-- begin login -->
         <div class="login login-with-news-feed" >
@@ -203,7 +196,7 @@ right: 0;
             <div class="news-feed">
                 <div class="news-image">
                     <!--<img src="assets/img/login-bg/bg-8.jpg" data-id="login-cover-image" alt="" />-->
-                     <video loop="loop" autoplay="" playsinline="" muted="" id="mejs_04978300085092657_html5" preload="none" src="assets/img/login-bg/NOUN-AT-A-GLANCE-3.mp4">
+                    <video loop="loop" autoplay="" playsinline="" muted="" id="mejs_04978300085092657_html5" preload="none" src="assets/img/login-bg/NOUN-AT-A-GLANCE-3.mp4">
 						<source type="video/mp4" src="assets/img/login-bg/NOUN-AT-A-GLANCE-3.mp4">
 					</video>
 					<!--<div id ="watermark" class ="bg-grey"><img class="watermark" src ="img/noubg.png" style="width:60%;height:100vh"> </div>-->
@@ -211,7 +204,7 @@ right: 0;
                 <div class="news-caption">                    
                    <h3 class="caption-title" style="font-size: 36px;"><i class="fa fa-check-square-o"></i> NOUN-Staff Training Portal...</h3>
                     <p class ="text-white" style="width:750px; font-size:20px" >
-                       <strong>Staff Training and Development (ST&D)...</strong>
+                       <strong>Staff Development and Training (ST&D)...</strong>
                         
                     </p>
                     
@@ -225,31 +218,32 @@ right: 0;
     <div class="login-header ">
 
     <div class="brand text-inverse">
-        <span class="" ></span>NOUN-Staff Training Portal
-        <small class="text-inverse"> Staff Training and Development (ST&D) </small>
+        <span class="" >Change Your Password</span>
+        <small class="text-inverse">Make sure input in password and confirm password fields match</small>
 						</div>
 						<div class="icon">
-								<i class="fa fa-sign-in"></i>
+								<i class="fa fa-key"></i>
 						</div>
                 </div>
                 <!-- end login-header -->
                 <!-- begin login-content -->
                 <div class="login-content" >
-                    <form method="POST" id="frm" action="ajax/validate_user.php" enctype="multipart/form-data" >
+                    <form action="ajax/change_password.php" method="POST" id="frm" enctype="multipart/form-data" >
                         <div class="form-group m-b-15">
-                            <input type="text" name="username" id="username" class="form-control input-lg text-inverse" placeholder="Username" required />
+                            <input type="password" name="password" id="password" class="form-control input-lg text-inverse" placeholder="password" required />
+                            <i class="fa fa-eye pull-right" id="togglePassword" style="margin-right:15px;margin-top:-30px; cursor: pointer;"></i>
                         </div>
                         <div class="form-group m-b-15">
-                            <input type="password" name="password" id="t_pwd" class="form-control input-lg text-inverse" placeholder="Password" required />
-                            <i class="fa fa-eye pull-right" id="togglePassword" style="margin-right:15px;margin-top:-30px; cursor: pointer;" onclick="myFunction()"></i>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control input-lg text-inverse" placeholder="confirm password" required />
+                            <i class="fa fa-eye pull-right" id="togglePassword" style="margin-right:15px;margin-top:-30px; cursor: pointer;"></i>
                         </div>
-                        <div class="checkbox m-b-30 ">
+                        <!-- <div class="checkbox m-b-30 ">
                             <label class="text-inverse">
                                 <input type="checkbox"/> Remember Me
                             </label>
-                        </div>
+                        </div> -->
                         <div class="login-buttons">
-                            <button  class="btn btn-success btn-block btn-lg" type="submit" id="bsumit">Sign me in</button>
+                            <button  class="btn btn-success btn-block btn-lg" type="submit" id="bsumit">Save Changes</button>
                         </div> 
                         <!-- <div class="m-t-20 m-b-20 p-b-10 text-inverse">
                             <p>Don't have an account yet? Click <a href="register" class="text-success">register</a> to verify and create an account.</p>
@@ -259,9 +253,9 @@ right: 0;
                                       </div> -->
                        
                         
-                         <div class="">
-							            <a class="btn btn-primary btn-block btn-lg m-t-20" id="pwd_btn" href="chng_pass" >Request Password Reset</a>
-                        </div>
+                         <!-- <div class="">
+							            <a class="btn btn-primary btn-block btn-lg" id="pwd_btn" href="chng_pass" >Forgot Password</a>
+                        </div> -->
                        
                         <hr />
                     
@@ -315,12 +309,54 @@ right: 0;
 	<script src="assets/js/apps.min.js"></script>
   <!-- <script src="inc/cdal.js"></script> -->
 	<!-- ================== END PAGE LEVEL JS ================== -->
+        <script>
+            $(document).ready(function() {
+                App.init();
+                $("#bsumit").click(function(){
+                    let password = $('#password').val();
+                    let confirmPassword = $('#confirm_password').val();
 
-	<script>
-		$(document).ready(function() {
-			App.init();
-        });
+                    if (password == '' || confirmPassword == '') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Input Required',
+                            text: 'Matric number and password required',
+                            customClass: "swal-size-sm",
+                            confirmButtonText: 'OK'
+                        });
+                        return false;
+                    }else if(password !== confirmPassword){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Passwords do not match',
+                            text: 'Please ensure your passwords match',
+                            customClass: "swal-size-sm",
+                            confirmButtonText: 'OK'
+                        });
+                        return false;
+                    }
+                })
+                $("input[type='password'] + .fa-eye").on('click', function(){
+                    let type_password = $(this).parent().find("input[type='password']").attr('type');
+                    let type_text = $(this).parent().find("input[type='text']").attr('type');
+                    let type = "";
+                    if(type_password == 'password'){
+                        type = 'password';
+                    }else if(type_text == 'text'){
+                        type = 'text';
+                    }
 
+                    if(type == 'text'){
+                        $(this).parent().find("input[type='text']").attr('type', 'password');
+                        $(this).removeClass("fa fa-eye-slash pull-right");
+                        $(this).addClass("fa fa-eye pull-right");
+                    }else if(type == 'password'){
+                        $(this).parent().find("input[type='password']").attr('type', 'text');
+                        $(this).removeClass("fa fa-eye pull-right");
+                        $(this).addClass("fa fa-eye-slash pull-right");
+                    }            
+                });
+            });
 	    </script>
     </body>
 </html>

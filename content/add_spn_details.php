@@ -73,30 +73,32 @@
                         <tr>
                             <th>ID</th>
                             <th>Sponsor Name</th>
-                            <th>Email</th>
                             <th>Contact Number</th>
+                            <th>Email Address</th>
+                            <th>Training Sponsored</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $table_name = 'sponsorshiptype';
+                            $table_name = 'vw_sponsored_training';
                             $data = array('id'=>'all', 'limit'=>'');
                             $sponsor_list = $gateway->genericFind($table_name, $data);
                             if($sponsor_list['message'] === 'success'){
                                 foreach($sponsor_list['result'] as $sponsor){?>
                                     <tr>
-                                        <td><?php echo $sponsor['cspshipid'] ?></td>
+                                        <td><?php echo $sponsor['id'] ?></td>
                                         <td>
                                             <div class="view_result">
-                                                <a><?php echo $sponsor['vspshipname'] ?></a><br>
+                                                <a><?php echo $sponsor['sponsor_name'] ?></a><br>
                                                 <div class="viewresult pull-bottom">
-                                                    <button type="button" data-id="<?php echo $sponsor['cspshipid'] ?>" class="btn btn-success btn-xs btn-edit">Edit</button>
-                                                    <button type="button" data-id="<?php echo $sponsor['cspshipid'] ?>" class="btn btn-danger btn-xs btn-delete">Delete</button>
+                                                    <button type="button" data-id="<?php echo $sponsor['id'] ?>" class="btn btn-success btn-xs btn-edit">Edit</button>
+                                                    <button type="button" data-id="<?php echo $sponsor['id'] ?>" class="btn btn-danger btn-xs btn-delete">Delete</button>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?php echo $sponsor['vspshiphone'] ?></td>
-                                        <td><?php echo $sponsor['vspshipemailid'] ?></td>
+                                        <td><?php echo $sponsor['sponsor_phone'] ?></td>
+                                        <td><?php echo $sponsor['sponsor_email'] ?></td>
+                                        <td><?php echo $sponsor['training_sponsored'] ?></td>
                                     </tr>
                                 <?php } ?>
                         <?php }?>
@@ -125,6 +127,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(response){
                 if(response.message == 'success'){
+                    
                     Swal.fire({
                         icon: 'success',
                         title: 'Successfull',

@@ -15,11 +15,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="edit_training" class="form-horizontal" method="POST" >
+                <form id="user" class="form-horizontal" method="POST" >
                     <input id="type" type="hidden" name="type" />
                     <input id="operation" type="hidden" name="operation"/>
                     <input id="id" type="hidden" name="id">
-                    <div>
 
                         <!-- begin wizard step-1 -->
                         <div class="wizard-step-1">
@@ -28,34 +27,33 @@
                                 You are about to edit a Training. Please ensure that all required information is entered correctly before proceeding.
                                 <span class="close" data-dismiss="alert">×</span>
                             </div>
+                        </div>
                     <fieldset>
                                 
                     <div style="margin-top: 30px;" class="form-group">            
-                        <label class="col-md-3 control-label">Staff ID:<span class="text-danger">*</span></label>
+                        <label class="col-md-3 control-label">Staff ID<span class="text-danger">*</span></label>
                         <div class="col-md-8">
                             <input type="text" id="staff_id" name="staff_id" class="form-control input-lg" placeholder="Enter Staff ID" required />
                         </div>
                     </div>
+
                             <div class="form-group">
                             <label class="col-md-3 control-label">User Type</label>
                             <div class="col-md-8">
                                 <div>
-                                    <select id="user_type" class="form-control input-lg" name="user_type"  required>
-                                        <option value="" disabled selected>--select--</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="normal">Normal</option>
-                                    </select>
-                                </div>
+                                <select id="user_type" class="form-control input-lg" name="user_type"  required>
+                                    <option value="" disabled selected>--select--</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="normal">Normal</option>
+                                </select>
+                            </div>
+                            </div>
                             </div>
                     </fieldset>
-
-                            
-                        </div>
-                        <!-- end wizard -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Save changes</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save changes</button>
+                    </div>
                 </form>
             </div>
             
@@ -85,7 +83,7 @@
                 <div class="panel panel-inverse" >
                     <div class="panel-heading" style="background-color: #008000;">
                        
-                        <h4 class="panel-title">Training List</h4>
+                        <h4 class="panel-title">List of Users</h4>
                     </div>
                    
                     <!-- <div class="alert alert-info fade in">
@@ -94,66 +92,56 @@
                         </button>
                         Select adds item selection capabilities to a DataTable. Items can be rows, columns or cells, which can be selected independently, or together. Item selection can be particularly useful in interactive tables where users can perform some action on the table, such as editing rows or marking items to perform an action on.
                     </div> -->
-                    
                    
                     <div class="panel-body">
                          
                     <row>                      
-                    <div class=" pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</button></div>
+                    <div class=" pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Add New User</button></div>
                     </row>
 
                         <br><br><br>
                        <div class = "responsive">
-                         <table id="data-table" class="table table-striped table-bordered" width="100%">
-                                
-
+                            <table id="data-table" class="table table-striped table-bordered" width="100%">
                         
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Training Name</th>
-                                    <th>Host</th>
-                                    <th>Location</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    
+                                    <th>Full Name</th>
+                                    <th>Type</th>
+                                    <th>Date Created</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    $tableName = 'vw_training_details';
+                                    $tableName = 'vw_staff_users';
                                     $data = array('id'=>'all', 'limit'=>'');
 
-                                    $trainings = $gateway->genericFind($tableName, $data);
-                                    foreach($trainings['result'] as $training){
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $training['id'];?></td>
-                                            <td style="font-size:14px">
-                                            <div class = "view_result">
-                                                <a><?php echo $training['training_name'];?></a>
-                                                <div class ="pull-bottom">
-                                                    <button data-id="<?php echo $training['id'] ?>" type="button" class = "viewresult btn btn-success edit-btn btn-xs">Edit</button>
-
-                                                    <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs"  >Delete</button>
-                                                    <form action="ben_list.php" method="post" class="viewresult">
-                                                        <input type="hidden" name="id" value="<?php echo $training['id'] ?>">
-                                                        <button type="submit" class="btn btn-primary btn-xs">Beneficiaries</button>
-                                                        <!-- <button data-id="<?php echo $training['id'] ?>" class = "viewresult btn btn-primary btn-xs Beneficiaries-btn" >Beneficiaries</button> -->
-                                                    </form>
+                                    $users = $gateway->genericFind($tableName, $data);
+                                    if($users['message'] === 'success'){
+                                        foreach($users['result'] as $user){
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $user['id']; ?> </td>
+                                                <td style="font-size:14px">
+                                                <div class = "view_result">
+                                                    <a><?php echo "$user[first_name] $user[surname] $user[other_names]";?></a>
+                                                    <div class ="pull-bottom">
+                                                        <button data-id="<?php echo $user['id'] ?>" type="button" class = "viewresult btn btn-primary reset-btn btn-xs">Reset</button>
+                                                        <button data-id="<?php echo $user['id'] ?>" class = "viewresult btn btn-danger delete-btn btn-xs">Delete</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            </td>
-                                            
-                                            <td><?php echo $training['host_name'];?></td>
-                                            <td><?php echo $training['training_location'];?></td>
-                                            <td><?php echo $training['start_date'];?></td>
-                                            <td><?php echo $training['end_date'];?></td>
-                                            
+                                                </td>
+                                                
+                                                <td><?php echo $user['user_type'];?></td>
+                                                <td><?php echo $user['date_created'];?></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }else{ ?>
+                                        <tr>
+                                            <td colspan="7" style="text-align: center"><?php echo $users['result']['message'] ?></td>
                                         </tr>
-                                        <?php
-                                    }
-                                ?>
+                                    <?php } ?>
                             </tbody>
                         </table>
                        </div>
@@ -170,26 +158,42 @@
 
 <script>
   $(document).ready(function () {
-    $('#data-table').on('click', '.edit-btn', function () {
-        let id = $(this).data('id');
-        let type = 'register_training';
-        let operation = 'find';
-        $.post('ajax/crud.php', {id: id, type: type, operation: operation}, function(response){
-            //alert(response);
-            let data = JSON.parse(response);
-            if(data['message'] == 'success'){
-                $('#type').val('register_training');
-                $('#operation').val('u');
-                $('#id').val(data[0]['id']);
-                $('#training_name').val(data[0]['training_name']);
-                $('#training_host').val(data[0]['training_host']);
-                $('#training_location').val(data[0]['training_location']);
-                $('#training_sponsor').val(data[0]['training_sponsor']);
-                $('#training_type').val(data[0]['training_type']);
-                $('#start_date').val(data[0]['training_start_date']);
-                $('#end_date').val(data[0]['training_end_date']);
-                $('#myModalLongTitle').text('Edit Training');
-                $('#myModal').modal('show');
+    $('#data-table').on('click', '.reset-btn', function () {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#008000',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, reset user!',
+            cancelButtonText: 'Cancel',
+            customClass: "swal-size-sm"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let user_id = $(this).data('id');
+                let type = 'user';
+                let operation = 'u';
+                $.ajax({
+                    url: 'ajax/crud.php',
+                    type: 'POST',
+                    data: {user_id: user_id, type: type, operation: operation},
+                    success: function(response){
+                        let data = JSON.parse(response);
+                        if(data['message'] == 'success'){
+                            Swal.fire({
+                                icon: 'success',
+                                title: data['message'],
+                                text: data['result']['message'],
+                                customClass: "swal-size-sm",
+                                confirmButtonText: 'OK'
+                            });
+                            location.reload();
+                        }else{
+                            alert(data['message']);
+                        }
+                    }
+                });
             }
         });
     }); 
@@ -210,13 +214,13 @@
             customClass: "swal-size-sm"
         }).then((result) => {
             if (result.isConfirmed) {
-                let id = $(this).data('id');
-                let type = 'register_training';
+                let user_id = $(this).data('id');
+                let type = 'user';
                 let operation = 'de';
                 $.ajax({
                     url: 'ajax/crud.php',
                     type: 'POST',
-                    data: {id: id, type: type, operation: operation},
+                    data: {user_id: user_id, type: type, operation: operation},
                     success: function(response){
                         let data = JSON.parse(response);
                         if(data['message'] == 'success'){
@@ -235,29 +239,51 @@
         });
         
     });
-    $('#edit_training').on('submit', function(event){
+    $('#user').on('submit', function(event){
         event.preventDefault();
-        //alert('Hello');
+        let id = $('#staff_id').val();
+        let type = 'staff';
+        let operation = 'find';
+
         let formData = new FormData(this);
 
         $.ajax({
             url: 'ajax/crud.php',
             type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
+            data: {staff_id:id, type:type, operation:operation},
             success: function(response){
                 // alert(response);
                 let data = JSON.parse(response);
                 if(data.message == 'success'){
-                    Swal.fire({
-                        icon:'success',
-                        title: data.message,
-                        text: data.result.message,
-                        customClass: "swal-size-sm",
-                        confirmButtonText: 'OK'
+                    $.ajax({
+                        url: 'ajax/crud.php',
+                        type: 'POST',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        dataType: 'json',
+                        success: function(feedback){
+                            if(feedback.message == 'success'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: feedback.message,
+                                    text: feedback.result.message,
+                                    customClass: "swal-size-sm",
+                                    confirmButtonText: 'OK'
+                                })
+                                location.reload();
+                            }else if(feedback.message == 'failed'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: feedback.message,
+                                    text: feedback.result.message,
+                                    customClass: "swal-size-sm",
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        }
+                        
                     });
-                    location.reload();
                 }else if(data.message == 'failed'){
                     Swal.fire({
                         icon: 'error',
@@ -271,9 +297,9 @@
         });
     });
     $('#add_new_tr').on('click', function(){
-        $('#type').val('register_training');
+        $('#type').val('user');
         $('#operation').val('cr');
-        $('#myModalLongTitle').text('New Training');
+        $('#myModalLongTitle').text('New User');
         $('#myModal').modal('show');
     });
 });

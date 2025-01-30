@@ -3,7 +3,12 @@
   .panel-heading, .nav-tabs{
     background: green!important
   }
+  .swal-size-sm
+{
+   width: 650px !important;
+   font-size: medium;
 
+}
 </style>
 <!-- begin #content -->
 		<div id="content" class="content">
@@ -15,7 +20,7 @@
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Staff Training and Development <small>Analytics for staff training...</small></h1>
+			<h1 class="page-header">Staff Training and Development <small style="color:black">Analytics for staff training...</small></h1>
 			<!-- end page-header -->
 			<!-- begin row -->
 			<div class="row">
@@ -24,7 +29,7 @@
 			        <div class="widget widget-stats bg-green">
 			            <div class="stats-icon stats-icon-lg"><i class="fa fa-users"></i></div>
 			            <div class="stats-title">TOTAL STAFF TRAINED</div>
-			            <div class="stats-number">7,842,900</div>
+			            <div class="stats-number">1000</div>
 			            <div class="stats-progress progress">
                             <div class="progress-bar" style="width: 70.1%;"></div>
                         </div>
@@ -36,8 +41,8 @@
 			    <div class="col-md-3 col-sm-6">
 			        <div class="widget widget-stats bg-blue">
 			            <div class="stats-icon stats-icon-lg"><i class="fa fa-tags fa-fw"></i></div>
-			            <div class="stats-title">STAFF IN TRAINING</div>
-			            <div class="stats-number">180,200</div>
+			            <div class="stats-title">TOTAL TRAINED ACADEMIC</div>
+			            <div class="stats-number">500</div>
 			            <div class="stats-progress progress">
                             <div class="progress-bar" style="width: 40.5%;"></div>
                         </div>
@@ -49,8 +54,8 @@
 			    <div class="col-md-3 col-sm-6">
 			        <div class="widget widget-stats bg-purple">
 			            <div class="stats-icon stats-icon-lg"><i class="fa fa-shopping-cart fa-fw"></i></div>
-			            <div class="stats-title">TOTAL HOST</div>
-			            <div class="stats-number">38,900</div>
+			            <div class="stats-title">TOTAL TRAINED NON-ACADEMIC</div>
+			            <div class="stats-number">300</div>
 			            <div class="stats-progress progress">
                             <div class="progress-bar" style="width: 76.3%;"></div>
                         </div>
@@ -62,8 +67,8 @@
 			    <div class="col-md-3 col-sm-6">
 			        <div class="widget widget-stats bg-aqua">
 			            <div class="stats-icon stats-icon-lg"><i class="fa fa-comments fa-fw"></i></div>
-			            <div class="stats-title">TOTAL SPONSOR</div>
-			            <div class="stats-number">3,988</div>
+			            <div class="stats-title">TOTAL TRAINED TECHNICAL</div>
+			            <div class="stats-number">200</div>
 			            <div class="stats-progress progress">
                             <div class="progress-bar" style="width: 54.9%;"></div>
                         </div>
@@ -87,13 +92,13 @@
 			            </div>
 			            <div class="widget-chart-sidebar bg-black-darker">
 			                <div class="chart-number">
-			                    1,225,729
+			                    1000
 			                    <small>Staff Trained</small>
 			                </div>
 			                <div id="visitors-donut-chart" style="height: 160px"></div>
 			                <ul class="chart-legend">
-			                    <li><i class="fa fa-circle-o fa-fw text-success m-r-5"></i> 34.0% <span>Senior Staff</span></li>
-			                    <li><i class="fa fa-circle-o fa-fw text-primary m-r-5"></i> 56.0% <span>Junior Staff</span></li>
+			                    <li><i class="fa fa-circle-o fa-fw text-success m-r-5"></i> 34.0% <span>Female Staff</span></li>
+			                    <li><i class="fa fa-circle-o fa-fw text-primary m-r-5"></i> 56.0% <span>Male Staff</span></li>
 			                </ul>
 			            </div>
 			        </div>
@@ -114,10 +119,10 @@
 			            <div id="schedule-calendar" class="bootstrap-calendar"></div>
 			            <div class="list-group">
                             <a href="#" class="list-group-item text-ellipsis">
-                                <span class="badge badge-success">9:00 am</span> Sales Reporting
+                                <span class="badge badge-success">9:00 am</span> Meeting with Software Development Unit
                             </a> 
                             <a href="#" class="list-group-item text-ellipsis">
-                                <span class="badge badge-primary">2:45 pm</span> Have a meeting with sales team
+                                <span class="badge badge-primary">2:45 pm</span> Meeting with ICT
                             </a>
                         </div>
 			        </div>
