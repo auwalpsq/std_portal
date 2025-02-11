@@ -10,6 +10,7 @@ error_reporting(E_ALL);
 use std_portal\std_gateways\GenericGateway;
 require_once 'std_gateways/GenericGateway.php';
 include_once 'config/DatabaseConfig.php';
+
 $database = new DatabaseConfig();      
 $dbConnect = $database->dbConnect();
 
@@ -36,15 +37,14 @@ include_once 'template/custom_style.html';
 
     <div id="page-container" class="fade page-with-sidebar page-header-fixed">
    
+<?php
+  include "inc/mega_menu.php";
+  include "inc/a_sidebar.php";
+  include "content/add_spn_details.php";
+  // include "inc/footer.php";
 
-        <?php
-        include "inc/mega_menu.php";
-        include "inc/a_sidebar.php";
-        include "content/add_spn_details.php";
-        // include "inc/footer.php";
-
-        include_once 'template/baselevel_js.html';
-         ?>
+  include_once 'template/baselevel_js.html';
+?>
     <script>
 
     

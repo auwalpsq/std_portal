@@ -13,7 +13,7 @@ include_once 'config/DatabaseConfig.php';
 $database = new DatabaseConfig();      
 $dbConnect = $database->dbConnect();
 
-$grad =new GenericGateway($dbConnect);
+$gateway =new GenericGateway($dbConnect);
 
 ?>
 

@@ -100,8 +100,8 @@
                                         <td><?php echo $sponsor['sponsor_email'] ?></td>
                                         <td><?php echo $sponsor['training_sponsored'] ?></td>
                                     </tr>
-                                <?php } ?>
-                        <?php }?>
+                        <?php   }
+                        } ?>
                     </tbody>
                 </table>
                     
@@ -125,17 +125,36 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             dataType: 'json',
+            beforeSend: function(){
+                Swal.fire({
+                    title: 'Processing',
+                    text: 'Please wait...',
+                    showConfirmButton: false,
+                    customClass: "swal-size-sm",
+                });
+                Swal.showLoading();
+            },
             success: function(response){
+                Swal.close();
                 if(response.message == 'success'){
-                    
                     Swal.fire({
                         icon: 'success',
-                        title: 'Successfull',
-                        text: response.result.message,
-                        customClass: "swal-size-sm",
-                        showConfirmButton: 'OK'
+                        title: 'Success',
+                        text: response.result.message +" "+ response.email_response,
+                        customClass: "swal-size-sm"
+                    }).then((result) => {
+                        if(result.isConfirmed){
+                            location.reload();
+                        }
                     });
-                    location.reload();
+                }else if(response.message == 'failed'){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Failed to send email',
+                        customClass: "swal-size-sm",
+                        confirmButtonText: 'OK'
+                    });
                 }
             }
         });

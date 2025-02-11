@@ -2,6 +2,7 @@
     use std_portal\std_gateways\GenericGateway;
     require_once '../std_gateways/GenericGateway.php';
     include_once '../config/DatabaseConfig.php';
+    include_once '../config/ConfigureEmail.php';
 
     $database = new DatabaseConfig();
     $dbConnect = $database->dbConnect();
@@ -99,6 +100,15 @@
                             'vspshipname'=>$sponsor
                         );
             $response = $gateway->genericInsert($tableName,$data);
+            $response['email_response'] = '';
+            if($response['message'] === 'success'){
+                $response['result']['message'] = "$sponsor has been added as sponsor";
+                $to = $email;
+                $subject = 'New Sponsorship';
+                $message = "Hello <strong>$sponsor,</strong> <br> This is to inform you that, you have been added as sponsor. <br> Regards, <br> NOUN Staff Development and Training (ST&D)";
+                $email_response = sendEmail($to, $subject, $message);
+                $response['email_response'] = $email_response;
+            }
             echo json_encode($response);
             break;
         case ['staff', 'cr']:
@@ -107,10 +117,16 @@
             $firstName = $_POST['first_name'];
             $surname = $_POST['surname'];
             $otherNames = $_POST['other_names'];
+            $email = $_POST['email'];
             $department = $_POST['department'];
             $dateOfBirth = $_POST['date_of_birth'];
 
-            $data = array(  'first_name'=>$firstName, 'surname'=>$surname, 'other_names'=>$otherNames, 'department'=>$department, 'date_of_birth'=>$dateOfBirth);
+            $data = array(  'first_name'=>$firstName, 
+                            'surname'=>$surname, 
+                            'other_names'=>$otherNames, 
+                            'email'=>$email,
+                            'department'=>$department, 
+                            'date_of_birth'=>$dateOfBirth);
 
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -223,7 +239,35 @@
                         );
                         
             $response = $gateway->genericUpdate($tableName, $data);
-        
+            echo json_encode($response);
+            break;
+            
+        case ['staff', 'u']:
+            $tableName = 'staff';
+            $id = $_POST['staff_id'];
+            $firstName = $_POST['first_name'];
+            $surname = $_POST['surname'];
+            $otherNames = $_POST['other_names'];
+            $email = $_POST['email'];
+            $department = $_POST['department'];
+            $dateOfBirth = $_POST['date_of_birth'];
+            
+            $data = array(  'id'=>$id,
+                            'field_name'=>'id',
+                            'first_name'=>$firstName,
+                            'surname'=>$surname,
+                            'other_names'=>$otherNames,
+                            'email'=>$email,
+                            'department'=>$department,
+                            'date_of_birth'=>$dateOfBirth
+                        );
+            $response = $gateway->genericUpdate($tableName, $data);
+            echo json_encode($response);
+            break;
+        case['staff', 'de']:
+            $tableName = 'staff';
+            $id = $_POST['staff_id'];
+            
         case['host_training', 'de']:
             $tableName = 'traininghost';
             $id = $_POST['id'];
@@ -368,7 +412,7 @@
         case ['staff', 'find']:
             $tableName = 'staff';
             //$id = $_SESSION['training_type_id'];
-            $id = $_POST['staff_id'];
+            $id = $_POST['id'];
             $data = array('id' => $id, 'limit' => '', 'field_name'=>'id');
             
             $raw_results = $gateway->genericFind($tableName, $data);
@@ -380,6 +424,7 @@
                                         'first_name'=>$raw_result['first_name'],
                                         'surname'=>$raw_result['surname'],
                                         'other_names'=>$raw_result['other_names'],
+                                        'email'=>$raw_result['email'],
                                         'department'=>$raw_result['department'],
                                         'dob'=>$raw_result['date_of_birth']
                                     );
