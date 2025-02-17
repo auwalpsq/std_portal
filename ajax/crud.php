@@ -36,8 +36,9 @@
             $tableName = 'users';
             $staff_id = $_POST['staff_id'];
             $user_type = $_POST['user_type'];
+            $email = $_POST['email'];
             
-            $data = array('staff_id'=>$staff_id, 'user_type'=>$user_type);
+            $data = array('staff_id'=>$staff_id, 'email'=>$email, 'user_type'=>$user_type);
 
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -214,18 +215,20 @@
         case['sponsorship', 'u']:
             $tableName = 'sponsorshiptype';
 
-            $id = $_SESSION['sponsorship_id'];
-            $email = $_POST['email'];
-            $phone = $_POST['phone'];
-            $sponsor = $_POST['sponsor'];
+            $id = $_POST['sponsor_id'];
+            $email = $_POST['sponsor_email'];
+            $phone = $_POST['sponsor_phone'];
+            $sponsor = $_POST['sponsor_name'];
             
-            $data = array(  'id_name'=>'vspshipemailid',
-                            'id_value'=>$id,
+            $data = array(  'field_name'=>'cspshipid',
+                            'id'=>$id,
                             'vspshipemailid'=>$email,
                             'vspshiphone'=>$phone,
                             'vspshipname'=>$sponsor
                         );
             $response = $gateway->genericUpdate($tableName, $data);
+            $response['email_response'] = '';
+            echo json_encode($response);
             break;
             
         case ['training_type', 'u']:
@@ -253,7 +256,7 @@
             $dateOfBirth = $_POST['date_of_birth'];
             
             $data = array(  'id'=>$id,
-                            'field_name'=>'id',
+                            'field_name'=>'staff_id',
                             'first_name'=>$firstName,
                             'surname'=>$surname,
                             'other_names'=>$otherNames,
@@ -267,7 +270,11 @@
         case['staff', 'de']:
             $tableName = 'staff';
             $id = $_POST['staff_id'];
-            
+            $data = array('id'=>'', 'condition'=>'', 'staff_id'=>$id);
+
+            $result = $gateway->genericDelete($tableName, $data);
+            echo json_encode($result);
+            break;
         case['host_training', 'de']:
             $tableName = 'traininghost';
             $id = $_POST['id'];
@@ -391,6 +398,7 @@
             $response = ['message'=>$results['message']];
             foreach($results['result'] as $result){
                 $response[] = array(
+                                'sponsor_id'=>$result['cspshipid'],
                                 'sponsor_name'=>$result['vspshipname'],
                                 'sponsor_email'=>$result['vspshipemailid'],
                                 'sponsor_phone'=>$result['vspshiphone']
@@ -412,15 +420,15 @@
         case ['staff', 'find']:
             $tableName = 'staff';
             //$id = $_SESSION['training_type_id'];
-            $id = $_POST['id'];
-            $data = array('id' => $id, 'limit' => '', 'field_name'=>'id');
+            $id = $_POST['staff_id'];
+            $data = array('id' => $id, 'limit' => '', 'field_name'=>'staff_id');
             
             $raw_results = $gateway->genericFind($tableName, $data);
             if($raw_results['message'] === 'success'){
                 $result = ['message'=>'success'];
                 foreach($raw_results['result'] as $raw_result){
                     $result[] = array(
-                                        'id'=>$raw_result['id'],
+                                        'id'=>$raw_result['staff_id'],
                                         'first_name'=>$raw_result['first_name'],
                                         'surname'=>$raw_result['surname'],
                                         'other_names'=>$raw_result['other_names'],

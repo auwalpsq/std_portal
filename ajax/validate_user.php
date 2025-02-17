@@ -16,8 +16,13 @@ $isValidUser = $gateway->validateUser($userName, $password);
 if($isValidUser){
     $_SESSION['username'] = $userName;
     $_SESSION['password'] = $password;
+    if(filter_var($userName, FILTER_VALIDATE_EMAIL)){
+        $_SESSION['field_name'] = 'email';
+    }else{
+        $_SESSION['field_name'] = 'user_id';
+    }
     $tableName = 'users';
-    $data = array('id'=>$userName, 'field_name'=>'user_id');
+    $data = array('id'=>$userName, 'field_name'=>$_SESSION['field_name']);
     $result = $gateway->genericFind($tableName, $data);
     $activated = $result['result'][0]['activated'];
     $user_type = $result['result'][0]['user_type'];

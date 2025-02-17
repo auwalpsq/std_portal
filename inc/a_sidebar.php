@@ -107,9 +107,10 @@
 						            <span>Training</span>
 						</a>
 								<ul class="sub-menu">
-                   <li><a href="training_list">Training List</a></li>
-                   <li><a href="add_host">Training Host</a></li>
-                      <li><a href="add_spn">Training Sponsor</a></li>
+                  <li><a href="training_list">Training List</a></li>
+                  <li><a href="add_host">Training Host</a></li>
+                  <li><a href="add_spn">Training Sponsor</a></li>
+                  <li><a href="add_tr_type">Training Type</a></li>
 								</ul>
 							</li>
 	
@@ -117,9 +118,9 @@
          
 
             <li>
-            <a href="stf_info">         
+            <a href="add_staff">         
                 <i class="fa fa-user-o"></i>
-                <span>Staff info</span>
+                <span>Staff List</span>
             </a>
         </li>
          <?php

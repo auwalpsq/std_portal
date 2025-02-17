@@ -1,5 +1,4 @@
-
-  <style>
+<style>
 
 .swal-size-sm {
 	   width: 650px !important;
@@ -7,82 +6,101 @@
 	}
 
 </style>
-  <!-- begin #content -->
-    <div id="content" class="content" style="margin-top:5px;">
-        <!-- begin breadcrumb -->
-        <ol class="breadcrumb pull-right">
-            <li><a href="dash">Home</a></li>
-            <li><a href="add_ben">Add Training Type</a></li>
-            <!-- <li class="active">Wizards</li> -->
-        </ol>
-		
-			
-			<!-- begin row -->
-			<div class="row">
-                <!-- begin col-12 -->
-			    <div class="col-md-12">
-			        <!-- begin panel -->
-                    <div class="panel panel-success" >
-    <!-- Your content here -->
-
-                        <div class="panel-heading" style="background-color: #008000;"> 
-                            <!-- <div class="panel-heading-btn" >
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                            </div> -->
-                            <h4 class="panel-title">Add Training Type</h4>
-                        </div>
-                <div class="panel-body">
-                   <form id="form_training_type"  class="form-horizontal" method="POST">  
-                        <input type="hidden" name="type" value="training_type" />
-                        <input type="hidden" name="operation" value="cr" />   
-						<div id="wizard">
-				
-								<!-- begin wizard step-2 -->
-									<div class="wizard-step-2">
-                                         <div class="alert alert-warning fade in m-b-15">
-                                                <strong>Warning!</strong>
-                                               Ensure you are adding the right Training Type.
-                                                <span class="close" data-dismiss="alert">×</span>
-                                               </div>
-										<fieldset>
-                                            <legend class="pull-left width-full">Add Training Type</legend>
-
-                                          
-                                                        
-                                                <div style="margin-top: 30px;" class="form-group">
-                                                <label class="col-md-3 control-label">Training Type</label>
-                                                <div class="col-md-6">
-                                                    <input type="text" name="training_type_name" class="form-control input-lg" placeholder="enter Training type" required />
-                                                </div>
-                                            </div>
-
-                                           
-										</fieldset>
-                                        <div class="form-group">
-                                            <div class="col-md-4 col-md-offset-4">
-                                                <input type="submit" value="Add Training Type" class="btn-success form-control input-lg"/>
-                                            </div>
-                                        </div>
-                                        
-									</div>
-									<!-- end wizard step-2 -->
-							        </div>
-									<!-- end wizard step-4 -->
-                                </form>
-							</div>
-                        </div>
-                    </div>
-                    <!-- end panel -->
-                </div>
-                
-                <!-- end col-12 -->
+<div class="modal fade" id="modal_form_tr_type" tabindex="-1" role="dialog" aria-labelledby="myModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLongTitle">Training Type</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <!-- end row -->
-		</div>
-		<!-- end #content -->
+            <form class="row align-items-center justify-content-center" id="form_training_type" method="POST">
+                <div class="modal-body">
+                    
+                        <input type="hidden" name="type">
+                        <input type="hidden" name="operation">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Training Type Name</label>
+                            <div class="col-md-8">
+                                <input type="text" id="tr_type_name" name="tr_type_name" class="form-control">
+                            </div>        
+                        </div>   
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="content" class="content" style="margin-top:5px;">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="dash">Home</a></li>
+        <li><a href="add_ben">Add Training Type</a></li>
+        <!-- <li class="active">Wizards</li> -->
+    </ol>	
+    <!-- begin row -->
+    <div class="row">
+        <!-- begin col-12 -->
+        <div class="col-md-12">
+            <!-- begin panel -->
+            <div class="panel panel-success" >
+            <!-- Your content here -->
+
+                <div class="panel-heading" style="background-color: #008000;"> 
+                    
+                    <h4 class="panel-title">Training Type List</h4>
+                </div>
+        <div class="panel-body">
+            <diV class="row pull-right">
+                <button id="btn_new_tr_type" class="btn btn-primary"><i class="fa fa-plus"></i>New Training Type</button>
+            </diV>
+            <div class="row">
+                <table id="data-table" class="table table-striped table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Training Type Name</th>
+                            <th>Action</th>
+                        </tr>
+                        <tbody>
+                            <?php
+                                $tableName = "trainingtype";
+                                $data = array('id'=>'all', 'limit'=>'') ;
+                                $training_types = $gateway->genericFind($tableName, $data);
+
+                                if($training_types['message'] == 'success'){
+                                    foreach($training_types['result'] as $training_type){ ?>
+                                        <tr>
+                                            <td><?php echo $training_type['cttypeid'] ?></td>
+                                            <td><?php echo $training_type['vttypename'] ?></td>
+                                            <td>
+                                                <button data-id="<?php echo $training_type['cttypeid'] ?>" class="btn-edit-tr-type btn btn-primary btn-sm">Edit <button/>
+                                                <button data-id="<?php echo $training_type['cttypeid'] ?>" class="btn-delete-tr-type btn btn-danger btn-sm">Delete</>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                }else if($training_types['message'] == 'failed'){
+                                    echo "<tr><td colspan='3'>No data found</td></tr>";
+                                }else {
+                                }
+                            ?>
+                        </tbody>
+                    </thead>
+                </table>
+            </div> 
+        </div>
+        </div>
+            </div>
+            <!-- end panel -->
+        </div>
+        
+        <!-- end col-12 -->
+</div>
 
        <script>
 $(document).ready(function(){
@@ -116,77 +134,33 @@ $(document).ready(function(){
                 }
             }
         });
-    //     // Confirm before deletion
-    //     Swal.fire({
-    //         title: 'Are you sure?',
-    //         text: "This action cannot be undone.",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#008000',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes, delete it!',
-    //         cancelButtonText: 'Cancel',
-    //         customClass: "swal-size-sm"
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             // Proceed with AJAX if confirmed
-    //             var formData = new FormData(this); // Prepare form data
-
-    //             $.ajax({
-    //                 url: 'ajax/ajax_delete_user.php', // Ensure this path is correct
-    //                 type: 'POST',
-    //                 data: formData,
-    //                 contentType: false, // Needed for FormData
-    //                 processData: false, // Needed for FormData
-    //                 cache: false,
-    //                 dataType: 'json', // Expect JSON response from server
-    //                 success: function(response) {
-    //                     if (response.status === 'success') {
-    //                         Swal.fire({
-    //                             icon: 'success',
-    //                             title: 'Successful!',
-    //                             text: response.message,
-    //                             customClass: "swal-size-sm",
-    //                             confirmButtonColor: '#008000',
-    //                             showConfirmButton: 'OK'
-    //                         }).then(() => {
-    //                             window.location.href = 'add_tr_type'; 
-    //                         });
-    //                     } else if (response.status === 'invalid') {
-    //                         Swal.fire({
-    //                             icon: 'warning',
-    //                             title: 'Invalid!',
-    //                             text: response.message,
-    //                             customClass: "swal-size-sm",
-    //                              confirmButtonColor: '#008000',
-    //                             confirmButtonText: 'OK'
-    //                         });
-    //                     } else {
-    //                         Swal.fire({
-    //                             icon: 'error',
-    //                             title: 'Error!',
-    //                             text: response.message,
-    //                             customClass: "swal-size-sm",
-    //                              confirmButtonColor: '#008000',
-    //                             confirmButtonText: 'OK'
-    //                         });
-    //                     }
-    //                 },
-    //                 // Uncomment this block for debugging
-    //                 // error: function(jqXHR, textStatus, errorThrown) {
-    //                 //     console.error('AJAX Error:', textStatus, errorThrown);
-    //                 //     console.log('Response Text:', jqXHR.responseText);
-    //                 //     Swal.fire({
-    //                 //         icon: 'error',
-    //                 //         title: 'AJAX Error!',
-    //                 //         text: 'An error occurred while processing your request.',
-    //                 //         customClass: "swal-size-sm",
-    //                 //         confirmButtonText: 'OK'
-    //                 //     });
-    //                 // }
-    //             });
-    //         }
-    //     });
     });
+    $("#btn_new_tr_type").on('click', function(){
+        $('#form_training_type')[0].reset();
+        $('#modal_form_tr_type .modal-title').text('New Training Type');
+        $('#modal_form_tr_type').modal('show');
+    });
+    $(".btn-edit-tr-type").on('click', function(){
+        let id = $(this).data('id');
+        let data = {id:id, operation:''};
+        $.ajax({
+            url: 'ajax/crud.php',
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function(response){
+                if(response.message == 'success'){
+                    $('#form_training_type')[0].reset();
+                    $('#modal_form_tr_type .modal-title').text('Edit Training Type');
+                    $('#modal_form_tr_type').modal('show');
+                    $('#tr_type_name').val(response.result.vttypename);
+                    $('input[name="type"]').val(response.result.cttypeid);
+                    $('input[name="operation"]').val('edit');
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: response.message,
+                        text: response.result.message,
+                        customClass: 'swal-size-sm'
 });
 </script>

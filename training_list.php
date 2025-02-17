@@ -32,8 +32,6 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
  include_once 'template/custom_style.html';
 ?>
 
-
-
 <body>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in"><span class="spinner"></span></div>

@@ -17,7 +17,7 @@
         $gateway = new GenericGateway($dbConnect);
 
         $tableName = 'users';
-        $data = array('id'=>$userName, 'field_name'=>'user_id', 'password'=>$passwordNew, 'activated'=>1);
+        $data = array('id'=>$userName, 'field_name'=>$_SESSION['field_name'], 'password'=>$passwordNew, 'activated'=>1);
 
         $result = $gateway->genericUpdate($tableName, $data);
         if($result['message'] === 'success'){

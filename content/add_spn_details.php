@@ -14,8 +14,9 @@
             </div>
             <div class="modal-body">
                 <form id="form_sponsorship"  class="form-horizontal" method="POST" >     
-                    <input type="hidden" name="type" value="sponsorship" />
-                    <input type="hidden" name="operation" value="cr">
+                    <input type="hidden" id="type" name="type" value="sponsorship" />
+                    <input type="hidden" id="operation" name="operation" value="cr">
+                    <input type="hidden" id="sponsor_id" name="sponsor_id" value="">
                             <div class="form-group">
                             <label class="col-md-3 control-label">Sponsor Name</label>
                             <div class="col-md-6">
@@ -115,9 +116,8 @@
 $(document).ready(function(){
     $("#form_sponsorship").on("submit", function(event) { 
         event.preventDefault(); // Prevent the default form submission
-
+        
         let formData = new FormData(this);
-
         $.ajax({
             url: 'ajax/crud.php',
             type: 'POST',
@@ -147,11 +147,11 @@ $(document).ready(function(){
                             location.reload();
                         }
                     });
-                }else if(response.message == 'failed'){
+                }else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error',
-                        text: 'Failed to send email',
+                        title: response.message,
+                        text: response.result.message,
                         customClass: "swal-size-sm",
                         confirmButtonText: 'OK'
                     });
@@ -164,6 +164,7 @@ $(document).ready(function(){
         $('#form_sponsorship')[0].reset();
         $('#modal_form_sponsor .modal-title').text("New Training")
         $('#modal_form_sponsor').modal('show');
+        $('#operation').val('cr');
     });
     $('.btn-edit').on('click', function(){
         let id = $(this).data('id');
@@ -181,9 +182,11 @@ $(document).ready(function(){
             success: function(response){
                 if(response.message == 'success'){
                     $('#modal_form_sponsor .modal-title').text('Edit Training Sponsor');
+                    $('#operation').val('u');
                     $('#sponsor_name').val(response[0].sponsor_name);
                     $('#sponsor_email').val(response[0].sponsor_email);
                     $('#sponsor_phone').val(response[0].sponsor_phone);
+                    $('#sponsor_id').val(response[0].sponsor_id);
                     $('#modal_form_sponsor').modal('show');
                 }
             }

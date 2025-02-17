@@ -4,12 +4,14 @@
     font-size: medium;
 }
 </style>
-<div id="modal_form_staff" class="modal" tabindex="-1">
-    <div class="modal-dialog">
+<div id="modal_form_staff" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header" >
+            <div class="modal-header bg-success" >
                 <h5 class="modal-title"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
             <form id="form_staff"  class="form-horizontal" method="POST" >  
@@ -80,7 +82,7 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="dash">Home</a></li>
-				<li><a href="add_staff">Add Staff</a></li>
+				<li><a href="add_staff">Staff List</a></li>
 				<!-- <li class="active">Wizards</li> -->
 			</ol>
 		
@@ -100,7 +102,7 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
                             </div>
-                            <h4 class="panel-title">Add Staff</h4>
+                            <h4 class="panel-title">Staff List</h4>
                         </div>
                         <div class="panel-body">
                     <div class="pull-right">
@@ -124,13 +126,13 @@
                             if($staff_list['message'] === 'success'){
                                 foreach($staff_list['result'] as $staff){?>
                                     <tr>
-                                        <td><?php echo $staff['id'] ?></td>
+                                        <td><?php echo $staff['staff_id'] ?></td>
                                         <td>
                                             <div class="view_result">
                                                 <a><?php echo "$staff[first_name] $staff[surname] $staff[other_names]" ?></a><br>
                                                 <div class="viewresult pull-bottom">
-                                                    <button type="button" data-id="<?php echo $staff['id'] ?>" class="btn btn-success btn-xs btn-edit">Edit</button>
-                                                    <button type="button" data-id="<?php echo $staff['id'] ?>" class="btn btn-danger btn-xs btn-delete">Delete</button>
+                                                    <button type="button" data-id="<?php echo $staff['staff_id'] ?>" class="btn btn-success btn-xs btn-edit">Edit</button>
+                                                    <button type="button" data-id="<?php echo $staff['staff_id'] ?>" class="btn btn-danger btn-xs btn-delete">Delete</button>
                                                 </div>
                                             </div>
                                         </td>
@@ -218,7 +220,7 @@ $(document).ready(function(){
             data: {
                 type: type,
                 operation: operation,
-                id: id
+                staff_id: id
             },
             dataType: 'json',
             success: function(response){
@@ -254,7 +256,7 @@ $(document).ready(function(){
                 $.ajax({
                     url: 'ajax/crud.php',
                     type: 'POST',
-                    data: {id:id, type:type, operation:operation},
+                    data: {staff_id:id, type:type, operation:operation},
                     dataType: 'json',
                     success: function(response){
                         if(response.message == 'success'){

@@ -16,9 +16,10 @@
             </div>
             <div class="modal-body">
                 <form id="user" class="form-horizontal" method="POST" >
-                    <input id="type" type="hidden" name="type" />
-                    <input id="operation" type="hidden" name="operation"/>
+                    <input id="type" type="hidden" name="type">
+                    <input id="operation" type="hidden" name="operation">
                     <input id="id" type="hidden" name="id">
+                    <input type="hidden" id="email" name="email">
 
                         <!-- begin wizard step-1 -->
                         <div class="wizard-step-1">
@@ -107,6 +108,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Full Name</th>
+                                    <th>Email</th>
                                     <th>Type</th>
                                     <th>Date Created</th>
                                 </tr>
@@ -131,7 +133,7 @@
                                                     </div>
                                                 </div>
                                                 </td>
-                                                
+                                                <td><?php echo $user['email'];?></td>
                                                 <td><?php echo $user['user_type'];?></td>
                                                 <td><?php echo $user['date_created'];?></td>
                                             </tr>
@@ -241,20 +243,24 @@
     });
     $('#user').on('submit', function(event){
         event.preventDefault();
+        
         let id = $('#staff_id').val();
         let type = 'staff';
         let operation = 'find';
-
+        
         let formData = new FormData(this);
 
         $.ajax({
             url: 'ajax/crud.php',
             type: 'POST',
             data: {staff_id:id, type:type, operation:operation},
+            dataType: 'json',
             success: function(response){
-                // alert(response);
-                let data = JSON.parse(response);
-                if(data.message == 'success'){
+                //alert(response);
+                //let data = JSON.parse(response);
+                formData.set('email', response[0].email);
+                //alert(formData.get('email'));
+                if(response.message == 'success'){
                     $.ajax({
                         url: 'ajax/crud.php',
                         type: 'POST',

@@ -2,7 +2,7 @@
 .swal-size-sm {
 	   width: 650px !important;
        font-size: medium;
-	}
+}
 </style>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalCenterTitle" aria-hidden="true">
@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="myModalLongTitle"></h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -20,7 +20,7 @@
                     <input id="operation" type="hidden" name="operation"/>
                     <input id="id" type="hidden" name="id">
                     <div>
-
+                        
                         <!-- begin wizard step-1 -->
                         <div class="wizard-step-1">
                                 <div class="alert alert-warning fade in m-b-15">
@@ -185,7 +185,7 @@
                     <div class="panel-body">
                          
                     <row>                      
-                    <div class=" pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</button></div>
+                        <div class=" pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</button></div>
                     </row>
 
                         <br><br><br>
@@ -209,10 +209,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                    $tableName = 'vw_training_details';
-                                    $data = array('id'=>'all', 'limit'=>'');
-                                    $trainings = $gateway->genericFind($tableName, $data);
+                            <?php
+                                $tableName = 'vw_training_details';
+                                $data = array('id'=>'all', 'limit'=>'');
+                                $trainings = $gateway->genericFind($tableName, $data);
+                                // var_dump( $trainings );
+                                // exit();
+                                if($trainings['message'] === 'success'){
                                     foreach($trainings['result'] as $training){
                                         $tableName1 = 'beneficiary_counter';
                                         $data1 = array('id'=>$training['training_name'], 'field_name'=>'name', 'limit'=>'');
@@ -247,7 +250,12 @@
                                         </tr>
                                         <?php
                                     }
-                                ?>
+                                }else{ ?>
+                                    <tr>
+                                        <td colspan="9" class="text-center">No data available</td>
+                                    </tr>
+                                    
+                               <?php } ?>
                             </tbody>
                         </table>
                        </div>

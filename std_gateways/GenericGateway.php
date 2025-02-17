@@ -10,7 +10,7 @@ class GenericGateway{
     }
 
     public function validateUser($userName, $password){
-        $statement = $this->db->prepare("SELECT * FROM users WHERE user_id = :user_id AND password = :password");
+        $statement = $this->db->prepare("SELECT * FROM users WHERE (user_id = :user_id OR email = :user_id) AND password = :password");
         $statement->bindParam(':user_id', $userName, \PDO::PARAM_STR);
         $statement->bindParam(':password', $password, \PDO::PARAM_STR);
         $statement->execute();
@@ -138,7 +138,7 @@ class GenericGateway{
             }
             return $response;
         } catch (\PDOException $e) {
-            return array('message'=>'error', 'result'=>array('result'=>$e->getMessage()));
+            return array('message'=>'error', 'result'=>array('message'=>'Contact Administrator'));
         }
     }
 }

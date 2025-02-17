@@ -169,7 +169,7 @@
                                             }
                                         }else{ ?>
                                             <tr>
-                                                <td colspan="7" style="text-align: center"><?php echo $beneficiaries['result']['message'] ?></td>
+                                                <td colspan="7" style="text-align: center">No Record Available</td>
                                             </tr>
                                         <?php } ?>
                                 </tbody>
