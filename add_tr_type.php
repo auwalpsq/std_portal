@@ -50,7 +50,15 @@ include_once 'template/custom_style.html';
 <script>
 		$(document).ready(function() {
 			App.init();
-			FormWizardValidation.init();
+      $('#data-table').DataTable();
+      // new DataTable('#data-table', {
+      //   layout: {
+      //     topStart: 'pageLength',
+      //     topEnd: 'search'
+      //   },
+      // });
+      // TableManageTableSelect.init();
+			// FormWizardValidation.init();
 		});
 	</script>
 

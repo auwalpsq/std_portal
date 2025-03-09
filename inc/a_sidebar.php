@@ -104,7 +104,7 @@
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
 						    <i class="fa fa-align-left"></i> 
-						            <span>Training</span>
+				        <span>Training</span>
 						</a>
 								<ul class="sub-menu">
                   <li><a href="training_list">Training List</a></li>
@@ -112,23 +112,29 @@
                   <li><a href="add_spn">Training Sponsor</a></li>
                   <li><a href="add_tr_type">Training Type</a></li>
 								</ul>
-							</li>
-	
-			
-         
-
+						</li>
+            <li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-align-left"></i> 
+				        <span>Study Leave</span>
+						</a>
+								<ul class="sub-menu">
+                  <li><a href="study_leave">Study Leave List</a></li>
+                  <li><a href="report_study_leave">Study Leave Report</a></li>
+								</ul>
+						</li>
             <li>
             <a href="add_staff">         
-                <i class="fa fa-user-o"></i>
+                <i class="fa fa-user"></i>
                 <span>Staff List</span>
             </a>
         </li>
          <?php
-          if($_SESSION['user_type'] == 'admin'){?>
-            
+          if($_SESSION['user_type'] == 'admin'){?> 
             <li>
               <a href="add_usr">         
-                  <i class="fa fa-user-o"></i>
+                  <i class="fa fa-users"></i>
                   <span>Users List</span>
               </a>
             </li>

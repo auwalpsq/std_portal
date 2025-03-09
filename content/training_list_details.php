@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="myModalLongTitle"></h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close pull-right" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -22,18 +22,14 @@
                     <div>
                         
                         <!-- begin wizard step-1 -->
-                        <div class="wizard-step-1">
-                                <div class="alert alert-warning fade in m-b-15">
-                                    <strong>Warning!</strong>
-                                    You are about to edit a Training. Please ensure that all required information is entered correctly before proceeding.
-                                    <span class="close" data-dismiss="alert">×</span>
-                                    </div>
-                            <fieldset>
+                        <div class="row">
+                            <!-- <div class="alert alert-warning fade in m-b-15">
+                                <strong>Warning!</strong>
+                                You are about to edit a Training. Please ensure that all required information is entered correctly before proceeding.
+                                <span class="close" data-dismiss="alert">×</span>
+                            </div> -->
                                 
-                                    
-                                    
-
-                                    <div style="margin-top: 30px;" class="form-group">
+                            <div style="margin-top: 30px;" class="form-group">
                                         
                             <label class="col-md-3 control-label">Training Name:<span class="text-danger">*</span></label>
                             <div class="col-md-8">
@@ -131,11 +127,7 @@
                             <div class="col-md-8">
                                 <input id="end_date" type="date" name="end_date" class="form-control input-lg" placeholder="Location" required />
                             </div>
-                        </div>
-
-                            </fieldset>
-
-                            
+                        </div>                            
                         </div>
                         <!-- end wizard -->
                         <div class="modal-footer">
@@ -303,8 +295,8 @@
          // Confirm before deletion
         Swal.fire({
             title: 'Are you sure?',
-            text: "This action cannot be undone.",
-            icon: 'warning',
+            text: "All beneficiaries under this training will be deleted!",
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#008000',
             cancelButtonColor: '#d33',
@@ -374,6 +366,7 @@
         });
     });
     $('#add_new_tr').on('click', function(){
+        $('#edit_training')[0].reset();
         $('#type').val('register_training');
         $('#operation').val('cr');
         $('#myModalLongTitle').text('New Training');

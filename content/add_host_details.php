@@ -17,7 +17,7 @@
                     <input type="hidden" name="type" value="host_training" />
                     <input type="hidden" name="operation" value="cr" />  
                     <input type="hidden" name="id" />
-                    <div class="alert alert-warning fade in m-b-15">
+                    <div class="alert alert-warning fade in ">
                         <strong>Warning!</strong>
                         Ensure you are adding the right Training Host.
                         <span class="close" data-dismiss="alert">×</span>
@@ -92,7 +92,16 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            <?php } ?>
+                                    <?php   } ?>
+                            <?php   }else if($host_list['message'] === 'error'){ ?>
+                                        <tr>
+                                            <td colspan="2"><?php echo $host_list['result']['message'] ?></td>
+                                        </tr>
+
+                            <?php   }else{ ?>
+                                        <tr>
+                                            <td colspan="2">Contact Administrator</td>
+                                        </tr>
                                     <?php }?>
                                 </tbody>
                             </table>

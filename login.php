@@ -223,15 +223,14 @@ right: 0;
     <div class="right-content">
     <!-- begin login-header -->
     <div class="login-header ">
-
-    <div class="brand text-inverse">
-        <span class="" ></span>NOUN-Staff Training Portal
-        <small class="text-inverse"> Staff Training and Development (ST&D) </small>
-						</div>
-						<div class="icon">
-								<i class="fa fa-sign-in"></i>
-						</div>
-                </div>
+        <div class="brand text-inverse">
+            <span class="" ></span>NOUN-Staff Training Portal
+            <small class="text-inverse"> Staff Training and Development (ST&D) </small>
+        </div>
+        <div class="icon">
+                <i class="fa fa-sign-in"></i>
+        </div>
+    </div>
                 <!-- end login-header -->
                 <!-- begin login-content -->
                 <div class="login-content" >
@@ -260,7 +259,7 @@ right: 0;
                        
                         
                          <div class="">
-							            <a class="btn btn-primary btn-block btn-lg m-t-20" id="pwd_btn" href="chng_pass" >Request Password Reset</a>
+							<a class="btn btn-primary btn-block btn-lg m-t-20" id="pwd_btn" href="chng_pass" >Request Password Reset</a>
                         </div>
                        
                         <hr />

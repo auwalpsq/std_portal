@@ -6,13 +6,25 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-use std_portal\std_gateways\GenericGateway;
-require_once 'std_gateways/GenericGateway.php';
-include_once 'config/DatabaseConfig.php';
-$database = new DatabaseConfig();      
-$dbConnect = $database->dbConnect();
+require_once 'config/MyConnection.php';
 
-$gateway =new GenericGateway($dbConnect);
+$table_name = 'vw_study_leave_count';
+$data = array('id'=>'all', 'limit'=>'');
+$study_leave_count = $gateway->genericFind($table_name, $data);
+
+$table_name_leave = 'staff_on_leave';
+$leave_data = array('id'=>'all', 'limit'=>'');
+$study_row_count = $gateway->rowCount($table_name_leave, $leave_data);
+
+$table_leave_prog_status = 'vw_leave_prog_status';
+$data_leave_prog_status = array('id'=>'all', 'limit'=>'');
+$result_leave_prog_status = $gateway->genericFind($table_leave_prog_status, $data_leave_prog_status);
+
+$table_leave_completed = 'staff_on_leave';
+$leave_data_completed = array('id'=>'Completed', 'limit'=>'', 'field_name'=>'status');
+$study_row_count_completed = $gateway->rowCount($table_leave_completed, $leave_data_completed);
+
+$leave_percent_completed = ($study_row_count_completed['result'] / $study_row_count['result']) * 100;
 
 if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
     $_SESSION['login_error'] = 'Please login first';
@@ -36,7 +48,7 @@ include_once 'template/custom_style.html';
                 title: 'Success!',
                 text: '<?php echo $_SESSION['password_change_success'];?>',
                 icon: 'success',
-                confirmButtonText: 'Okay',
+                confirmButtonText: 'OK',
                 customClass: 'swal-size-sm'
             });
         </script>
@@ -54,15 +66,37 @@ include_once 'template/custom_style.html';
         include "inc/a_sidebar.php";
         include "content/dash_details.php";
         // include "inc/footer.php";
-
         include_once 'template/baselevel_js.html';
          ?>
     </div>
 </body>
 <script>
+  const ctx = document.getElementById('myChart');
+    <?php ?>
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+<script>
 		$(document).ready(function() {
 			App.init();
-      DashboardV2.init()
+            DashboardV2.init()
+            //ChartJs.init();
             //TableManageTableSelect.init();
 		});
 	</script>

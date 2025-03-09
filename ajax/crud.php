@@ -12,6 +12,82 @@
     $operation = $_POST['operation'];
     $type = $_POST['type'];
     switch([$type, $operation]){
+        case['study_leave', 'cr']:{
+            $tableName = 'staff_on_leave';
+            $data = array(
+                'staffId'=> $_POST['id'],
+                'instId'=> $_POST['institution'],
+                'programme'=> $_POST['programme'],
+                'discipline'=> $_POST['discipline'],
+                'cspshipid'=> $_POST['sponsor'],
+                'sdate'=> $_POST['start_date'],
+                'edate'=> $_POST['end_date'],
+                'remarks'=> $_POST['remark'],
+                'status'=> $_POST['status']
+            );
+            $response = $gateway->genericInsert($tableName, $data);
+            echo json_encode($response);
+            break;
+        }
+        case['study_leave','u']:{
+            $tableName = 'staff_on_leave';
+            $leave_id = $_POST['id'];
+
+            $data = array(
+                'id'=>$leave_id,
+                'field_name'=>'id',
+                'instId'=> $_POST['institution'],
+                'programme'=> $_POST['programme'],
+                'discipline'=> $_POST['discipline'],
+                'cspshipid'=> $_POST['sponsor'],
+                'sdate'=> $_POST['start_date'],
+                'edate'=> $_POST['end_date'],
+                'remarks'=> $_POST['remark'],
+                'status'=> $_POST['status']
+            );
+            $response = $gateway->genericUpdate($tableName, $data);
+            echo json_encode($response);
+            break;
+        }
+        case['study_leave','find']:{
+            $leave = $gateway->findOne('staff_on_leave', array('id'=>$_POST['id'], 'field_name'=>'id'));
+            if($leave !== false){
+                $staff_id = $leave['staffId'];
+                $staff = $gateway->findOne('staff', array('id'=>$staff_id, 'field_name'=>'staff_id'));
+
+                $response = array(
+                                    'message'=>'success',
+                                    'first_name'=> $staff['first_name'],
+                                    'surname'=> $staff['surname'],
+                                    'other_names'=> $staff['other_names'],
+                                    'email'=> $staff['email'],
+                                    'department'=> $staff['department'],
+                                    'leave_id'=> $leave['id'],
+                                    'institution'=> $leave['instId'],
+                                    'programme'=> $leave['programme'],
+                                    'discipline'=> $leave['discipline'],
+                                    'sponsor'=> $leave['cspshipid'],
+                                   'start_date'=> $leave['sdate'],
+                                   'end_date'=> $leave['edate'],
+                                   'remark'=> $leave['remarks'],
+                                   'status'=> $leave['status']
+                                );
+            }else{
+                $response = array('message'=>'failed', 'result'=>'No Record Available');
+            }
+            echo json_encode($response);
+            break;
+        }
+        case['study_leave','de']:{
+            $tableName = 'staff_on_leave';
+            $leave_id = $_POST['id'];
+            
+            $data = array('all'=>'no', 'condition'=>'', 'id'=>$leave_id);
+            
+            $response = $gateway->genericDelete($tableName, $data);
+            echo json_encode($response);
+            break;
+        }
         case['user', 'u']:{
             $tableName = 'users';
             $user_id = $_POST['user_id'];
@@ -151,7 +227,7 @@
         case['training_type', 'cr']:
             $tableName = 'trainingtype';
 
-            $trainingName = $_POST['training_type_name'];
+            $trainingName = $_POST['tr_type_name'];
 
             $data = array('vttypename' => $trainingName);
 
@@ -233,11 +309,11 @@
             
         case ['training_type', 'u']:
             $tableName = 'trainingtype';
-            $id = $_SESSION['training_type_id'];
-            $typeName = $_POST['type_name'];
+            $id = $_POST['tr_type_id'];
+            $typeName = $_POST['tr_type_name'];
             
-            $data = array(  'id_name'=>'vttypename',
-                            'id_value'=>$id,
+            $data = array(  'field_name'=>'cttypeid',
+                            'id'=>$id,
                             'vttypename'=>$typeName
                         );
                         
@@ -409,19 +485,28 @@
             
         case ['training_type', 'find']:
             $tableName = 'trainingtype';
-            //$id = $_SESSION['training_type_id'];
-            $id = 1;
-            $typeName = $_POST['type_name'];
-            $data = array('id' => $id, 'limit' => '', 'id_name'=>'vttypename', 'id_value'=>$id);
+            $id = $_POST['id'];
+            $data = array('id' => $id, 'limit' => '', 'field_name'=>'cttypeid');
             
             $result = $gateway->genericFind($tableName, $data);
-            echo json_encode($result);
+            $response = ['message'=>$result['message']];
+            foreach($result['result'] as $result){
+                $response[] = array(
+                                'tr_type_id'=>$result['cttypeid'],
+                                'tr_type_name'=>$result['vttypename']
+                            );
+            }
+            echo json_encode($response);
             break;
         case ['staff', 'find']:
             $tableName = 'staff';
             //$id = $_SESSION['training_type_id'];
             $id = $_POST['staff_id'];
-            $data = array('id' => $id, 'limit' => '', 'field_name'=>'staff_id');
+            $fieldName ='staff_id';
+            if(filter_var($id, FILTER_VALIDATE_EMAIL)){
+                $fieldName = 'email';
+            }
+            $data = array('id' => $id, 'limit' => '', 'field_name'=>$fieldName);
             
             $raw_results = $gateway->genericFind($tableName, $data);
             if($raw_results['message'] === 'success'){

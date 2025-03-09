@@ -1,0 +1,162 @@
+[2025-02-21 08:13:03] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 08:13:03] error: [2] - Undefined array key "institution" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 08:14:02] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 08:15:05] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 08:24:39] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 13:50:48] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 14:32:57] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 14:33:29] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 14:39:21] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 14:51:04] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-21 14:52:21] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 02:35:47] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 02:37:27] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 02:38:53] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 02:41:53] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 02:42:36] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 02:54:11] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 03:31:00] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 04:16:16] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 04:25:31] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 04:27:27] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 04:27:31] error: [2] - Undefined array key "institutionid" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 59
+
+[2025-02-22 04:29:26] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-22 04:29:26] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 264
+
+[2025-02-22 08:25:57] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-22 08:25:57] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 264
+
+[2025-02-22 08:34:05] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-22 08:34:05] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 264
+
+[2025-02-22 08:34:30] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-22 08:34:30] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 264
+
+[2025-02-22 08:35:40] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 264
+
+[2025-02-22 09:13:17] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 264
+
+[2025-02-22 09:13:17] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 264
+
+[2025-02-22 09:36:07] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 265
+
+[2025-02-22 09:36:07] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 265
+
+[2025-02-22 13:13:49] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 265
+
+[2025-02-22 13:13:49] error: [2] - Undefined array key "sponsor" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 265
+
+[2025-02-25 02:28:51] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-25 02:28:51] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-25 02:29:38] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-25 02:29:38] error: [2] - Undefined variable $fullname in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 245
+
+[2025-02-25 03:58:03] error: [2] - Undefined array key "end_completion" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 80
+
+[2025-02-25 03:58:03] error: [2] - Undefined array key "end_completion" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 80
+
+[2025-02-25 07:13:47] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:14:34] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:14:34] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:14:54] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:15:53] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:15:53] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:21:22] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:21:22] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:22:57] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-25 07:22:57] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 228
+
+[2025-02-26 02:15:00] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-02-26 02:15:00] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-02-27 03:44:27] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-02-27 03:44:27] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-03 11:11:00] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-03 11:11:00] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-03 11:11:00] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-03 11:11:00] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-03 11:11:00] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:42:29] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:42:29] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:42:29] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:42:29] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:42:29] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:42:29] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:45:17] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:45:17] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:45:17] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:45:17] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:45:17] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-04 01:45:17] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+

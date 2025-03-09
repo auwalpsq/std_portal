@@ -17,6 +17,41 @@ class GenericGateway{
         $rowCount = $statement->rowCount();
         return $rowCount > 0;
     }
+    public function findOne($tableName, $data){
+        $statement = "SELECT * FROM $tableName WHERE $data[field_name] = :id";
+
+        try {
+            $statement = $this->db->prepare($statement);
+            $statement->bindParam('id', $data['id'], \PDO::PARAM_STR);
+            $statement->execute();
+            $result = $statement->fetch(\PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\PDOException $e) {
+            return array('message'=>'error', 'result'=>$e->getMessage());
+        }
+    }
+    public function rowCount($tableName, $data)
+    {
+        $statement = $data['id'] === 'all' ? "SELECT * FROM $tableName $data[limit]" : "SELECT * FROM $tableName WHERE $data[field_name] = :id";
+
+        try {
+            $statement = $this->db->prepare($statement);
+            if($data['id'] !== 'all'){
+                $statement->bindParam('id', $data['id'], \PDO::PARAM_STR);
+            }
+            $statement->execute();
+            $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            if($statement->rowCount() > 0){
+                $response = array('message'=>'success', 'result'=>$statement->rowCount());
+            }else{
+                $response = array('message'=>'failed', 'result'=>array('message'=>'No Record Available'));
+            }
+            return $response;
+        } catch (\PDOException $e) {
+            $response = array('message'=>'error', 'result'=>$e->getMessage());
+            return $response;
+        }    
+    }
     public function genericFind($tableName, $data)
     {
         $statement = $data['id'] === 'all' ? "SELECT * FROM $tableName $data[limit]" : "SELECT * FROM $tableName WHERE $data[field_name] = :id";
@@ -70,13 +105,13 @@ class GenericGateway{
     }
     public function genericDelete($tableName, $data)
     {
-        $statement = $data['id'] === 'all' ? "DELETE FROM $tableName" : "DELETE FROM $tableName WHERE";
+        $statement = $data['all'] === 'yes' ? "DELETE FROM $tableName" : "DELETE FROM $tableName WHERE";
 
         try {
-            if($data['id'] !== 'all'){
+            if($data['all'] !== 'yes'){
                 $where = "";
                 foreach($data as $key=>$value){
-                    if($key !== 'condition' && $key !== 'id'){
+                    if($key !== 'condition' && $key !== 'all'){
                         $where .= " $key = :$key $data[condition]";
                     }
                 }
@@ -86,9 +121,9 @@ class GenericGateway{
             // echo $statement;
             // exit();
             $statement = $this->db->prepare($statement);
-            if($data['id'] !== 'all'){
+            if($data['all'] !== 'yes'){
                 foreach($data as $key=>$value){
-                    if($key !== 'condition' && $key !== 'id'){
+                    if($key !== 'condition' && $key !== 'all'){
                         $statement->bindValue($key, $value);
                     }
                 }
