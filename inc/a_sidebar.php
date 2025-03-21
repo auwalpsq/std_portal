@@ -108,9 +108,9 @@
 						</a>
 								<ul class="sub-menu">
                   <li><a href="training_list">Training List</a></li>
-                  <li><a href="add_host">Training Host</a></li>
-                  <li><a href="add_spn">Training Sponsor</a></li>
-                  <li><a href="add_tr_type">Training Type</a></li>
+                  <li><a href="host_list">Training Host</a></li>
+                  <li><a href="sponsor_list">Training Sponsor</a></li>
+                  <li><a href="tr_type_list">Training Type</a></li>
 								</ul>
 						</li>
             <li class="has-sub">
@@ -125,21 +125,21 @@
 								</ul>
 						</li>
             <li>
-            <a href="add_staff">         
+            <a href="personnel_list">         
                 <i class="fa fa-user"></i>
                 <span>Staff List</span>
             </a>
         </li>
          <?php
-          if($_SESSION['user_type'] == 'admin'){?> 
+          //if($_SESSION['user_type'] == 'admin'){?> 
             <li>
-              <a href="add_usr">         
+              <a href="users_list">         
                   <i class="fa fa-users"></i>
                   <span>Users List</span>
               </a>
             </li>
           <?php
-          }?>
+          //}?>
 
           
 
@@ -160,8 +160,5 @@
 			<!-- end sidebar scrollbar -->
 		</div>
 <div  class="sidebar-bg" style="height:100%!important"></div>
-
-	<!-- end #sidebar -->
-  <?php include "footer.php";?>
 
 

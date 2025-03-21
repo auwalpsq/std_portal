@@ -3,9 +3,28 @@
 	   width: 650px !important;
        font-size: medium;
 }
+.modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: 30%; /* Adjust width as needed */
+    height: 100%;
+    right: 0;
+    top: 0;
+    transform: translateX(0);
+}
+
+.modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modal.right .modal-body {
+    padding: 20px;
+}
+
 </style>
 
-<div class="modal fade" id="new_beneficiary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalCenterTitle" aria-hidden="true">
+<div class="modal fade right" id="new_beneficiary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -36,7 +55,7 @@
                                                      <label class="col-md-3 control-label">Staff ID:</label>
                                                     <div class="col-md-8">
                                                     <div class="form-inline">
-                                                    <input type="text" id="staff_id" style="width:30%" name="staff_id" class=" form-control input-lg" placeholder="staff id" required />
+                                                    <input type="text" id="personnel_id" style="width:40%" name="personnel_id" class=" form-control input-lg" placeholder="staff id" required />
                                                    <button type="button" id="search_beneficiary" class="btn-success form-control input-lg"><i class="fa fa-search"></i> Search Staff</button>
 
                                                      </div>
@@ -45,27 +64,20 @@
                                             </div>
                                             <div class="form-group" style="margin-top:-10px" >
                                                 <label class="col-md-3 control-label">Full Name</label>
-                                                <div class="col-md-6">
+                                                <div class="col-md-8">
                                                     <input type="text" id="full_name" style="font-size:small !important;font-weight:bold;" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Department</label>
-                                                <div class="col-md-6">
-                                                <input type="text" id="department" name="department" style="font-size:small !important;font-weight:bold;" class="form-control input-lg" placeholder="department" required disabled/>
-                                                </div>
-                                            </div>  
-
-                                            <div class="form-group">
                                                 <label class="col-md-3 control-label">Date of birth</label>
-                                                <div class="col-md-6">
+                                                <div class="col-md-8">
                                                 <input type="text" id="date_of_birth" style="font-size:small !important;font-weight:bold;" name="date_of_birth" class="form-control input-lg" placeholder="dob" disabled required/>
                                                 </div>
                                             </div>  
                                           
 										</fieldset>
                           <div class="form-group">
-                              <div class="col-md-4 col-md-offset-4">
+                              <div class="col-md-6 col-md-offset-4">
                                   <input type="submit" value="Add Beneficiary" id="save" class="btn-success form-control input-lg"/>
                               </div>
                             </div>
@@ -131,7 +143,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Beneficiary Name</th>
-                                        <th>Department</th>
                                         <th>Date of Birth</th>
                                     </tr>
                                 </thead>
@@ -139,7 +150,7 @@
                                     <?php
                                         $tableName = 'vw_beneficiary_list';
                                         $id = $_POST['id'];
-                                        $data = array('id'=>$id, 'limit'=>'', 'field_name'=>'ctcode');
+                                        $data = array('id'=>$id, 'limit'=>'', 'field_name'=>'training_id');
 
                                         $beneficiaries = $gateway->genericFind($tableName, $data);
                                         if($beneficiaries['message'] === 'success'){
@@ -154,15 +165,14 @@
                                                         <!-- <button type="button" class = "viewresult btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" >Edit</button> -->
 
                                                         <button
-                                                            data-training_id="<?php echo $beneficiary['ctcode'] ?>"
-                                                            data-staff_id="<?php echo $beneficiary['id'] ?>"
+                                                            data-training_id="<?php echo $beneficiary['training_id'] ?>"
+                                                            data-personnel_id="<?php echo $beneficiary['id'] ?>"
                                                             class = "viewresult btn btn-danger remove-btn btn-xs"  >Remove
                                                         </button>
                                                         
                                                     </div>
                                                     </div>
                                                     </td> 
-                                                    <td><?php echo $beneficiary['department'] ?></td>
                                                     <td><?php echo $beneficiary['date_of_birth'] ?></td> 
                                                 </tr>
                                                 <?php
@@ -203,14 +213,14 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 let type = 'beneficiary';
                 let operation = 'de';
-                let staff_id = $(this).data('staff_id');
+                let personnel_id = $(this).data('personnel_id');
                 let training_id = $(this).data('training_id');
 
                 $.ajax({
                     url: 'ajax/crud.php',
                     type: 'POST',
                     data: {
-                        staff_id: staff_id,
+                        personnel_id: personnel_id,
                         training_id: training_id,
                         type: type,
                         operation: operation
@@ -236,14 +246,14 @@ $(document).ready(function () {
         $('#new_beneficiary_modal').modal('show');
     });
     $('#search_beneficiary').on('click', function(){
-            let staff_id = $('#staff_id').val();
-            if(staff_id.length > 0){
-                let type = 'staff';
+            let personnel_id = $('#personnel_id').val();
+            if(personnel_id.length > 0){
+                let type = 'personnel';
                 let operation = 'find';
                 $.ajax({
                     url: 'ajax/crud.php',
                     type: 'POST',
-                    data: {staff_id: staff_id, type: type, operation: operation},
+                    data: {personnel_id: personnel_id, type: type, operation: operation},
 
                     success: function(response){
                       
@@ -251,7 +261,6 @@ $(document).ready(function () {
                         if(data['message'] == 'success'){
                             let fullName = data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']
                             $('#full_name').val(fullName);
-                            $('#department').val(data[0]['department']);
                             $('#date_of_birth').val(data[0]['dob']);
                         }else{
                             Swal.fire({
@@ -289,7 +298,7 @@ $(document).ready(function () {
                 dataType: 'json', 
                
                 success: function(response) { 
-                   
+                   //alert(response);
                     if (response.message === 'success') {
                         Swal.fire({
                             icon: 'success',

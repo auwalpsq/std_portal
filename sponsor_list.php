@@ -40,8 +40,8 @@ include_once 'template/custom_style.html';
 <?php
   include "inc/mega_menu.php";
   include "inc/a_sidebar.php";
-  include "content/add_spn_details.php";
-  // include "inc/footer.php";
+  include "content/sponsor_list_details.php";
+  include "inc/footer.php";
 
   include_once 'template/baselevel_js.html';
 ?>

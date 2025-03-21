@@ -55,7 +55,6 @@
                                 <tr>
                                     <th>S/N</th>
                                     <th style="width:10%">NAMES</th>
-                                    <th>FACULTY<br>DIRECTORATE</th>
                                     <th>DEGREE</th>
                                     <th>EFFECTIVE DATE</th>
                                     <th>EXPECTED DATE OF COMPLETION</th>
@@ -74,7 +73,6 @@
                                             <tr>
                                                 <td><?php echo $sn++; ?></td>
                                                 <td><?php echo "$staff_on_leave[first_name] $staff_on_leave[surname] $staff_on_leave[other_names]"; ?></td>
-                                                <td><?php echo $staff_on_leave['department']; ?></td>
                                                 <td><?php echo "$staff_on_leave[programme] in $staff_on_leave[course] at the $staff_on_leave[institution]"; ?></td>
                                                 <td><?php echo $staff_on_leave['start_date']; ?></td>
                                                 <td><?php echo $staff_on_leave['end_date']; ?></td>

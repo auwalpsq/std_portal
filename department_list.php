@@ -6,19 +6,22 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-use std_portal\std_gateways\GenericGateway;
-require_once 'std_gateways/GenericGateway.php';
-include_once 'config/DatabaseConfig.php';
-$database = new DatabaseConfig();      
-$dbConnect = $database->dbConnect();
+require_once 'config/MyConnection.php';
 
-$gateway =new GenericGateway($dbConnect);
+$table_department = 'department';
+$data_department = array('id' => 'all', 'limit' => '');
 
-if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
-    $_SESSION['login_error'] = 'Please login first';
-    header('Location: login');
-    exit();
-}
+$department_list = $gateway->genericFind($table_department, $data_department);
+
+$table_faculty = 'faculty';
+$data_faculty = array('id'=> 'all', 'limit' => '');
+$faculty_list = $gateway->genericFind($table_faculty, $data_faculty);
+
+// if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
+//     $_SESSION['login_error'] = 'Please login first';
+//     header('Location: login');
+//     exit();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -34,20 +37,25 @@ include_once 'template/custom_style.html';
     <!-- end #page-loader -->
 
     <div id="page-container" class="fade page-with-sidebar page-header-fixed">
+   
+
         <?php
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
-        include "content/add_host_details.php";
-        // include "inc/footer.php";
+        include "content/department_list_details.php";
+        include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';
          ?>
+    <script>
+    
+    </script>
+
     </div>
 </body>
 <script>
 		$(document).ready(function() {
 			App.init();
-            //TableManageTableSelect.init();
 		});
 	</script>
 

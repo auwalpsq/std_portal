@@ -25,7 +25,7 @@ class GenericGateway{
             $statement->bindParam('id', $data['id'], \PDO::PARAM_STR);
             $statement->execute();
             $result = $statement->fetch(\PDO::FETCH_ASSOC);
-            return $result;
+            return array('message'=>'success', 'result'=>$result);
         } catch (\PDOException $e) {
             return array('message'=>'error', 'result'=>$e->getMessage());
         }
@@ -44,7 +44,7 @@ class GenericGateway{
             if($statement->rowCount() > 0){
                 $response = array('message'=>'success', 'result'=>$statement->rowCount());
             }else{
-                $response = array('message'=>'failed', 'result'=>array('message'=>'No Record Available'));
+                $response = array('message'=>'failed', 'result'=>0);
             }
             return $response;
         } catch (\PDOException $e) {
@@ -75,7 +75,7 @@ class GenericGateway{
         }    
     }
 
-    public function genericInsert($tablename, Array $columns){
+    public function genericInsert($tablename, $columns){
         $statement = "INSERT INTO $tablename (";
 
         $key = ""; $value = "";

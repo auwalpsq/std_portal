@@ -160,3 +160,53 @@
 
 [2025-03-07 00:57:18] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
 
+[2025-03-10 04:35:41] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-10 04:35:41] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-10 04:35:41] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-10 04:35:41] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-10 04:35:41] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-10 04:35:41] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-10 04:35:41] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 78
+
+[2025-03-20 03:14:20] error: [2] - Undefined array key "cthostid" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 66
+
+[2025-03-20 03:14:20] error: [2] - Undefined array key "vthostname" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 66
+
+[2025-03-20 03:41:24] error: [2] - Undefined array key "cthostid" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 66
+
+[2025-03-20 03:41:24] error: [2] - Undefined array key "vthostname" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 66
+
+[2025-03-20 04:12:38] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 217
+
+[2025-03-20 04:12:38] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 222
+
+[2025-03-20 04:12:38] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 224
+
+[2025-03-20 04:12:38] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 226
+
+[2025-03-20 04:12:38] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 228
+
+[2025-03-20 04:12:51] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 217
+
+[2025-03-20 04:12:51] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 222
+
+[2025-03-20 04:12:51] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 224
+
+[2025-03-20 04:12:51] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 226
+
+[2025-03-20 04:12:51] error: [2] - Undefined array key "id" in C:\xampp\htdocs\std_portal\content\training_list_details.php on line 228
+
+[2025-03-20 14:22:14] error: [2] - Undefined array key "department" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 227
+
+[2025-03-20 14:25:58] error: [2] - Undefined array key "department" in C:\xampp\htdocs\std_portal\content\study_leave_details.php on line 226
+
+[2025-03-21 03:43:25] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-03-21 03:43:25] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+

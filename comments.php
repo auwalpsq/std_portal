@@ -326,3 +326,50 @@
     //             });
     //         }
     //     });
+?>
+    <!-- <div class="form-group div-academic" style="display: none;">
+                                        <label class="col-md-3 control-label">Faculty</label>
+                                        <div class="col-md-6">
+                                            <select id="faculty" name="faculty" class="form-control">
+                                                <option value="">--Select Faculty--</option>
+                                                <?php
+                                                    if($result_faculty['message'] === 'success'){
+                                                        foreach($result_faculty['result'] as $faculty){?>
+                                                            <option value="<?php echo $faculty['faculty_id'] ?>"><?php echo $faculty['name'] ?></option>
+                                                <?php   }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group div-academic" style="display: none;">
+                                        <label class="col-md-3 control-label">Department</label>
+                                        <div class="col-md-6">
+                                            <select id="department" name="department" class="form-control">
+                                                <option value="">--Select Department--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group div-nonacademic" style="display: none;">
+                                        <label class="col-md-3 control-label">Directorate</label>
+                                        <div class="col-md-6">
+                                            <select id="directorate" name="directorate" class="form-control">
+                                                <option value="">--Select Directorate--</option>
+                                                <?php
+                                                    if($result_directorate['message'] === 'success'){
+                                                        foreach($result_directorate['result'] as $directorate){?>
+                                                            <option value="<?php echo $directorate['directorate_id'] ?>"><?php echo $directorate['name'] ?></option>
+                                                <?php   }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group div-nonacademic" style="display: none;">
+                                        <label class="col-md-3 control-label">Unit</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" id="unit" name="unit">
+                                                <option value="">--Select Unit--</option>
+                                            </select>
+                                        </div>
+                                    </div> -->

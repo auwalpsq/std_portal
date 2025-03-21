@@ -21,20 +21,10 @@
                     <input id="id" type="hidden" name="id">
                     <input type="hidden" id="email" name="email">
 
-                        <!-- begin wizard step-1 -->
-                        <div class="wizard-step-1">
-                            <div class="alert alert-warning fade in m-b-15">
-                                <strong>Warning!</strong>
-                                You are about to edit a Training. Please ensure that all required information is entered correctly before proceeding.
-                                <span class="close" data-dismiss="alert">×</span>
-                            </div>
-                        </div>
-                    <fieldset>
-                                
                     <div style="margin-top: 30px;" class="form-group">            
                         <label class="col-md-3 control-label">Staff ID<span class="text-danger">*</span></label>
                         <div class="col-md-8">
-                            <input type="text" id="staff_id" name="staff_id" class="form-control input-lg" placeholder="Enter Staff ID" required />
+                            <input type="text" id="personnel_id" name="personnel_id" class="form-control input-lg" placeholder="Enter personnel ID" required />
                         </div>
                     </div>
 
@@ -50,7 +40,6 @@
                             </div>
                             </div>
                             </div>
-                    </fieldset>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Save changes</button>
@@ -68,7 +57,7 @@
         <ol class="breadcrumb pull-right">
             <li><a href="javascript:;">Home</a></li>
             <li><a href="javascript:;">Training</a></li>
-            <li><a href="javascript:;">Staff List</a></li>
+            <li><a href="javascript:;">Users List</a></li>
         
         </ol>
         <!-- end breadcrumb -->
@@ -244,8 +233,8 @@
     $('#user').on('submit', function(event){
         event.preventDefault();
         
-        let id = $('#staff_id').val();
-        let type = 'staff';
+        let id = $('#personnel_id').val();
+        let type = 'personnel';
         let operation = 'find';
         
         let formData = new FormData(this);
@@ -253,7 +242,7 @@
         $.ajax({
             url: 'ajax/crud.php',
             type: 'POST',
-            data: {staff_id:id, type:type, operation:operation},
+            data: {personnel_id:id, type:type, operation:operation},
             dataType: 'json',
             success: function(response){
                 //alert(response);

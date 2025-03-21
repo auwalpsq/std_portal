@@ -63,7 +63,7 @@
                                         if($response['message'] === 'success'){
                                             $results = $response['result'];
                                             foreach($results as $result){
-                                                echo "<option value=\"{$result['cthostid']}\">{$result['vthostname']}</option>";
+                                                echo "<option value=\"{$result['host_id']}\">{$result['name']}</option>";
                                             }
                                         }
                                     ?>
@@ -96,8 +96,8 @@
                             <div class="form-group">
                             <label class="col-md-3 control-label">Training Type</label>
                             <div class="col-md-8">
-                                <select id="training_type" class="form-control input-lg" name="training_type"  required>
-                                    <option value="" disabled selected>--select--</option>
+                                <select id="training_type" class="form-control input-lg" name="training_type" required>
+                                    <option value="">--select--</option>
                                     <?php
                                         $tableName = 'trainingtype';
                                         $data = array('id'=>'all', 'limit'=>'');
@@ -192,9 +192,9 @@
                                     <th>Name</th>
                                     <th>Host</th>
                                     <th> Sponsor </th>
-                                    <th>Beneficiary Count</th>
-                                    <th>Slots Remaining</th>
                                     <th>Slots Allocated</th>
+                                    <th>Beneficiary Count</th>
+                                    <th>Available Slots</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     
@@ -209,7 +209,7 @@
                                 // exit();
                                 if($trainings['message'] === 'success'){
                                     foreach($trainings['result'] as $training){
-                                        $tableName1 = 'beneficiary_counter';
+                                        $tableName1 = 'vw_beneficiary_counter';
                                         $data1 = array('id'=>$training['training_name'], 'field_name'=>'name', 'limit'=>'');
                                         $beneficiary_counter = $gateway->genericFind($tableName1, $data1);
                                         ?>
@@ -233,9 +233,9 @@
                                             
                                             <td><?php echo $training['host_name'];?></td>
                                             <td><?php echo $training['sponsor_name'];?></td>
+                                            <td><?php echo $training['slot'];?></td>
                                             <td><?php echo $beneficiary_counter['result'][0]['beneficiary_count'];?></td>
                                             <td><?php echo $beneficiary_counter['result'][0]['slots_available'];?></td>
-                                            <td><?php echo $training['slot'];?></td>
                                             <td><?php echo $training['start_date'];?></td>
                                             <td><?php echo $training['end_date'];?></td>
                                             

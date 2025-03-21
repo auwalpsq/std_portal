@@ -8,9 +8,9 @@
 <div id="modal_form_sponsor" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" >
+            <div class="modal-header bg-success" >
                 <h5 class="modal-title">Add New Training Sponsor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                <button type="button" class="pull-right btn-warning" data-dismiss="modal" aria-label="Close" >X</button>
             </div>
             <div class="modal-body">
                 <form id="form_sponsorship"  class="form-horizontal" method="POST" >     

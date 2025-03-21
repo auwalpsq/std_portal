@@ -8,6 +8,9 @@ error_reporting(E_ALL);
 
 require_once 'config/MyConnection.php';
 
+$table_leave_status_total = 'vw_leave_total_status';
+$data_leave_status_total = array('id' => 'all', 'limit' => '');
+$leave_status_total = $gateway->genericFind($table_leave_status_total, $data_leave_status_total);
 $table_name = 'vw_study_leave_count';
 $data = array('id'=>'all', 'limit'=>'');
 $study_leave_count = $gateway->genericFind($table_name, $data);
@@ -72,14 +75,22 @@ include_once 'template/custom_style.html';
 </body>
 <script>
   const ctx = document.getElementById('myChart');
-    <?php ?>
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: [<?php echo "'$array_leave_status_total[onGoing]'" ?>,
+                <?php echo "'$array_leave_status_total[completed]'" ?>,
+                <?php echo "'$array_leave_status_total[elapsed]'" ?>,
+                <?php echo "'$array_leave_status_total[staffIsDeceased]'" ?>
+            ],
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'number of staff(s)',
+        data: [ <?php echo $array_leave_status_total['onGoingTotal'] ?>,
+                <?php echo $array_leave_status_total['completedTotal'] ?>,
+                <?php echo $array_leave_status_total['elapsedTotal'] ?>,
+                <?php echo $array_leave_status_total['staffIsDeceasedTotal'] ?>
+              ],
+        backgroundColor: ['skyblue', 'lightgreen', 'red', 'black'],
         borderWidth: 1
       }]
     },
@@ -88,16 +99,16 @@ include_once 'template/custom_style.html';
         y: {
           beginAtZero: true
         }
-      }
+      },
     }
   });
 </script>
 <script>
 		$(document).ready(function() {
 			App.init();
-            DashboardV2.init()
-            //ChartJs.init();
-            //TableManageTableSelect.init();
+      DashboardV2.init()
+      //ChartJs.init();
+      //TableManageTableSelect.init();
 		});
 	</script>
 

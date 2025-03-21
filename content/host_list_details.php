@@ -8,20 +8,15 @@
 <div id="modal_form_host" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" >
+            <div class="bg-success modal-header" >
                 <h5 class="modal-title">Add New Training Host</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                <button type="button" class="pull-right btn-warning" data-dismiss="modal" aria-label="Close" >X</button>
             </div>
             <div class="modal-body">
                 <form id="form_host"  class="form-horizontal" method="POST" >   
                     <input type="hidden" name="type" value="host_training" />
                     <input type="hidden" name="operation" value="cr" />  
                     <input type="hidden" name="id" />
-                    <div class="alert alert-warning fade in ">
-                        <strong>Warning!</strong>
-                        Ensure you are adding the right Training Host.
-                        <span class="close" data-dismiss="alert">×</span>
-                    </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Training Host name:</label>
                             <div class="col-md-9">
@@ -47,7 +42,7 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="dash">Home</a></li>
-				<li><a href="add_host">Add Training Host</a></li>
+				<li><a href="host_list">Host List</a></li>
 				<!-- <li class="active">Wizards</li> -->
 			</ol>
             
@@ -81,13 +76,13 @@
                                         if($host_list['message'] === 'success'){
                                             foreach($host_list['result'] as $host){?>
                                                 <tr>
-                                                    <td> <?php echo $host['cthostid'] ?></td>
+                                                    <td> <?php echo $host['host_id'] ?></td>
                                                     <td>
                                                         <div class="view_result" >
-                                                            <a><?php echo $host['vthostname'] ?></a><br>
+                                                            <a><?php echo $host['name'] ?></a><br>
                                                             <div class="viewresult pull-bottom">
-                                                                <button type="button" data-id="<?php echo $host['cthostid']?>" class="btn btn-success btn-xs btn-edit">Edit</button>
-                                                                <button type="button" data-id="<?php echo $host['cthostid']?>" class="btn btn-danger btn-xs btn-delete" >Delete</button>
+                                                                <button type="button" data-id="<?php echo $host['host_id']?>" class="btn btn-success btn-xs btn-edit">Edit</button>
+                                                                <button type="button" data-id="<?php echo $host['host_id']?>" class="btn btn-danger btn-xs btn-delete" >Delete</button>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -149,7 +144,6 @@ $(document).ready(function(){
             }
         });
     });
-    $('#data-table').DataTable();
     $('#btn_new_host').on('click', function(){
         $('#form_host').trigger('reset');
         $('#modal_form_host').modal('show');

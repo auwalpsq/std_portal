@@ -37,6 +37,26 @@
 			}
 		}
 	}
+
+	$array_leave_status_total = array('onGoing'=>'On Going', 'onGoingTotal'=>0, 'completed'=>'Completed', 'completedTotal'=>0, 'staffIsDeceased' => 'Staff Is Deceased', 'staffIsDeceasedTotal' => 0, 'elapsed' => 'Elapsed', 'elapsedTotal' => 0);
+	if($leave_status_total['message'] == 'success'){
+		foreach($leave_status_total['result'] as $leave_status_total){
+            switch($leave_status_total['status']){
+                case $array_leave_status_total['onGoing']:
+                    $array_leave_status_total['onGoingTotal'] = $leave_status_total['total'];
+                    break;
+                case $array_leave_status_total['completed']:
+                    $array_leave_status_total['completedTotal'] = $leave_status_total['total'];
+                    break;
+                case $array_leave_status_total['staffIsDeceased']:
+                    $array_leave_status_total['staffIsDeceasedTotal'] = $leave_status_total['total'];
+                    break;
+                case $array_leave_status_total['elapsed']:
+                    $array_leave_status_total['elapsedTotal'] = $leave_status_total['total'];
+                    break;
+            }
+        }
+	}
 ?>
 <style>
 
@@ -121,12 +141,13 @@
 			
 			<!-- begin row -->
 			<div class="row">
-			    <div class="col-md-12">
-			        <div class="widget-chart with-sidebar bg-black">
+			    <div class="col-md-6">
+					<canvas id="myChart"></canvas>
+			        <!-- <div class="widget-chart with-sidebar bg-black">
 			            <div class="widget-chart-content">
 			                <h4 class="chart-title">
 			                    Training Analytics
-			                    <small>Where do our visitors come from</small>
+			                    <small>Where do our visi]tors come from</small>
 			                </h4>
 			                <div id="visitors-line-chart" class="morris-inverse" style="height: 260px;"></div>
 			            </div>
@@ -141,11 +162,9 @@
 			                    <li><i class="fa fa-circle-o fa-fw text-primary m-r-5"></i> 56.0% <span>Male Staff</span></li>
 			                </ul>
 			            </div>
-			        </div>
+			        </div> -->
 			    </div>
-				<div>
-  					<canvas id="myChart"></canvas>
-				</div>
+  					
 			</div>
 			<!-- end row -->
 			<!-- begin row -->

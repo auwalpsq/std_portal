@@ -18,7 +18,7 @@
                     <input id="operation" type="hidden" name="operation"/>
                     <input id="id" type="hidden" name="id">
                     <div class="row">
-                        <div class="col-sm-10 p-0"><input type="text" id="staff_id" name="staff_id" class="form-control input" placeholder="enter staff id or email"></div>
+                        <div class="col-sm-10 p-0"><input type="text" id="personnel_id" name="personnel_id" class="form-control input" placeholder="enter staff id or email"></div>
                         <div class="col-sm-2 p-0"><button type="button" id="search_staff" name="search_staff" class="m-l-0 btn btn-success"><i class="fa fa-search"></i>Search </button></div>
                     </div>
                     <div>
@@ -30,7 +30,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="col-md-3 control-label">Faculty</label>
                             <div class="col-md-8">
                                 <input type="text" id="faculty" name="faculty" class="form-control" placeholder="Faculty" disabled />
@@ -41,7 +41,7 @@
                                 <div class="col-md-8">
                                     <input type="text" name="department" id="department" class="form-control" placeholder="Department" disabled required />
                                 </div>
-                        </div>        
+                        </div>         -->
                             <div class="form-group">
                             <label class="col-md-3 control-label">Institution</label>
                             <div class="col-md-8">
@@ -194,7 +194,6 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>Name</th>
-                                    <th>Faculty</th>
                                     <th>Degree</th>
                                     <th> Effective Date </th>
                                     <th>Expected Date of Completion</th>
@@ -224,7 +223,6 @@
                                                 </div>
                                             </div>
                                             </td>
-                                            <td><?php echo $staff_on_leave['department'];?></td>
                                             <td><?php echo "$staff_on_leave[programme] in $staff_on_leave[discipline] at the $staff_on_leave[institution]";?></td>
                                             <td><?php echo $staff_on_leave['start_date'];?></td>
                                             <td><?php echo $staff_on_leave['end_date'];?></td>
@@ -269,9 +267,8 @@
                 $('#type').val('study_leave');
                 $('#operation').val('u');
                 $('#id').val(data['leave_id']);
-                $('#staff_id').val(data['email']);
+                $('#personnel_id').val(data['email']);
                 $('#full_name').val(data['first_name'] +' '+ data['surname'] +' '+ data['other_names']);
-                $('#department').val(data['department']);
                 $('#institution').val(data['institution']);
                 $('#programme').val(data['programme']);
                 $('#discipline').val(data['discipline']);
@@ -280,7 +277,7 @@
                 $('#end_date').val(data['end_date']);
                 $('#remark').val(data['remark']);
                 $('#status').val(data['status']);
-                $('#staff_id').prop('disabled', true);
+                $('#personnel_id').prop('disabled', true);
                 $('#search_staff').prop('disabled', true);
                 $('#modal-leave-title').text('Edit Leave');
                 $('#modal-form-st-leave').modal('show');
@@ -338,7 +335,7 @@
             contentType: false,
             processData: false,
             success: function(response){
-                // alert(response);
+                //alert(response);
                 let data = JSON.parse(response);
                 if(data.message == 'success'){
                     Swal.fire({
@@ -363,7 +360,7 @@
     });
     $('#new_study_leave').on('click', function(){
         $('#form_study_leave')[0].reset();
-        $('#staff_id').prop('disabled', false);
+        $('#personnel_id').prop('disabled', false);
         $('#search_staff').prop('disabled', false);
         $('#type').val('study_leave');
         $('#operation').val('cr');
@@ -371,17 +368,17 @@
         $('#modal-form-st-leave').modal('show');
     });
     $('#search_staff').on('click', function(){
-        let id = $('#staff_id').val();
+        let id = $('#personnel_id').val();
         if(id.length > 0){
-            let type = 'staff';
+            let type = 'personnel';
             let operation = 'find';
-            $.post('ajax/crud.php', {staff_id: id, type: type, operation: operation}, function(response){
+            $.post('ajax/crud.php', {personnel_id: id, type: type, operation: operation}, function(response){
                 let data = JSON.parse(response);
                 if(data['message'] == 'success'){
-                    $('#id').val(data[0]['id']);
+                    $('#id').val(data[0]['personnel_id']);
                     $('#full_name').val(data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']);
                     //$('#faculty').val(data[0]['faculty']);
-                    $('#department').val(data[0]['department']);
+                    //$('#department').val(data[0]['department']);
                 }else{
                     alert('Staff not found');
                 }
