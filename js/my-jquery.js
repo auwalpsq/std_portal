@@ -1,14 +1,21 @@
 $(document).ready(function() {
     $('.category').on('click', function() {
+        //alert('Please select a category');
         let category = $(this).val();
-        if(category == 'academic'){
-            $('.div-academic').show();
-            $('.div-nonacademic').hide();
-        }else if(category == 'nonacademic'){
-            $('.div-nonacademic').show();
-            $('.div-academic').hide();
-        }
+        let type = 'category';
+        let operation = 'fetch';
+        $.ajax({
+            url: 'ajax/crud.php',
+            type: 'POST',
+            data: {type: type, operation: operation, category: category},
+            success: function(response){
+                $('#directorate').html(response);
+            }
+        });
     });
+    // $('.gender').on('click', function(){
+    //     alert($(this).val());
+    // });
     $('#faculty').on('change', function() {
         let faculty_id = $(this).val();
         let type = 'department';

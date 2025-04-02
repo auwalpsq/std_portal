@@ -8,7 +8,7 @@ session_start();
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>ST&D Portal | Login Page</title>
+	<title>ST&D Portal | Password Request</title>
 	<link rel="icon" type="image/png" href="assets/img/login-bg/nou.png" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
@@ -224,8 +224,8 @@ right: 0;
     <!-- begin login-header -->
     <div class="login-header ">
         <div class="brand text-inverse">
-            <span class="" ></span>NOUN-Staff Training Portal
-            <small class="text-inverse"> Staff Training and Development (ST&D) </small>
+            <span class="" >Password Reset Request</span>
+            <small class="text-inverse">Request password reset with valid email or id</small>
         </div>
         <div class="icon">
                 <i class="fa fa-sign-in"></i>
@@ -234,11 +234,11 @@ right: 0;
                 <!-- end login-header -->
                 <!-- begin login-content -->
                 <div class="login-content" >
-                    <form method="POST" id="frm" action="ajax/validate_user.php" enctype="multipart/form-data" >
+                    <form method="POST" id="frm" action="ajax/process_pass_rst.php" enctype="multipart/form-data" >
                         <div class="form-group m-b-15">
-                            <input type="text" name="username" id="username" class="form-control input-lg text-inverse" placeholder="Username" required />
+                            <input type="text" name="id" id="id" class="form-control input-lg text-inverse" placeholder="Enter email or id" required />
                         </div>
-                        <div class="form-group m-b-15">
+                        <!-- <div class="form-group m-b-15">
                             <input type="password" name="password" id="t_pwd" class="form-control input-lg text-inverse" placeholder="Password" required />
                             <i class="fa fa-eye pull-right" id="togglePassword" style="margin-right:15px;margin-top:-30px; cursor: pointer;" onclick="myFunction()"></i>
                         </div>
@@ -246,9 +246,9 @@ right: 0;
                             <label class="text-inverse">
                                 <input type="checkbox"/> Remember Me
                             </label>
-                        </div>
+                        </div> -->
                         <div class="login-buttons">
-                            <button  class="btn btn-success btn-block btn-lg" type="submit" id="bsumit">Sign me in</button>
+                            <button  class="btn btn-success btn-block btn-lg" type="submit" id="bsumit">Submit Request</button>
                         </div> 
                         <!-- <div class="m-t-20 m-b-20 p-b-10 text-inverse">
                             <p>Don't have an account yet? Click <a href="register" class="text-success">register</a> to verify and create an account.</p>
@@ -259,7 +259,7 @@ right: 0;
                        
                         
                          <div class="">
-							<a class="btn btn-primary btn-block btn-lg m-t-20" id="pwd_btn" href="request_pass_rst">Request Password Reset</a>
+							<a class="btn btn-primary btn-block btn-lg m-t-20" id="pwd_btn" href="login">Go to login</a>
                         </div>
                        
                         <hr />

@@ -16,9 +16,10 @@
                 <form id="form_study_leave" class="form-horizontal" method="POST" >
                     <input id="type" type="hidden" name="type" />
                     <input id="operation" type="hidden" name="operation"/>
-                    <input id="id" type="hidden" name="id">
+                    <input id="leave_id" type="hidden" name="leave_id" id="leave_id"/>
+                    <input type="hidden" name="personnel_id" id="personnel_id"/>
                     <div class="row">
-                        <div class="col-sm-10 p-0"><input type="text" id="personnel_id" name="personnel_id" class="form-control input" placeholder="enter staff id or email"></div>
+                        <div class="col-sm-10 p-0"><input type="text" id="email" name="email" class="form-control input" placeholder="enter staff id or email"></div>
                         <div class="col-sm-2 p-0"><button type="button" id="search_staff" name="search_staff" class="m-l-0 btn btn-success"><i class="fa fa-search"></i>Search </button></div>
                     </div>
                     <div>
@@ -30,18 +31,24 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group">
-                            <label class="col-md-3 control-label">Faculty</label>
-                            <div class="col-md-8">
-                                <input type="text" id="faculty" name="faculty" class="form-control" placeholder="Faculty" disabled />
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Faculty/Directorate</label>
+                            <div class="col-md-4">
+                                <input type="text" id="directorate" name="directorate" class="form-control" placeholder="Faculty/Directorate" disabled />
+                            </div>
+                            <!-- <label class="col-md-2 control-label">Department/Unit</label> -->
+                                <div class="col-md-4">
+                                    <input type="text" name="unit" id="unit" class="form-control" placeholder="Department/Unit" disabled required />
                             </div>
                         </div>
+                    <!-- 
                         <div class="form-group">
                                 <label class="col-md-3 control-label">Department</label>
                                 <div class="col-md-8">
                                     <input type="text" name="department" id="department" class="form-control" placeholder="Department" disabled required />
                                 </div>
-                        </div>         -->
+                        </div>    
+                     -->
                             <div class="form-group">
                             <label class="col-md-3 control-label">Institution</label>
                             <div class="col-md-8">
@@ -197,6 +204,7 @@
                                     <th>Degree</th>
                                     <th> Effective Date </th>
                                     <th>Expected Date of Completion</th>
+                                    <th>Date to elapse</th>
                                     <th>Sponsor</th>
                                     <th>Remarks</th>
                                 </tr>
@@ -210,7 +218,18 @@
                                 // exit();
                                 if($staffs_on_leave['message'] === 'success'){
                                     $sn = 1;
-                                    foreach($staffs_on_leave['result'] as $staff_on_leave){?>
+                                    foreach($staffs_on_leave['result'] as $staff_on_leave){
+                                        $start_date = $staff_on_leave['start_date'];
+                                        $end_date = $staff_on_leave['end_date'];
+                                        $interval = date_diff(date_create($start_date), date_create($end_date));
+                                        $months = (int)$interval->format('%m');
+                                        $years = (int)$interval->format('%y');
+                                        $days = (int)$interval->format('%d');
+                                        // if($years == 0 && $months <= 3){
+                                        //     $email = $staff_on_leave['email'];
+                                        //     echo "<script>alert('$email');</script>";
+                                        // }
+                            ?>
                                         <tr>
                                             <td><?php echo $sn++; ?></td>
                                             <td style="width:15%; font-size:14px">
@@ -224,8 +243,9 @@
                                             </div>
                                             </td>
                                             <td><?php echo "$staff_on_leave[programme] in $staff_on_leave[discipline] at the $staff_on_leave[institution]";?></td>
-                                            <td><?php echo $staff_on_leave['start_date'];?></td>
-                                            <td><?php echo $staff_on_leave['end_date'];?></td>
+                                            <td><?php echo $start_date;?></td>
+                                            <td><?php echo $end_date;?></td>
+                                            <td><?php echo "$years years<br>$months months<br>$days days";?></td>
                                             <td><?php echo $staff_on_leave['sponsor'];?></td>
                                             <td><?php echo $staff_on_leave['remarks'];?> <strong><?php echo $staff_on_leave['status'] ?></strong></td>
                                             
@@ -254,139 +274,7 @@
 
 <script>
   $(document).ready(function () {
-    $('#data-table').on('click', '.btn-edit-leave', function () {
-        let id = $(this).data('id');
-        let type = 'study_leave';
-        let operation = 'find';
-        $.post('ajax/crud.php', {id: id, type: type, operation: operation}, function(response){
-            //alert(response);
-            let data = JSON.parse(response);
-            //alert(data['result'][0]['email'])
-            if(data['message'] == 'success'){
-                $('#form_study_leave')[0].reset();
-                $('#type').val('study_leave');
-                $('#operation').val('u');
-                $('#id').val(data['leave_id']);
-                $('#personnel_id').val(data['email']);
-                $('#full_name').val(data['first_name'] +' '+ data['surname'] +' '+ data['other_names']);
-                $('#institution').val(data['institution']);
-                $('#programme').val(data['programme']);
-                $('#discipline').val(data['discipline']);
-                $('#sponsor').val(data['sponsor']);
-                $('#start_date').val(data['start_date']);
-                $('#end_date').val(data['end_date']);
-                $('#remark').val(data['remark']);
-                $('#status').val(data['status']);
-                $('#personnel_id').prop('disabled', true);
-                $('#search_staff').prop('disabled', true);
-                $('#modal-leave-title').text('Edit Leave');
-                $('#modal-form-st-leave').modal('show');
-            }
-        });
-    }); 
-
-    // Attach click event to dynamically added delete buttons
-    $('#data-table').on('click', '.btn-delete-leave', function () {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This action cannot be undone",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#008000',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel',
-            customClass: "swal-size-sm"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                let id = $(this).data('id');
-                let type = 'study_leave';
-                let operation = 'de';
-                $.ajax({
-                    url: 'ajax/crud.php',
-                    type: 'POST',
-                    data: {id: id, type: type, operation: operation},
-                    success: function(response){
-                        let data = JSON.parse(response);
-                        if(data['message'] == 'success'){
-                            Swal.fire({
-                                icon: 'success',
-                                title: data['message'],
-                                text: data['result']['message'],
-                                customClass: "swal-size-sm",
-                                confirmButtonText: 'OK'
-                            });
-                            location.reload();
-                        }
-                    }
-                });
-            }
-        });
-        
-    });
-    $('#form_study_leave').on('submit', function(event){
-        event.preventDefault();
-        let formData = new FormData(this);
-
-        $.ajax({
-            url: 'ajax/crud.php',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response){
-                //alert(response);
-                let data = JSON.parse(response);
-                if(data.message == 'success'){
-                    Swal.fire({
-                        icon:'success',
-                        title: data.message,
-                        text: data.result.message,
-                        customClass: "swal-size-sm",
-                        confirmButtonText: 'OK'
-                    });
-                    location.reload();
-                }else if(data.message == 'failed'){
-                    Swal.fire({
-                        icon: 'error',
-                        title: data.message,
-                        text: data.result.message,
-                        customClass: "swal-size-sm",
-                        confirmButtonText: 'OK'
-                    });
-                }
-            }
-        });
-    });
-    $('#new_study_leave').on('click', function(){
-        $('#form_study_leave')[0].reset();
-        $('#personnel_id').prop('disabled', false);
-        $('#search_staff').prop('disabled', false);
-        $('#type').val('study_leave');
-        $('#operation').val('cr');
-        $('#myModalLongTitle').text('New Study Leave');
-        $('#modal-form-st-leave').modal('show');
-    });
-    $('#search_staff').on('click', function(){
-        let id = $('#personnel_id').val();
-        if(id.length > 0){
-            let type = 'personnel';
-            let operation = 'find';
-            $.post('ajax/crud.php', {personnel_id: id, type: type, operation: operation}, function(response){
-                let data = JSON.parse(response);
-                if(data['message'] == 'success'){
-                    $('#id').val(data[0]['personnel_id']);
-                    $('#full_name').val(data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']);
-                    //$('#faculty').val(data[0]['faculty']);
-                    //$('#department').val(data[0]['department']);
-                }else{
-                    alert('Staff not found');
-                }
-            });
-        }else{
-            alert('Please enter a staff ID or Email');
-        }
-    });
+    
 });
 
 </script>

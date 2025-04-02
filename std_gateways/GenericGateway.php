@@ -17,6 +17,17 @@ class GenericGateway{
         $rowCount = $statement->rowCount();
         return $rowCount > 0;
     }
+    public function checkUser($id){
+        if(filter_var($id, FILTER_VALIDATE_EMAIL)){
+            $statement = $this->db->prepare("SELECT * FROM users WHERE email = :id");
+        }else{
+            $statement = $this->db->prepare("SELECT * FROM users WHERE user_id = :id");
+        }
+        $statement->bindParam(':id', $id, \PDO::PARAM_STR);
+        $statement->execute();
+        $rowCount = $statement->rowCount();
+        return $rowCount > 0;
+    }
     public function findOne($tableName, $data){
         $statement = "SELECT * FROM $tableName WHERE $data[field_name] = :id";
 

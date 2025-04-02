@@ -1,13 +1,13 @@
 <?php
-    session_start();
-    $userName = $_SESSION['username'];
-    $password = $_SESSION['password'];
+    // session_start();
+    // $userName = $_SESSION['username'];
+    // $password = $_SESSION['password'];
 
-    if(!isset($userName) && !isset($password)){
-        $_SESSION['login_error'] = "Invalid credentials. Please try again.";
-        header('Location: login');
-        exit;
-    }
+    // if(!isset($userName) && !isset($password)){
+    //     $_SESSION['login_error'] = "Invalid credentials. Please try again.";
+    //     header('Location: login');
+    //     exit;
+    // }
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -16,7 +16,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>ST&D | Login Page</title>
+	<title>ST&D | Change Password</title>
 	<link rel="icon" type="image/png" href="assets/img/login-bg/nou.png" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />

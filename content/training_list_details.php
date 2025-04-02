@@ -23,11 +23,6 @@
                         
                         <!-- begin wizard step-1 -->
                         <div class="row">
-                            <!-- <div class="alert alert-warning fade in m-b-15">
-                                <strong>Warning!</strong>
-                                You are about to edit a Training. Please ensure that all required information is entered correctly before proceeding.
-                                <span class="close" data-dismiss="alert">×</span>
-                            </div> -->
                                 
                             <div style="margin-top: 30px;" class="form-group">
                                         

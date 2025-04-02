@@ -19,7 +19,10 @@ function sendEmail($to, $subject, $message) {
         $mail->SMTPSecure = 'tls';        // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
 
         $mail->setFrom('auwalpsq@gmail.com', 'Auwal Usman');
-        $mail->addAddress($to, "Jibril Abubakar");  // Add a recipient
+        foreach($to as $email){
+            $mail->addAddress($email); // Add a recipient
+        }
+        //$mail->addAddress($to, "Jibril Abubakar");  // Add a recipient
         $mail->Subject = $subject;
         $mail->Body = $message;
         $mail->isHTML(true);                                  // Set email format to HTML

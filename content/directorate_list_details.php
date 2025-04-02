@@ -20,12 +20,22 @@
                     <input type="hidden" name="directorate_id" id="directorate_id" value="" /> 
                     <div class="row">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Name of Directorate</label>
-                            <div class="col-md-6">
+                            <label class="col-md-4 control-label">Name of Faculty/Directorate</label>
+                            <div class="col-md-7">
                                 <input type="text" id="directorate_name" name="directorate_name" class="form-control" placeholder="enter directorate name" required />
                             </div>
                         </div>
-                            
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Category</label>
+                            <div class="col-md-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="category" class="category" value="academic"> Academic
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="category" class="category" value="nonacademic"> Non Academic
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
                                 <input type="submit" value="Add Directorate" id="save" class="btn-success form-control"/>
@@ -35,11 +45,10 @@
                     </div>
                 </form>
             </div>
-                    
-        </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            </div>      
+        </div>
         </div>
     </div>
 </div>
@@ -186,12 +195,21 @@ $(document).ready(function(){
             },
             dataType: 'json',
             success: function(response){
+                //alert(response);
                 if(response.message == 'success'){
                     $('#modal_form_directorate .modal-title').text('Edit directorate');
                     $('#directorate_id').val(response.id);
                     $('#type').val('directorate');
                     $('#operation').val('u');
                     $('#directorate_name').val(response.directorate_name);
+                    let category = response.category;
+                    if(category == 'academic'){
+                        $('.category[value="academic"]').prop('checked', true);
+                    }else if(category == 'nonacademic'){
+                        $('.category[value="nonacademic"]').prop('checked', true);
+                    }else{
+                        $('.category').prop('checked', false);
+                    }
                     $('#modal_form_directorate').modal('show');
                 }
             }

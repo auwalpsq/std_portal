@@ -11,6 +11,24 @@
     $operation = $_POST['operation'];
     $type = $_POST['type'];
     switch([$type, $operation]){
+        case ['category', 'fetch']:{
+            $category = $_POST['category'];
+            $table_category = 'directorate';
+            $data_category = array('limit'=>'', 'field_name'=>'category', 'id'=>$category);
+            
+            $response_category = $gateway->genericFind($table_category, $data_category);
+            if($response_category['message'] === 'success'){
+                $categories = $category === 'academic' ? "<option value=''>--Select Faculty--</option>" : "<option value=''>--Select Directorate--</option>";
+                foreach($response_category['result'] as $category){
+                    $categories .= "<option value='$category[directorate_id]'>$category[name]</option>";
+                }
+            }else{
+                $categories = "<option value=''>No Record Available</option>";
+            }
+            echo $categories;
+            break;
+
+        }
         case ['department', 'fetch']:{
             $table_department = 'department';
             $faculty_id = $_POST['faculty_id'];
@@ -86,7 +104,8 @@
         case ['directorate', 'cr']:{
             $table_directorate = 'directorate';
             $directorate = $_POST['directorate_name'];
-            $data_directorate = array('name'=>$directorate);
+            $category = $_POST['category'];
+            $data_directorate = array('name'=>$directorate, 'category'=>$category);
             
             $response_directorate = $gateway->genericInsert($table_directorate, $data_directorate);
             echo json_encode($response_directorate);
@@ -98,14 +117,17 @@
             $data_directorate = array('field_name'=>'directorate_id', 'id'=>$directorate_id);
             
             $response_directorate = $gateway->findOne($table_directorate, $data_directorate);
-            $directorate = array('message'=>$response_directorate['message'], 'id' => $response_directorate['result']['directorate_id'], 'directorate_name' => $response_directorate['result']['name']);
+            $directorate = array('message'=>$response_directorate['message'],
+                                'id' => $response_directorate['result']['directorate_id'],
+                                'directorate_name' => $response_directorate['result']['name'],
+                                'category' => $response_directorate['result']['category']);
             echo json_encode($directorate);
             break;
         }
         case ['directorate', 'u']:{
             $table_directorate = 'directorate';
             $directorate_id = $_POST['directorate_id'];
-            $data_directorate = array('id'=>$directorate_id, 'name'=>$_POST['directorate_name'], 'field_name'=>'directorate_id');
+            $data_directorate = array('id'=>$directorate_id, 'name'=>$_POST['directorate_name'], 'category'=>$_POST['category'], 'field_name'=>'directorate_id');
             
             $response_directorate = $gateway->genericUpdate($table_directorate, $data_directorate);
             echo json_encode($response_directorate);
@@ -160,8 +182,8 @@
             break;
         }
         case ['faculty', 'cr']:{
-            $table_faculty = 'faculty';
-            $data_faculty = array('name' => $_POST['faculty_name']);
+            $table_faculty = 'directorate';
+            $data_faculty = array('name' => $_POST['faculty_name'], 'category' => $_POST['category']);
 
             $response_faculty = $gateway->genericInsert($table_faculty, $data_faculty);
             echo json_encode($response_faculty);
@@ -170,7 +192,7 @@
         case ['faculty', 'u']:{
             $table_faculty = 'faculty';
             $faculty_id = $_POST['faculty_id'];
-            $data_faculty = array('id' => $faculty_id, 'name' => $_POST['faculty_name'], 'field_name' => 'faculty_id');
+            $data_faculty = array('id' => $faculty_id, 'name' => $_POST['faculty_name'], 'category'=>$_POST['category'], 'field_name' => 'faculty_id');
 
             $response_faculty = $gateway->genericUpdate($table_faculty, $data_faculty);
             echo json_encode($response_faculty);
@@ -213,13 +235,14 @@
             break;
         }
         case['study_leave','u']:{
-            $tableName = 'personnel_on_leave';
-            $leave_id = $_POST['id'];
+            $tableName = 'staff_on_leave';
+            $leave_id = $_POST['leave_id'];
 
             $data = array(
                 'id'=>$leave_id,
-                'field_name'=>'id',
-                'instId'=> $_POST['institution'],
+                'field_name'=>'leave_id',
+                'personnel_id'=> $_POST['personnel_id'],
+                'inst_id'=> $_POST['institution'],
                 'programme'=> $_POST['programme'],
                 'discipline'=> $_POST['discipline'],
                 'cspshipid'=> $_POST['sponsor'],
@@ -236,14 +259,17 @@
             $leave = $gateway->findOne('staff_on_leave', array('id'=>$_POST['id'], 'field_name'=>'leave_id'));
             if($leave['message'] === 'success'){
                 $personnel_id = $leave['result']['personnel_id'];
-                $personnel = $gateway->findOne('personnel', array('id'=>$personnel_id, 'field_name'=>'personnel_id'));
+                $personnel = $gateway->findOne('vw_personnel_details', array('id'=>$personnel_id, 'field_name'=>'personnel_id'));
                 
                 $response = array(
                                     'message'=>'success',
+                                    'personnel_id'=>$leave['result']['personnel_id'],
                                     'first_name'=> $personnel['result']['first_name'],
                                     'surname'=> $personnel['result']['surname'],
                                     'other_names'=> $personnel['result']['other_names'],
                                     'email'=> $personnel['result']['email'],
+                                    'directorate'=> $personnel['result']['directorate'],
+                                    'unit'=> $personnel['result']['unit'],
                                     'leave_id'=> $leave['result']['leave_id'],
                                     'institution'=> $leave['result']['inst_id'],
                                     'programme'=> $leave['result']['programme'],
@@ -379,6 +405,8 @@
             $email = $_POST['email'];
             $gender = $_POST['gender'];
             $category = $_POST['category'];
+            $directorate_id = $_POST['directorate'];
+            $unit_id = $_POST['unit'];
             $dateOfBirth = $_POST['date_of_birth'];
             
             $data = array(  'first_name'=>$firstName, 
@@ -387,6 +415,8 @@
                             'email'=>$email,
                             'gender'=>$gender,
                             'category'=>$category,
+                            'directorate_id'=>$directorate_id,
+                            'unit_id'=>$unit_id,  // this is the department_id in our system, not the unit_id in the table.
                             'date_of_birth'=>$dateOfBirth
                         );
             $response = $gateway->genericInsert($tableName,$data);
@@ -512,16 +542,22 @@
             $surname = $_POST['surname'];
             $otherNames = $_POST['other_names'];
             $email = $_POST['email'];
-            $department = $_POST['department'];
+            $gender = $_POST['gender'];
             $dateOfBirth = $_POST['date_of_birth'];
+            $category = $_POST['category'];
+            $directorate = $_POST['directorate'];
+            $unit = $_POST['unit'];
             
             $data = array(  'id'=>$id,
                             'field_name'=>'personnel_id',
                             'first_name'=>$firstName,
                             'surname'=>$surname,
                             'other_names'=>$otherNames,
+                            'gender'=>$gender,
                             'email'=>$email,
-                            'department'=>$department,
+                            'category'=>$category,
+                            'directorate_id'=>$directorate,
+                            'unit_id'=>$unit,
                             'date_of_birth'=>$dateOfBirth
                         );
             $response = $gateway->genericUpdate($tableName, $data);
@@ -682,7 +718,7 @@
             }
             echo json_encode($response);
             break;
-        case ['personnel', 'find']:
+        case ['personnel_details', 'find']:
             $tableName = 'personnel';
             $id = $_POST['personnel_id'];
             $fieldName ='personnel_id';
@@ -691,26 +727,60 @@
             }
             $data = array('id' => $id, 'limit' => '', 'field_name'=>$fieldName);
             
-            $raw_results = $gateway->genericFind($tableName, $data);
-            if($raw_results['message'] === 'success'){
-                $result = ['message'=>'success'];
-                foreach($raw_results['result'] as $raw_result){
-                    $result[] = array(
-                                        'personnel_id'=>$raw_result['personnel_id'],
-                                        'first_name'=>$raw_result['first_name'],
-                                        'surname'=>$raw_result['surname'],
-                                        'other_names'=>$raw_result['other_names'],
-                                        'email'=>$raw_result['email'],
-                                        'dob'=>$raw_result['date_of_birth'],
-                                        'gender'=>$raw_result['gender'],
-                                        'category'=>$raw_result['category']
+            $result_personnel = $gateway->genericFind($tableName, $data);
+            if($result_personnel['message'] === 'success'){
+                $response_personnel = ['message'=>'success'];
+                foreach($result_personnel['result'] as $personnel){
+                    $response_personnel[] = array(
+                                        'personnel_id'=>$personnel['personnel_id'],
+                                        'first_name'=>$personnel['first_name'],
+                                        'surname'=>$personnel['surname'],
+                                        'other_names'=>$personnel['other_names'],
+                                        'email'=>$personnel['email'],
+                                        'dob'=>$personnel['date_of_birth'],
+                                        'directorate'=>$personnel['directorate_id'],
+                                        'unit'=>$personnel['unit_id'],
+                                        'gender'=>$personnel['gender'],
+                                        'category'=>$personnel['category']
                                     );
                 }
-                
-                echo json_encode($result);   
+                $category = $result_personnel['result'][0]['category'];
+                $table_category = 'directorate';
+                $data_category = array('limit'=>'', 'field_name'=>'category', 'id'=>$category);
+                $result_category = $gateway->genericFind($table_category, $data_category);
+                if($result_category['message'] ==='success'){
+                    $response_category = "";
+                    foreach($result_category['result'] as $category){
+                        $response_category .= "<option value='$category[directorate_id]'>$category[name]</option>";
+                    }
+                }else{
+                    $response_category = "<option value=''>No Record Available</option>";
+                }
+                $directorate_id = $result_personnel['result'][0]['directorate_id'];
+                $table_unit = 'unit';
+                $data_unit = array('id'=>$directorate_id, 'limit'=>'', 'field_name'=>'directorate_id');
+                $result_unit = $gateway->genericFind($table_unit, $data_unit);
+                if($result_unit['message'] ==='success'){
+                    $response_unit = "";
+                    foreach($result_unit['result'] as $unit){
+                        $response_unit .= "<option value='$unit[unit_id]'>$unit[name]</option>";
+                    }
+                }else{
+                    $response_unit = "<option value=''>No Record Available</option>";
+                }
+                echo json_encode(array('personnel'=>$response_personnel, 'response_unit'=>$response_unit, 'response_category'=>$response_category));   
             }else{
-                echo json_encode($raw_results);
+                echo json_encode($result_personnel);
             }
+            break;
+        case ['personnel', 'find']:
+            $personnel_id = $_POST['personnel_id'];
+            $table_personnel = 'vw_personnel_details';
+            $data_personnel = array('id' => $personnel_id, 'field_name' => 'personnel_id');
+
+            $response_personnel = $gateway->findOne($table_personnel, $data_personnel);
+            echo json_encode($response_personnel);
+            break;
         default:
         $response = array('error'=>true,'message'=>'Invalid action');
             

@@ -210,3 +210,33 @@
 
 [2025-03-21 03:43:25] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
 
+[2025-03-27 00:55:59] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-03-27 00:55:59] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-03-27 00:55:59] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-03-28 01:47:10] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:47:16] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:50:44] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:50:46] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:54:18] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:54:19] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:54:22] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:54:38] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-03-28 01:55:33] error: [2] - require(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\std_portal\config\ConfigureEmail.php on line 5
+
+[2025-04-01 04:14:52] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-01 04:14:52] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-01 04:14:52] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+

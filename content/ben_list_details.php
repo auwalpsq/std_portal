@@ -55,7 +55,7 @@
                                                      <label class="col-md-3 control-label">Staff ID:</label>
                                                     <div class="col-md-8">
                                                     <div class="form-inline">
-                                                    <input type="text" id="personnel_id" style="width:40%" name="personnel_id" class=" form-control input-lg" placeholder="staff id" required />
+                                                    <input type="text" id="personnel_id" style="width:40%" name="personnel_id" class=" form-control input-lg" placeholder="personnel id" required />
                                                    <button type="button" id="search_beneficiary" class="btn-success form-control input-lg"><i class="fa fa-search"></i> Search Staff</button>
 
                                                      </div>
@@ -259,9 +259,9 @@ $(document).ready(function () {
                       
                         let data = JSON.parse(response);
                         if(data['message'] == 'success'){
-                            let fullName = data[0]['first_name'] + " " + data[0]['surname'] + " " + data[0]['other_names']
+                            let fullName = data['result']['first_name'] + " " + data['result']['surname'] + " " + data['result']['other_names']
                             $('#full_name').val(fullName);
-                            $('#date_of_birth').val(data[0]['dob']);
+                            $('#date_of_birth').val(data['result']['date_of_birth']);
                         }else{
                             Swal.fire({
                                 icon: 'error',

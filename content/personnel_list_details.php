@@ -41,23 +41,23 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Email Address</label>
                                         <div class="col-md-6">
-                                            <input type="email" id="email" name="email" class="form-control" placeholder="enter email address"/>
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="enter email address" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Date of Birth</label>
                                         <div class="col-md-6">
-                                            <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" placeholder="date of birth"/>
+                                            <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" placeholder="date of birth" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Gender</label>
                                         <div class="col-md-6">
                                             <label class="radio-inline">
-                                                <input type="radio" name="gender" id = "male" class="gender" value="male"> Male
+                                                <input type="radio" class="gender" name="gender" id = "male" class="gender" value="male" required> Male
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="gender" id="female" class="gender" value="female"> Female
+                                                <input type="radio" class="gender" name="gender" id="female" class="gender" value="female" required> Female
                                             </label>
                                         </div>
                                     </div>
@@ -65,14 +65,29 @@
                                         <label class="col-md-3 control-label">Category</label>
                                         <div class="col-md-6">
                                             <label class="radio-inline">
-                                                <input type="radio" name="category" class="category" value="academic"> Academic
+                                                <input type="radio" name="category" class="category" value="academic" required> Academic
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="category" class="category" value="nonacademic"> Non Academic
+                                                <input type="radio" name="category" class="category" value="nonacademic" required> Non Academic
                                             </label>
                                         </div>
                                     </div>
-                                    
+                                    <div class="form-group div-category">
+                                        <label class="col-md-3 control-label">Faculty/Directorate</label>
+                                        <div class="col-md-6">
+                                            <select id="directorate" name="directorate" class="form-control" required>
+                                                <option value="">--Select Directorate--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group div-category">
+                                        <label class="col-md-3 control-label">Department/Unit</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" id="unit" name="unit" required>
+                                                <option value="">--Select Unit--</option>
+                                            </select>
+                                        </div>
+                                    </div>
                     <div class="form-group">
                         <div class="col-md-4 col-md-offset-4">
                             <input type="submit" value="Add Personnel" id="save" class="btn-success form-control"/>
@@ -130,6 +145,8 @@
                             <th>S/N</th>
                             <th>Full Name</th>
                             <th>Email</th>
+                            <th>Faculty/Directorate</th>
+                            <th>Department/Unit</th>
                             <th>Date of Birth</th>
                             <th>Date Created</th>
                             <th>Last Modified</th>
@@ -137,7 +154,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            $table_name = 'personnel';
+                            $table_name = 'vw_personnel_details';
                             $data = array('id'=>'all', 'limit'=>'');
                             $personnel_list = $gateway->genericFind($table_name, $data);
                             if($personnel_list['message'] === 'success'){
@@ -155,6 +172,8 @@
                                             </div>
                                         </td>
                                         <td><?php echo $personnel['email'] ?></td>
+                                        <td><?php echo $personnel['directorate'] ?></td>
+                                        <td><?php echo $personnel['unit'] ?></td>
                                         <td><?php echo $personnel['date_of_birth'] ?></td>
                                         <td><?php echo $personnel['date_created'] ?></td>
                                         <td><?php echo $personnel['last_modified'] ?></td>
@@ -225,6 +244,8 @@ $(document).ready(function(){
     $('#data-table').DataTable();
     $('#btn_new_personnel').on('click', function(){
         $('#form_personnel')[0].reset();
+        $('#directorate').html('<option value="">--Faculty/Directorate--</option>');
+        $('#unit').html('<option value="">--Unit/Department--</option>');
         $('#type').val('personnel');
         $('#operation').val('cr');
         $('#modal_form_personnel .modal-title').text("New personnel")
@@ -232,7 +253,7 @@ $(document).ready(function(){
     });
     $('.btn-edit').on('click', function(){
         let id = $(this).data('id');
-        let type = 'personnel';
+        let type = 'personnel_details';
         let operation = 'find';
         $.ajax({
             url: 'ajax/crud.php',
@@ -244,27 +265,31 @@ $(document).ready(function(){
             },
             dataType: 'json',
             success: function(response){
-                if(response.message == 'success'){
+                //alert(response);
+                if(response.personnel.message == 'success'){
                     $('#modal_form_personnel .modal-title').text('Edit personnel');
-                    $('#personnel_id').val(response[0].id);
+                    $('#personnel_id').val(response['personnel'][0].personnel_id);
                     $('#operation').val('u');
-                    $('#first_name').val(response[0].first_name);
-                    $('#surname').val(response[0].surname);
-                    $('#other_names').val(response[0].other_names);
-                    $('#email').val(response[0].email);
-                    $('#date_of_birth').val(response[0].dob);
-                    let gender = response[0].gender;
+                    $('#type').val('personnel');
+                    $('#first_name').val(response['personnel'][0].first_name);
+                    $('#surname').val(response['personnel'][0].surname);
+                    $('#other_names').val(response['personnel'][0].other_names);
+                    $('#email').val(response['personnel'][0].email);
+                    $('#date_of_birth').val(response['personnel'][0].dob);
+                    let gender = response['personnel'][0].gender;
                     if(gender =='male'){
                         $('#male').prop('checked', true);
                     }else if(gender =='female'){
                         $('#female').prop('checked', true);
                     }
-                    let category = response[0].category;
+                    let category = response['personnel'][0].category;
                     if(category == 'academic'){
-                        $('.category[value="academic"]').prop('checked', true); 
+                        $('.category[value="academic"]').prop('checked', true);
                     }else if(category == 'nonacademic'){
                         $('.category[value="nonacademic"]').prop('checked', true);
                     }
+                    $('#directorate').html(response['response_category']);
+                    $('#unit').html(response['response_unit']);
                     $('#modal_form_personnel').modal('show');
                 }
             }

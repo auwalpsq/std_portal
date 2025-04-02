@@ -71,6 +71,7 @@
     border-color: #008f00!important;
 }
 </style>
+<script src="js/my-jquery.js"></script>
 <!-- begin #sidebar -->
 
 		<div id="sidebar" class="sidebar" style="font-size:16px;color:white">
