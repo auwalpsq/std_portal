@@ -34,3 +34,23 @@ function sendEmail($to, $subject, $message) {
         return 'fail to send email notification';
     }
 }
+function generateRandomPassword($length = 8) {
+    // Define the character sets to use
+    $upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+    $digits = '0123456789';
+    $specialChars = '!@#$%^&*-_?';
+
+    // Combine all character sets
+    $allCharacters = $upperCase . $lowerCase . $digits . $specialChars;
+
+    // Shuffle characters and pick random characters from the combined set
+    $password = '';
+    $allLength = strlen($allCharacters);
+
+    for ($i = 0; $i < $length; $i++) {
+        $password .= $allCharacters[random_int(0, $allLength - 1)];
+    }
+
+    return $password;
+}

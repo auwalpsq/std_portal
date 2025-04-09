@@ -241,7 +241,6 @@ $(document).ready(function(){
             }
         });
     });
-    $('#data-table').DataTable();
     $('#btn_new_personnel').on('click', function(){
         $('#form_personnel')[0].reset();
         $('#directorate').html('<option value="">--Faculty/Directorate--</option>');
@@ -255,6 +254,7 @@ $(document).ready(function(){
         let id = $(this).data('id');
         let type = 'personnel_details';
         let operation = 'find';
+        //alert(id);
         $.ajax({
             url: 'ajax/crud.php',
             type: 'POST',

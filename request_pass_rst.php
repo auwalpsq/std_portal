@@ -175,19 +175,19 @@ right: 0;
 </style>
 <body class="pace-top bg-white">
 <?php
-    if(isset($_SESSION['login_error'])){ ?>
+    if(isset($_SESSION['password_reset'])){ ?>
         <script>
             Swal.fire({
-                title: 'Error!',
-                text: '<?php echo $_SESSION['login_error'];?>',
-                icon: 'error',
+                title: '<?php echo $_SESSION['password_reset']['title'];?>',
+                html: '<?php echo $_SESSION['password_reset']['message'];?>',
+                icon:'<?php echo $_SESSION['password_reset']['icon'];?>',
                 confirmButtonText: 'Okay',
-                customClass: 'swal-size-sm'
+                customClass:'swal-size-sm'
             });
         </script>
-    <?php
-    unset($_SESSION['login_error']);
+<?php 
     }
+    unset($_SESSION['password_reset']);
 ?>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in"><span class="spinner"></span></div>

@@ -104,7 +104,7 @@
           <li class="has-sub">
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
-						    <i class="fa fa-align-left"></i> 
+						    <i class="fa fa-list-ul"></i> 
 				        <span>Training</span>
 						</a>
 								<ul class="sub-menu">
@@ -114,33 +114,41 @@
                   <li><a href="tr_type_list">Training Type</a></li>
 								</ul>
 						</li>
+            <li>
             <li class="has-sub">
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
-						    <i class="fa fa-align-left"></i> 
+						    <i class="fa fa-list-ul"></i> 
 				        <span>Study Leave</span>
 						</a>
 								<ul class="sub-menu">
                   <li><a href="study_leave">Study Leave List</a></li>
                   <li><a href="report_study_leave">Study Leave Report</a></li>
+                  <li><a href="inst_list">Institution List</a></li>
 								</ul>
 						</li>
-            <li>
-            <a href="personnel_list">         
-                <i class="fa fa-user"></i>
-                <span>Staff List</span>
-            </a>
-        </li>
+            <li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-university"></i> 
+				        <span>Manage Institution</span>
+						</a>
+								<ul class="sub-menu">
+                  <li><a href="personnel_list">Manage Personnel</a></li>
+                  <li><a href="directorate_list">Faculty/Diectorate</a></li>
+                  <li><a href="unit_list">Department/Unit</a></li>
+								</ul>
+						</li>
          <?php
-          //if($_SESSION['user_type'] == 'admin'){?> 
+          if($_SESSION['user_type'] == 'admin'){?> 
             <li>
-              <a href="users_list">         
+              <a href="user_list">         
                   <i class="fa fa-users"></i>
-                  <span>Users List</span>
+                  <span>User List</span>
               </a>
             </li>
           <?php
-          //}?>
+          }?>
 
           
 

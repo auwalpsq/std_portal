@@ -240,3 +240,29 @@
 
 [2025-04-01 04:14:52] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
 
+[2025-04-03 08:05:07] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-03 08:05:07] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-03 08:05:07] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 06:36:23] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 06:36:23] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 06:36:23] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 06:36:23] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 06:36:23] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 07:46:50] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 07:46:50] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 07:46:50] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 07:46:50] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-04-08 07:46:50] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+

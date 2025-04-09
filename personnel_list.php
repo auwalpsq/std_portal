@@ -45,7 +45,7 @@ include_once 'template/custom_style.html';
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
         include "content/personnel_list_details.php";
-        // include "inc/footer.php";
+        include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';
          ?>
@@ -58,6 +58,7 @@ include_once 'template/custom_style.html';
 <script>
 		$(document).ready(function() {
 			App.init();
+            $('#data-table').DataTable();
 		});
 	</script>
 

@@ -106,9 +106,9 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?php //echo $directorate['unit_count'] ?></td>
-                                        <td><?php //echo $directorate['personnel_count'] ?></td>
-                                        <td><?php //echo $directorate['name_of_directorate'] ?></td>
+                                        <td><?php echo $directorate['unit_count'] ?></td>
+                                        <td><?php echo $directorate['personnel_count'] ?></td>
+                                        <td><?php echo $directorate['full_name'] ?></td>
                                     </tr>
                         <?php   }
                         } ?>

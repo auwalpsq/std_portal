@@ -40,7 +40,7 @@ include_once 'template/custom_style.html';
         <?php
         include "inc/mega_menu.php";
         include "inc/a_sidebar.php";
-        include "content/users_list_details.php";
+        include "content/user_list_details.php";
         include "inc/footer.php";
 
         include_once 'template/baselevel_js.html';
@@ -57,7 +57,7 @@ include_once 'template/custom_style.html';
 		$(document).ready(function() {
 			App.init();
       TableManageTableSelect.init();
-			FormWizardValidation.init();
+			//FormWizardValidation.init();
 		});
 	</script>
 

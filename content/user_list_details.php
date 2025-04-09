@@ -18,28 +18,44 @@
                 <form id="user" class="form-horizontal" method="POST" >
                     <input id="type" type="hidden" name="type">
                     <input id="operation" type="hidden" name="operation">
-                    <input id="id" type="hidden" name="id">
+                    <input id="personnel_id" type="hidden" name="personnel_id">
                     <input type="hidden" id="email" name="email">
 
-                    <div style="margin-top: 30px;" class="form-group">            
-                        <label class="col-md-3 control-label">Staff ID<span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-10 p-r-0"><input type="text" id="id" name="id" class="form-control input" placeholder="enter staff id or email"></div>
+                        <div class="col-sm-2 p-l-0"><button type="button" id="search_staff" name="search_staff" class="btn btn-success"><i class="fa fa-search"></i>Search </button></div>
+                    </div>
+                    <div style="margin-top: 20px;" class="form-group">
+                                    
+                        <label class="col-md-3 control-label">Full Name<span class="text-danger">*</span></label>
                         <div class="col-md-8">
-                            <input type="text" id="personnel_id" name="personnel_id" class="form-control input-lg" placeholder="Enter personnel ID" required />
+                            <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Staff Full Name" disabled required />
                         </div>
                     </div>
 
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Faculty/Directorate</label>
+                            <div class="col-md-4">
+                                <input type="text" id="directorate" name="directorate" class="form-control" placeholder="Faculty/Directorate" disabled />
+                            </div>
+                            <!-- <label class="col-md-2 control-label">Department/Unit</label> -->
+                                <div class="col-md-4">
+                                    <input type="text" name="unit" id="unit" class="form-control" placeholder="Department/Unit" disabled required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-md-3 control-label">User Type</label>
                             <div class="col-md-8">
                                 <div>
-                                <select id="user_type" class="form-control input-lg" name="user_type"  required>
-                                    <option value="" disabled selected>--select--</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="normal">Normal</option>
-                                </select>
+                                    <select id="user_type" class="form-control input-lg" name="user_type"  required>
+                                        <option value="" disabled selected>--select--</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="normal">Normal</option>
+                                    </select>
+                                </div>
                             </div>
-                            </div>
-                            </div>
+                        </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Save changes</button>
@@ -86,7 +102,7 @@
                     <div class="panel-body">
                          
                     <row>                      
-                    <div class=" pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Add New User</button></div>
+                    <div class="pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Add New User</button></div>
                     </row>
 
                         <br><br><br>
@@ -170,6 +186,7 @@
                     type: 'POST',
                     data: {user_id: user_id, type: type, operation: operation},
                     success: function(response){
+                        //alert(response);
                         let data = JSON.parse(response);
                         if(data['message'] == 'success'){
                             Swal.fire({
@@ -177,11 +194,19 @@
                                 title: data['message'],
                                 text: data['result']['message'],
                                 customClass: "swal-size-sm",
-                                confirmButtonText: 'OK'
+                                confirmButtonText: 'OK',
+                                customClass: 'swal-size-sm'
                             });
                             location.reload();
-                        }else{
-                            alert(data['message']);
+                        }else if(data['message'] == 'failed'){
+                            Swal.fire({
+                                icon: 'error',
+                                title: data['message'],
+                                text: data['result']['message'],
+                                customClass: "swal-size-sm",
+                                confirmButtonText: 'OK',
+                                customClass: 'swal-size-sm'
+                            });
                         }
                     }
                 });
@@ -232,58 +257,32 @@
     });
     $('#user').on('submit', function(event){
         event.preventDefault();
-        
-        let id = $('#personnel_id').val();
-        let type = 'personnel';
-        let operation = 'find';
-        
         let formData = new FormData(this);
-
+        //alert(formData.get('email'));
+        //alert(formData.get('personnel_id'));
         $.ajax({
             url: 'ajax/crud.php',
             type: 'POST',
-            data: {personnel_id:id, type:type, operation:operation},
+            data: formData,
+            contentType: false,
+            processData: false,
             dataType: 'json',
             success: function(response){
                 //alert(response);
-                //let data = JSON.parse(response);
-                formData.set('email', response[0].email);
-                //alert(formData.get('email'));
                 if(response.message == 'success'){
-                    $.ajax({
-                        url: 'ajax/crud.php',
-                        type: 'POST',
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        dataType: 'json',
-                        success: function(feedback){
-                            if(feedback.message == 'success'){
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: feedback.message,
-                                    text: feedback.result.message,
-                                    customClass: "swal-size-sm",
-                                    confirmButtonText: 'OK'
-                                })
-                                location.reload();
-                            }else if(feedback.message == 'failed'){
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: feedback.message,
-                                    text: feedback.result.message,
-                                    customClass: "swal-size-sm",
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        }
-                        
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.message,
+                        text: response.result.message,
+                        customClass: "swal-size-sm",
+                        confirmButtonText: 'OK'
                     });
-                }else if(data.message == 'failed'){
+                    location.reload();
+                }else if(response.message == 'failed'){
                     Swal.fire({
                         icon: 'error',
-                        title: data.message,
-                        text: data.result.message,
+                        title: response.message,
+                        text: response.result.message,
                         customClass: "swal-size-sm",
                         confirmButtonText: 'OK'
                     });

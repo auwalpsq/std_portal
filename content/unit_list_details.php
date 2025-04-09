@@ -105,16 +105,16 @@
                                         <td><?php echo $sn++ ?></td>
                                         <td>
                                             <div class="view_result">
-                                                <a><?php echo "$unit[name]" ?></a><br>
+                                                <a><?php echo "$unit[unit_name]" ?></a><br>
                                                 <div class="viewresult pull-bottom">
                                                     <button type="button" data-id="<?php echo $unit['unit_id'] ?>" class="btn btn-success btn-xs btn-edit">Edit</button>
                                                     <button type="button" data-id="<?php echo $unit['unit_id'] ?>" class="btn btn-danger btn-xs btn-delete">Delete</button>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?php //echo $unit['directorate'] ?></td>
-                                        <td><?php //echo $unit['personnel_count'] ?></td>
-                                        <td><?php //echo $unit['name_of_hod'] ?></td>
+                                        <td><?php echo $unit['directorate_name'] ?></td>
+                                        <td><?php echo $unit['personnel_count'] ?></td>
+                                        <td><?php echo $unit['hod'] ?></td>
                                     </tr>
                         <?php   }
                         } ?>

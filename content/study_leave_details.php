@@ -19,8 +19,8 @@
                     <input id="leave_id" type="hidden" name="leave_id" id="leave_id"/>
                     <input type="hidden" name="personnel_id" id="personnel_id"/>
                     <div class="row">
-                        <div class="col-sm-10 p-0"><input type="text" id="email" name="email" class="form-control input" placeholder="enter staff id or email"></div>
-                        <div class="col-sm-2 p-0"><button type="button" id="search_staff" name="search_staff" class="m-l-0 btn btn-success"><i class="fa fa-search"></i>Search </button></div>
+                        <div class="col-sm-10 p-r-0"><input type="text" id="id" name="id" class="form-control input" placeholder="enter staff id or email"></div>
+                        <div class="col-sm-2 p-l-0"><button type="button" id="search_staff" name="search_staff" class="m-l-0 btn btn-success"><i class="fa fa-search"></i>Search </button></div>
                     </div>
                     <div>
                         <div style="margin-top: 20px;" class="form-group">

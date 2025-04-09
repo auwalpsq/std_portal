@@ -1,26 +1,25 @@
 <?php
-session_start();  
+  session_start();  
 
 $ddate = date('Y-m-d');
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-require_once 'config/MyConnection.php';
 
-$table_unit = 'vw_unit_details';
-$data_unit = array('id' => 'all', 'limit' => '');
+use std_portal\std_gateways\GenericGateway;
+require_once 'std_gateways/GenericGateway.php';
+include_once 'config/DatabaseConfig.php';
 
-$unit_list = $gateway->genericFind($table_unit, $data_unit);
+$database = new DatabaseConfig();      
+$dbConnect = $database->dbConnect();
 
-$table_directorate = 'directorate';
-$data_directorate = array('id'=> 'all', 'limit' => '');
-$directorate_list = $gateway->genericFind($table_directorate, $data_directorate);
+$gateway =new GenericGateway($dbConnect);
 
 if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SESSION['password']) || empty($_SESSION['password'])){
-    $_SESSION['login_error'] = 'Please login first';
-    header('Location: login');
-    exit();
+  $_SESSION['login_error'] = 'Please login first';
+  header('Location: login');
+  exit();
 }
 ?>
 
@@ -38,16 +37,17 @@ include_once 'template/custom_style.html';
 
     <div id="page-container" class="fade page-with-sidebar page-header-fixed">
    
+<?php
+  include "inc/mega_menu.php";
+  include "inc/a_sidebar.php";
+  include "content/inst_list_details.php";
+  include "inc/footer.php";
 
-        <?php
-        include "inc/mega_menu.php";
-        include "inc/a_sidebar.php";
-        include "content/unit_list_details.php";
-        include "inc/footer.php";
-
-        include_once 'template/baselevel_js.html';
-         ?>
+  include_once 'template/baselevel_js.html';
+?>
     <script>
+
+    
     
     </script>
 

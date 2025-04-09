@@ -1,4 +1,4 @@
-  <?php
+<?php
     use std_portal\std_gateways\GenericGateway;
     require_once '../std_gateways/GenericGateway.php';
     require_once '../config/DatabaseConfig.php';
@@ -11,6 +11,62 @@
     $operation = $_POST['operation'];
     $type = $_POST['type'];
     switch([$type, $operation]){
+        case ['institution', 'cr']:{
+            $table_institution = 'institution';
+            $name = $_POST['institution_name'];
+            $code = $_POST['institution_code'];
+            $email = $_POST['institution_email'];
+            $phone = $_POST['institution_phone'];
+            $address = $_POST['institution_address'];
+            $data_institution = array('instname'=>$name, 'instcode'=>$code, 'email'=>$email, 'phone'=>$phone, 'address'=>$address);
+            $response_institution = $gateway->genericInsert($table_institution, $data_institution);
+            echo json_encode($response_institution);
+            break;
+        }
+        case ['institution', 'u']:{
+            $table_institution = 'institution';
+            $inst_id = $_POST['institution_id'];
+            $name = $_POST['institution_name'];
+            $code = $_POST['institution_code'];
+            $email = $_POST['institution_email'];
+            $phone = $_POST['institution_phone'];
+            $address = $_POST['institution_address'];
+            $data_institution = array('id'=>$inst_id, 'field_name'=>'institutionId', 'instname'=>$name, 'instcode'=>$code, 'email'=>$email, 'phone'=>$phone, 'address'=>$address);
+            
+            $response_institution = $gateway->genericUpdate($table_institution, $data_institution);
+            echo json_encode($response_institution);
+            break;
+        }
+        case ['institution', 'de']:{
+            $table_institution = 'institution';
+            $inst_id = $_POST['id'];
+            $data_institution = array('all'=>'', 'institutionId'=>$inst_id, 'condition'=>'');
+            
+            $response_institution = $gateway->genericDelete($table_institution, $data_institution);
+            echo json_encode($response_institution);
+            break;
+        }
+        case ['institution', 'find']:{
+            $table_institution = 'institution';
+            $inst_id = $_POST['id'];
+            $data_institution = array('field_name'=>'institutionId', 'id'=>$inst_id);
+            
+            $response_institution = $gateway->findOne($table_institution, $data_institution);
+            if($response_institution['message'] === 'success'){
+                $institution = array('message'=>$response_institution['message'],
+                                    'id' => $response_institution['result']['institutionId'],
+                                    'name' => $response_institution['result']['instname'],
+                                    'code' => $response_institution['result']['instcode'],
+                                    'email' => $response_institution['result']['email'],
+                                    'phone' => $response_institution['result']['phone'],
+                                    'address' => $response_institution['result']['address']
+                                );
+            }else{
+                $institution = array('message'=>$response_institution['message'], 'result'=>'No Record Available');
+            }
+            echo json_encode($institution);
+            break;
+        }
         case ['category', 'fetch']:{
             $category = $_POST['category'];
             $table_category = 'directorate';
@@ -220,7 +276,7 @@
         case['study_leave', 'cr']:{
             $tableName = 'staff_on_leave';
             $data = array(
-                'personnel_id'=> $_POST['id'],
+                'personnel_id'=> $_POST['personnel_id'],
                 'inst_id'=> $_POST['institution'],
                 'programme'=> $_POST['programme'],
                 'discipline'=> $_POST['discipline'],
@@ -774,15 +830,21 @@
             }
             break;
         case ['personnel', 'find']:
-            $personnel_id = $_POST['personnel_id'];
+            $personnel_id = $_POST['id'];
+            $field_name = 'personnel_id';
+            if(filter_var($personnel_id, FILTER_VALIDATE_EMAIL)){
+                $field_name = 'email';
+            }
             $table_personnel = 'vw_personnel_details';
-            $data_personnel = array('id' => $personnel_id, 'field_name' => 'personnel_id');
+            $data_personnel = array('id' => $personnel_id, 'field_name' => $field_name);
 
             $response_personnel = $gateway->findOne($table_personnel, $data_personnel);
+            
             echo json_encode($response_personnel);
             break;
         default:
         $response = array('error'=>true,'message'=>'Invalid action');
             
     }
-        
+?>
+     

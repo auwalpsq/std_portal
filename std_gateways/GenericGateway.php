@@ -25,8 +25,7 @@ class GenericGateway{
         }
         $statement->bindParam(':id', $id, \PDO::PARAM_STR);
         $statement->execute();
-        $rowCount = $statement->rowCount();
-        return $rowCount > 0;
+        return $statement->fetch(\PDO::FETCH_ASSOC);
     }
     public function findOne($tableName, $data){
         $statement = "SELECT * FROM $tableName WHERE $data[field_name] = :id";
@@ -40,6 +39,46 @@ class GenericGateway{
         } catch (\PDOException $e) {
             return array('message'=>'error', 'result'=>$e->getMessage());
         }
+    }
+    public function find($data){
+        $statement = "SELECT * FROM $data[table_name] WHERE $data[field_name] = :id";
+
+        try {
+            $statement = $this->db->prepare($statement);
+            $statement->bindParam('id', $data['id'], \PDO::PARAM_STR);
+            $statement->execute();
+            return $statement->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+    public function update($data){
+        if(filter_var($data['id'], FILTER_VALIDATE_EMAIL)){
+            $data['field_name'] = 'email';
+        }
+        $setPart = "";
+        foreach ($data as $column => $value) {
+            if($column!== 'field_name' && $column !== 'id' && $column!== 'table_name'){
+                $setPart.= "$column = :$column, ";
+            }
+        }
+        // Trim the trailing comma and space
+        $setPart = rtrim($setPart, ", ");
+        $statement = "UPDATE $data[table_name] SET $setPart WHERE $data[field_name] = :id";
+        try{
+            $statement = $this->db->prepare($statement);
+            foreach($data as $column => $value){
+                if($column!== 'field_name' && $column!== 'id' && $column!== 'table_name'){
+                    $statement->bindValue("$column", $value);
+                }
+            }
+            $statement->bindParam('id', $data['id']);
+            $statement->execute();
+            return $statement->rowCount() > 0;
+        }catch(\PDOException $e){
+            return false;
+        }
+
     }
     public function rowCount($tableName, $data)
     {

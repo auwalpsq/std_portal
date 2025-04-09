@@ -102,7 +102,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
                     },
                     success: function(response){
                         Swal.close();
-                        alert(response);
+                        alert(response);    
                     }
                 });
               }
@@ -126,7 +126,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
                 $('#leave_id').val(data['leave_id']);
                 $('#personnel_id').val(data['personnel_id']);
                 $('#full_name').val(data['first_name'] +' '+ data['surname'] +' '+ data['other_names']);
-                $('#email').val(data['email']);
+                //$('#email').val(data['email']);
                 $('#directorate').val(data['directorate']);
                 $('#unit').val(data['unit']);
                 $('#institution').val(data['institution']);
@@ -137,7 +137,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
                 $('#end_date').val(data['end_date']);
                 $('#remark').val(data['remark']);
                 $('#status').val(data['status']);
-                $('#email').prop('disabled', true);
+                $('#id').prop('disabled', true);
                 $('#search_staff').prop('disabled', true);
                 $('#modal-leave-title').text('Edit Leave');
                 $('#modal-form-st-leave').modal('show');
@@ -220,32 +220,12 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
     });
     $('#new_study_leave').on('click', function(){
         $('#form_study_leave')[0].reset();
-        $('#personnel_id').prop('disabled', false);
+        $('#id').prop('disabled', false);
         $('#search_staff').prop('disabled', false);
         $('#type').val('study_leave');
         $('#operation').val('cr');
         $('#myModalLongTitle').text('New Study Leave');
         $('#modal-form-st-leave').modal('show');
-    });
-    $('#search_staff').on('click', function(){
-        let id = $('#personnel_id').val();
-        if(id.length > 0){
-            let type = 'personnel';
-            let operation = 'find';
-            $.post('ajax/crud.php', {personnel_id: id, type: type, operation: operation}, function(response){
-                let data = JSON.parse(response);
-                if(data['message'] == 'success'){
-                    $('#id').val(data['result']['personnel_id']);
-                    $('#full_name').val(data['result']['first_name'] + " " + data['result']['surname'] + " " + data['result']['other_names']);
-                    $('#directorate').val(data['result']['directorate']);
-                    $('#unit').val(data['result']['unit']);
-                }else{
-                    alert('Staff not found');
-                }
-            });
-        }else{
-            alert('Please enter a staff ID or Email');
-        }
     });
   }); 
 </script>
