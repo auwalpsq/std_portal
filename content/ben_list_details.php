@@ -38,9 +38,9 @@
                         <input type="hidden" name="type" value="beneficiary" />
                         <input type="hidden" name="operation" value="cr" />
                         <input type="hidden" name="training_id" value="<?php echo $_POST['id']  ?>">
+                        <input type="hidden" name="id" id="id">
 						<div>
-				
-									<!-- begin wizard step-2 -->
+                            		<!-- begin wizard step-2 -->
 									<div class="wizard-step-2">
                                          <div class="alert alert-warning fade in m-b-15">
                                                 <strong>Warning!</strong>
@@ -48,30 +48,26 @@
                                                 <span class="close" data-dismiss="alert">×</span>
                                                </div>
 										<fieldset>
-                                            <legend class="pull-left width-full">Add Beneficiary</legend>
+                                            <legend class="pull-left width-full">New Beneficiary</legend>
                                                         
                                             <div style="margin-top: 30px;" class="form-group">
-                                               <div class="form-group">
-                                                     <label class="col-md-3 control-label">Staff ID:</label>
-                                                    <div class="col-md-8">
-                                                    <div class="form-inline">
-                                                    <input type="text" id="personnel_id" style="width:40%" name="personnel_id" class=" form-control input-lg" placeholder="personnel id" required />
-                                                   <button type="button" id="search_beneficiary" class="btn-success form-control input-lg"><i class="fa fa-search"></i> Search Staff</button>
-
-                                                     </div>
+                                               <div class="row">
+                                                    <div class="col-md-10 p-r-0">
+                                                        <input type="text" id="personnel_id" name="personnel_id" class="form-control input-lg" placeholder="enter staff id or email" required />
+                                                    </div>
+                                                    <div class="col-md-2 p-l-0">
+                                                        <button type="button" id="search_beneficiary" class="btn-success form-control input-lg"><i class="fa fa-search"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group" style="margin-top:-10px" >
-                                                <label class="col-md-3 control-label">Full Name</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" id="full_name" style="font-size:small !important;font-weight:bold;" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
+                                            <div class="form-group">
+                                                <div class="col-md-12 p-l-0">
+                                                    <input type="text" id="full_name" name="full_name" class="form-control input-lg" placeholder="fullname" required disabled />
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Date of birth</label>
-                                                <div class="col-md-8">
-                                                <input type="text" id="date_of_birth" style="font-size:small !important;font-weight:bold;" name="date_of_birth" class="form-control input-lg" placeholder="dob" disabled required/>
+                                                <div class="col-md-12 p-l-0">
+                                                    <input type="text" id="date_of_birth" name="date_of_birth" class="form-control input-lg" placeholder="dob" disabled required/>
                                                 </div>
                                             </div>  
                                           
@@ -111,34 +107,15 @@
 			        <!-- begin panel -->
                     <div class="panel panel-inverse" >
                         <div class="panel-heading" style="background-color: #008000;">
-                            <!-- <div class="panel-heading-btn">
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                            </div> -->
                             <h4 class="panel-title">Beneficiary List</h4>
                         </div>
                         
-                        <!-- <div class="alert alert-info fade in">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            Select adds item selection capabilities to a DataTable. Items can be rows, columns or cells, which can be selected independently, or together. Item selection can be particularly useful in interactive tables where users can perform some action on the table, such as editing rows or marking items to perform an action on.
-                        </div> -->
-                        
                         <div class="panel-body">
-                        <row>
-                        <div class=" pull-right" > <button id="add_beneficiary" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>New Beneficiary</button></div>
-                        </row>
-
-                        <br><br><br>
+                        <div class="row m-b-10" >
+                            <button id="add_beneficiary" class="pull-right btn btn-success"><i class="fa fa-plus m-r-5"></i>New Beneficiary</button>
+                        </div>
                         <div class = "responsive">
-                            
                             <table id="data-table" class="table table-striped table-bordered" width="100%">
-                                 
-
-                           
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -253,13 +230,13 @@ $(document).ready(function () {
                 $.ajax({
                     url: 'ajax/crud.php',
                     type: 'POST',
-                    data: {personnel_id: personnel_id, type: type, operation: operation},
+                    data: {id: personnel_id, type: type, operation: operation},
 
                     success: function(response){
-                      
                         let data = JSON.parse(response);
                         if(data['message'] == 'success'){
                             let fullName = data['result']['first_name'] + " " + data['result']['surname'] + " " + data['result']['other_names']
+                            $('#id').val(data['result']['personnel_id']);
                             $('#full_name').val(fullName);
                             $('#date_of_birth').val(data['result']['date_of_birth']);
                         }else{
@@ -285,7 +262,7 @@ $(document).ready(function () {
         });
         $("#new_beneficiary").on("submit", function(event) { 
             event.preventDefault(); // Prevent the default form submission
-
+            
             var formData = new FormData(this); // Prepare form data
 
             $.ajax({

@@ -142,7 +142,7 @@
 			<!-- begin row -->
 			<div class="row">
 			    <div class="col-md-6">
-					<canvas id="myChart"></canvas>
+					<canvas id="study_leave"></canvas>
 			        <!-- <div class="widget-chart with-sidebar bg-black">
 			            <div class="widget-chart-content">
 			                <h4 class="chart-title">
@@ -164,15 +164,16 @@
 			            </div>
 			        </div> -->
 			    </div>
-  					
+  				<div class="col-md-6">
+					<canvas id="training_chart"></canvas>
+				</div>
 			</div>
 			<!-- end row -->
 			<!-- begin row -->
 			<div class="row">
 			   
 			    <!-- begin col-4 -->
-			    <div class="col-md-6">
-			        <!-- begin panel -->
+			    <!-- <div class="col-md-6">
 			        <div class="panel panel-inverse" data-sortable-id="index-3">
 			            <div class="panel-heading">
 			                <h4 class="panel-title">Training Schedule</h4>
@@ -187,18 +188,28 @@
                             </a>
                         </div>
 			        </div>
-			        <!-- end panel -->
-			    </div>
+			    </div> -->
 			    <!-- end col-4 -->
 			    <!-- begin col-4 -->
 			    <div class="col-md-6">
 			        <!-- begin panel -->
 			        <div class="panel panel-inverse" data-sortable-id="index-4">
 			            <div class="panel-heading bg-green">
-			                <h4 class="panel-title">Newly Trained Staff <span class="pull-right label label-success">24 new users</span></h4>
+			                <h4 class="panel-title">Newly Trained Staff <span class="pull-right label label-success"></span></h4>
 			            </div>
                         <ul class="registered-users-list clearfix">
-                            <li>
+							<?php
+								foreach($recently_trained['result'] as $recent){
+									$full_name = "$recent[first_name] $recent[surname] $recent[other_names]";
+									$full_name = ucwords(strtolower($full_name));
+									$unit = $recent['unit'];
+							?>
+									<li>
+										<a href="javascript:;"><img src="assets/img/user.png" alt=""></a>
+										<h4 class="username text-ellipsis"><?php echo $full_name ?><small><?php echo $unit?></small></h4>
+									</li>
+								<?php } ?>
+                            <!-- <li>
                                 <a href="javascript:;"><img src="assets/img/user-5.jpg" alt="" /></a>
                                 <h4 class="username text-ellipsis">
                                     Savory Posh
@@ -253,10 +264,10 @@
                                     Clay Hike
                                     <small>Swedish</small>
                                 </h4>
-                            </li>
-                        </ul>
+                            </li> -->
+                        </u>
 			            <div class="panel-footer text-center">
-			                <a href="javascript:;" class="text-inverse">View All</a>
+			                <a href="javascript:;" class="text-inverse"></a>
 			            </div>
 			        </div>
 			        <!-- end panel -->

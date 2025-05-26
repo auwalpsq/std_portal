@@ -59,8 +59,8 @@
                     <h4 class="panel-title">Training Type List</h4>
                 </div>
         <div class="panel-body">
-            <diV class="pull-right m-b-15">
-                <button id="btn_new_tr_type" class="btn btn-primary"><i class="fa fa-plus"></i>New Training Type</button>
+            <diV class="row m-b-10">
+                <button id="btn_new_tr_type" class="btn btn-primary pull-right"><i class="fa fa-plus m-r-5"></i>New Training Type</button>
             </diV>
             <div class="row">
                 <table id="data-table" class="table table-striped table-bordered" width="100%">

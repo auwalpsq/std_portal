@@ -27,6 +27,7 @@ if($isValidUser){
     $activated = $result['result'][0]['activated'];
     $user_type = $result['result'][0]['user_type'];
     $_SESSION['user_type'] = $user_type;
+    $_SESSION['user_id'] = $result['result'][0]['user_id'];
     if($activated === 1){
              header('Location: ../dash');
     }else{

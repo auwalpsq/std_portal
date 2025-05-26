@@ -91,22 +91,11 @@
                        
                         <h4 class="panel-title">List of Users</h4>
                     </div>
-                   
-                    <!-- <div class="alert alert-info fade in">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        Select adds item selection capabilities to a DataTable. Items can be rows, columns or cells, which can be selected independently, or together. Item selection can be particularly useful in interactive tables where users can perform some action on the table, such as editing rows or marking items to perform an action on.
-                    </div> -->
-                   
                     <div class="panel-body">
-                         
-                    <row>                      
-                    <div class="pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Add New User</button></div>
-                    </row>
-
-                        <br><br><br>
-                       <div class = "responsive">
+                    
+                    <div class="row m-b-10">
+                        <button id="add_new_tr" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus m-r-5"></i>Add New User</button>
+                    </div>
                             <table id="data-table" class="table table-striped table-bordered" width="100%">
                         
                             <thead>
@@ -151,7 +140,6 @@
                                     <?php } ?>
                             </tbody>
                         </table>
-                       </div>
                     </div>
                 </div>
                 <!-- end panel -->

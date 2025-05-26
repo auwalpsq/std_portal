@@ -160,27 +160,11 @@
                        
                         <h4 class="panel-title">Training List</h4>
                     </div>
-                   
-                    <!-- <div class="alert alert-info fade in">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        Select adds item selection capabilities to a DataTable. Items can be rows, columns or cells, which can be selected independently, or together. Item selection can be particularly useful in interactive tables where users can perform some action on the table, such as editing rows or marking items to perform an action on.
-                    </div> -->
-                    
-                   
-                    <div class="panel-body">
-                         
-                    <row>                      
-                        <div class=" pull-right" > <button id="add_new_tr" class="btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</button></div>
-                    </row>
-
-                        <br><br><br>
-                       <div class = "responsive">
-                         <table id="data-table" class="table table-striped table-bordered" width="100%">
-                                
-
-                        
+                    <div class="panel-body">                     
+                    <div class="row m-b-10">
+                        <button id="add_new_tr" class="pull-right btn btn-success btn-sm "><i class="fa fa-plus m-r-5"></i>Create New Training</button>
+                    </div>
+                        <table id="data-table" class="table table-striped table-bordered">                        
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -200,14 +184,8 @@
                                 $tableName = 'vw_training_details';
                                 $data = array('id'=>'all', 'limit'=>'');
                                 $trainings = $gateway->genericFind($tableName, $data);
-                                // var_dump( $trainings );
-                                // exit();
                                 if($trainings['message'] === 'success'){
-                                    foreach($trainings['result'] as $training){
-                                        $tableName1 = 'vw_beneficiary_counter';
-                                        $data1 = array('id'=>$training['training_name'], 'field_name'=>'name', 'limit'=>'');
-                                        $beneficiary_counter = $gateway->genericFind($tableName1, $data1);
-                                        ?>
+                                    foreach($trainings['result'] as $training){?>
                                         <tr>
                                             <td><?php echo $training['id'];?></td>
                                             <td style="font-size:14px">
@@ -229,8 +207,8 @@
                                             <td><?php echo $training['host_name'];?></td>
                                             <td><?php echo $training['sponsor_name'];?></td>
                                             <td><?php echo $training['slot'];?></td>
-                                            <td><?php echo $beneficiary_counter['result'][0]['beneficiary_count'];?></td>
-                                            <td><?php echo $beneficiary_counter['result'][0]['slots_available'];?></td>
+                                            <td><?php echo $training['beneficiary_count'];?></td>
+                                            <td><?php echo $training['available_slot'];?></td>
                                             <td><?php echo $training['start_date'];?></td>
                                             <td><?php echo $training['end_date'];?></td>
                                             
@@ -245,7 +223,6 @@
                                <?php } ?>
                             </tbody>
                         </table>
-                       </div>
                     </div>
                 </div>
                 <!-- end panel -->

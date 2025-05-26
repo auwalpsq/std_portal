@@ -8,6 +8,15 @@ error_reporting(E_ALL);
 
 require_once 'config/MyConnection.php';
 
+$recently_trained = $gateway->genericFind('vw_pers_bene', array('id'=>'all', 'limit'=>'limit 8'));
+
+$training_count = $gateway->genericFind('vw_training_count', array('id'=>'all', 'limit'=>''));
+$academic = $training_count['result'][0]['academic_count'];
+$non_academic = $training_count['result'][0]['nonacademic_count'];
+$male = $training_count['result'][0]['male_count'];
+$female = $training_count['result'][0]['female_count'];
+$staff_total = $training_count['result'][0]['total_count'];
+
 $table_leave_status_total = 'vw_leave_total_status';
 $data_leave_status_total = array('id' => 'all', 'limit' => '');
 $leave_status_total = $gateway->genericFind($table_leave_status_total, $data_leave_status_total);
@@ -56,7 +65,7 @@ include_once 'template/custom_style.html';
             });
         </script>
     <?php
-    unset($_SESSION['password_change_success']);
+      unset($_SESSION['password_change_success']);
     }
 ?>
     <!-- begin #page-loader -->
@@ -74,7 +83,7 @@ include_once 'template/custom_style.html';
     </div>
 </body>
 <script>
-  const ctx = document.getElementById('myChart');
+  const ctx = document.getElementById('study_leave');
   new Chart(ctx, {
     type: 'bar',
     data: {
@@ -84,7 +93,7 @@ include_once 'template/custom_style.html';
                 <?php echo "'$array_leave_status_total[staffIsDeceased]'" ?>
             ],
       datasets: [{
-        label: 'number of staff(s)',
+        label: 'staff on study leave',
         data: [ <?php echo $array_leave_status_total['onGoingTotal'] ?>,
                 <?php echo $array_leave_status_total['completedTotal'] ?>,
                 <?php echo $array_leave_status_total['elapsedTotal'] ?>,
@@ -102,11 +111,32 @@ include_once 'template/custom_style.html';
       },
     }
   });
+  const chartTraining = document.getElementById('training_chart');
+  new Chart(chartTraining, {
+    type: 'bar',
+    data: {
+      labels: ['Academic', 'Non Academic', 'Male', 'Female', 'Total'],
+      datasets: [{
+        label: '# of staff trained',
+        data: [<?php echo $academic ?>, <?php echo $non_academic ?>, <?php echo $male ?>, <?php echo $female ?>, <?php echo $staff_total ?>],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+    plugins: []
+  });
+
 </script>
 <script>
 		$(document).ready(function() {
 			App.init();
-      DashboardV2.init()
+      DashboardV2.init(); 
       //ChartJs.init();
       //TableManageTableSelect.init();
 		});

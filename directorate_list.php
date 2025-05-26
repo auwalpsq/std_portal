@@ -12,7 +12,7 @@ $table_unit = 'unit';
 $data_unit = array('id' => 'all', 'limit' => '');
 $unit_list = $gateway->genericFind($table_unit, $data_unit);
 
-$table_directorate = 'vw_directorate_details';
+$table_directorate = 'vw_directorate_unit';
 $data_directorate = array('id'=> 'all', 'limit' => '');
 $directorate_list = $gateway->genericFind($table_directorate, $data_directorate);
 

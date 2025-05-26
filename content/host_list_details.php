@@ -58,8 +58,8 @@
                         </div>
                       
                         <div class="panel-body">
-                            <div class="pull-right">
-                                <button id="btn_new_host" class="btn btn-primary"><i class="fa fa-plus m-r-5"></i>Add New Host</button>
+                            <div class="row m-b-10">
+                                <button id="btn_new_host" class="pull-right btn btn-primary"><i class="fa fa-plus m-r-5"></i>Add New Host</button>
                             </div>
                             <table id="data-table" class="table table-striped table-bordered">
                                 <thead>
@@ -100,7 +100,6 @@
                                     <?php }?>
                                 </tbody>
                             </table>
-                        
 				</div>
                         </div>
                     </div>

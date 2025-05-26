@@ -66,8 +66,8 @@
                         <h4 class="panel-title">Sponsors List</h4>
                     </div>
                 <div class="panel-body">
-                    <div class="pull-right">
-                        <button id="btn_new_sponsor" class="btn btn-primary"><i class="fa fa-plus m-r-5"></i>Add New Sponsor</button>
+                    <div class="row m-b-10">
+                        <button id="btn_new_sponsor" class="btn btn-primary pull-right"><i class="fa fa-plus m-r-5"></i>Add New Sponsor</button>
                     </div>
                 <table id="data-table" class="table table-striped table-bordered">
                     <thead>

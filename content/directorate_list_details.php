@@ -68,17 +68,11 @@
                     <div class="panel panel-success" >
                         <!-- Your content here -->
                         <div class="panel-heading" style="background-color: #008000;"> 
-                            <div class="panel-heading-btn" >
-                                <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
-                            </div>
                             <h4 class="panel-title">Directorate List</h4>
                         </div>
-                        <div class="panel-body">
-                    <div class="pull-right">
-                        <button id="btn_new_directorate" class="btn btn-primary"><i class="fa fa-plus m-r-5"></i>Add New Directorate</button>
+                <div class="panel-body">
+                    <div class="row m-b-10">
+                        <button id="btn_new_directorate" class="btn btn-primary pull-right"><i class="fa fa-plus m-r-5"></i>Add New Directorate</button>
                     </div>
                 <table id="data-table" class="table table-striped table-bordered">
                     <thead>
@@ -108,7 +102,7 @@
                                         </td>
                                         <td><?php echo $directorate['unit_count'] ?></td>
                                         <td><?php echo $directorate['personnel_count'] ?></td>
-                                        <td><?php echo $directorate['full_name'] ?></td>
+                                        <td><?php echo $directorate['hod_name'] ?></td>
                                     </tr>
                         <?php   }
                         } ?>

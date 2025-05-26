@@ -22,6 +22,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
     header('Location: login');
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>

@@ -1,0 +1,1 @@
+I removed calendar and todo list from dashboard

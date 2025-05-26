@@ -2,6 +2,7 @@
     use std_portal\std_gateways\GenericGateway;
     require_once '../std_gateways/GenericGateway.php';
     require_once '../config/DatabaseConfig.php';
+    require_once '../config/ConfigureEmail.php';
 
     $database = new DatabaseConfig();
     $dbConnect = $database->dbConnect();
@@ -123,7 +124,7 @@
             $table_unit = 'unit';
             $unit_name = $_POST['unit_name'];
             $directorate_id = $_POST['directorate'];
-            $data_unit = array('name'=>$unit_name, 'directorate_id'=>$directorate_id);
+            $data_unit = array('name'=>$unit_name, 'directorate_id'=>$directorate_id, 'user_id'=>$_SESSION['user_id']);
             
             $response_unit = $gateway->genericInsert($table_unit, $data_unit);
             echo json_encode($response_unit);
@@ -420,7 +421,7 @@
         case ['beneficiary', 'cr']:
             $tableName = 'beneficiary';
 
-            $beneficiary = $_POST['personnel_id'];
+            $beneficiary = $_POST['id'];
             $training = $_POST['training_id'];
 
             $data = array(  'personnel_id'=>$beneficiary,
@@ -444,7 +445,7 @@
             $response['email_response'] = '';
             if($response['message'] === 'success'){
                 $response['result']['message'] = "$sponsor has been added as sponsor";
-                $to = $email;
+                $to[] = $email;
                 $subject = 'New Sponsorship';
                 $message = "Hello <strong>$sponsor,</strong> <br> This is to inform you that, you have been added as sponsor. <br> Regards, <br> NOUN personnel Development and Training (ST&D)";
                 $email_response = sendEmail($to, $subject, $message);
