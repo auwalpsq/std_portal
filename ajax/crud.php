@@ -1,4 +1,5 @@
 <?php
+session_start();
     use std_portal\std_gateways\GenericGateway;
     require_once '../std_gateways/GenericGateway.php';
     require_once '../config/DatabaseConfig.php';

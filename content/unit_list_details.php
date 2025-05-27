@@ -144,18 +144,9 @@ $(document).ready(function(){
             data: formData,
             contentType: false,
             processData: false,
-            dataType: 'json',
-            beforeSend: function(){
-                Swal.fire({
-                    title: 'Processing',
-                    text: 'Please wait...',
-                    showConfirmButton: false,
-                    customClass: "swal-size-sm",
-                });
-                Swal.showLoading();
-            },
+            //dataType: 'json',
             success: function(response){
-                Swal.close();
+                alert(response)
                 if(response.message == 'success'){
                     Swal.fire({
                         icon: 'success',
