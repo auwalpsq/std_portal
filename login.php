@@ -237,7 +237,7 @@ right: 0;
     <!-- begin login-header -->
     <div class="login-header ">
         <div class="brand text-inverse">
-            <span class="" ></span>NOUN-Staff Training Portal
+            <span class="" ></span>Staff Training Portal
             <small class="text-inverse"> Staff Training and Development (ST&D) </small>
         </div>
         <div class="icon">

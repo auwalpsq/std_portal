@@ -89,7 +89,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
                     url: 'ajax/send_email_notification.php',
                     type: 'POST',
                     data: {emails: response.emails},
-                    dataType: 'json',
+                    //dataType: 'json',
                     beforeSend: function() {
                         Swal.fire({
                             title: 'Sending Email...',
@@ -103,7 +103,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username']) || !isset($_SES
                     },
                     success: function(response){
                         Swal.close();
-                        //alert(response);
+                        alert(response);
                         if(response.message == 'Email Notification sent successfully'){
                             Swal.fire({
                                 icon: 'success',

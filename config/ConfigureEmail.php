@@ -14,7 +14,7 @@ function sendEmail($to, $subject, $message) {
         $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
         $mail->Username   = 'auwalpsq@gmail.com';
-        $mail->Password   = 'ymtx fuot xwgz xoxp';                               // SMTP password
+        $mail->Password   = 'hhdh dyhs hweo bjch';                               // SMTP password
         $mail->Port=587;
         $mail->SMTPSecure = 'tls';        // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
 
@@ -30,8 +30,9 @@ function sendEmail($to, $subject, $message) {
         $mail->send();
         return 'Email Notification sent successfully';
     }catch(Exception $e){
+        return 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo;
         //error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
-        return 'fail to send email notification';
+        //return 'fail to send email notification';
     }
 }
 function generateRandomPassword($length = 8) {

@@ -144,7 +144,7 @@ $(document).ready(function(){
             data: formData,
             contentType: false,
             processData: false,
-            //dataType: 'json',
+            dataType: 'json',
             success: function(response){
                 alert(response)
                 if(response.message == 'success'){

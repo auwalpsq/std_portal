@@ -20,7 +20,7 @@ session_start();
             $email = $_POST['institution_email'];
             $phone = $_POST['institution_phone'];
             $address = $_POST['institution_address'];
-            $data_institution = array('instname'=>$name, 'instcode'=>$code, 'email'=>$email, 'phone'=>$phone, 'address'=>$address);
+            $data_institution = array('instname'=>$name, 'instcode'=>$code, 'email'=>$email, 'phone'=>$phone, 'address'=>$address, 'user_id'=>$_SESSION['user_id']);
             $response_institution = $gateway->genericInsert($table_institution, $data_institution);
             echo json_encode($response_institution);
             break;
@@ -33,7 +33,7 @@ session_start();
             $email = $_POST['institution_email'];
             $phone = $_POST['institution_phone'];
             $address = $_POST['institution_address'];
-            $data_institution = array('id'=>$inst_id, 'field_name'=>'institutionId', 'instname'=>$name, 'instcode'=>$code, 'email'=>$email, 'phone'=>$phone, 'address'=>$address);
+            $data_institution = array('id'=>$inst_id, 'field_name'=>'institutionId', 'instname'=>$name, 'instcode'=>$code, 'email'=>$email, 'phone'=>$phone, 'address'=>$address, 'user_id'=>$_SESSION['user_id']);
             
             $response_institution = $gateway->genericUpdate($table_institution, $data_institution);
             echo json_encode($response_institution);
@@ -134,7 +134,7 @@ session_start();
         case ['unit', 'u']:{
             $table_unit = 'unit';
             $unit_id = $_POST['unit_id'];
-            $data_unit = array('id'=>$unit_id, 'name'=>$_POST['unit_name'], 'directorate_id'=>$_POST['directorate'], 'field_name'=>'unit_id');
+            $data_unit = array('id'=>$unit_id, 'name'=>$_POST['unit_name'], 'directorate_id'=>$_POST['directorate'], 'field_name'=>'unit_id', 'user_id'=>$_SESSION['user_id']);
             
             $response_unit = $gateway->genericUpdate($table_unit, $data_unit);
             echo json_encode($response_unit);
@@ -163,7 +163,7 @@ session_start();
             $table_directorate = 'directorate';
             $directorate = $_POST['directorate_name'];
             $category = $_POST['category'];
-            $data_directorate = array('name'=>$directorate, 'category'=>$category);
+            $data_directorate = array('name'=>$directorate, 'category'=>$category, 'user_id'=>$_SESSION['user_id']);
             
             $response_directorate = $gateway->genericInsert($table_directorate, $data_directorate);
             echo json_encode($response_directorate);
@@ -185,7 +185,7 @@ session_start();
         case ['directorate', 'u']:{
             $table_directorate = 'directorate';
             $directorate_id = $_POST['directorate_id'];
-            $data_directorate = array('id'=>$directorate_id, 'name'=>$_POST['directorate_name'], 'category'=>$_POST['category'], 'field_name'=>'directorate_id');
+            $data_directorate = array('id'=>$directorate_id, 'name'=>$_POST['directorate_name'], 'category'=>$_POST['category'], 'field_name'=>'directorate_id', 'user_id'=>$_SESSION['user_id']);
             
             $response_directorate = $gateway->genericUpdate($table_directorate, $data_directorate);
             echo json_encode($response_directorate);
@@ -214,7 +214,7 @@ session_start();
             $table_department = 'department';
             $department = $_POST['department_name'];
             $faculty_id = $_POST['faculty'];
-            $data_department = array('faculty_id'=>$faculty_id, 'name'=>$department);
+            $data_department = array('faculty_id'=>$faculty_id, 'name'=>$department, 'user_id'=>$_SESSION['user_id']);
             
             $response_department = $gateway->genericInsert($table_department, $data_department);
             echo json_encode($response_department);
@@ -224,7 +224,7 @@ session_start();
             $table_department = 'department';
             $department_id = $_POST['department_id'];
             $faculty_id = $_POST['faculty'];
-            $data_department = array('id'=>$department_id, 'faculty_id'=>$faculty_id, 'name'=>$_POST['department_name'], 'field_name'=>'department_id');
+            $data_department = array('id'=>$department_id, 'faculty_id'=>$faculty_id, 'name'=>$_POST['department_name'], 'field_name'=>'department_id', 'user_id'=>$_SESSION['user_id']);
             
             $response_department = $gateway->genericUpdate($table_department, $data_department);
             echo json_encode($response_department);
@@ -241,7 +241,7 @@ session_start();
         }
         case ['faculty', 'cr']:{
             $table_faculty = 'directorate';
-            $data_faculty = array('name' => $_POST['faculty_name'], 'category' => $_POST['category']);
+            $data_faculty = array('name' => $_POST['faculty_name'], 'category' => $_POST['category'], 'user_id'=>$_SESSION['user_id']);
 
             $response_faculty = $gateway->genericInsert($table_faculty, $data_faculty);
             echo json_encode($response_faculty);
@@ -250,7 +250,7 @@ session_start();
         case ['faculty', 'u']:{
             $table_faculty = 'faculty';
             $faculty_id = $_POST['faculty_id'];
-            $data_faculty = array('id' => $faculty_id, 'name' => $_POST['faculty_name'], 'category'=>$_POST['category'], 'field_name' => 'faculty_id');
+            $data_faculty = array('id' => $faculty_id, 'name' => $_POST['faculty_name'], 'category'=>$_POST['category'], 'field_name' => 'faculty_id', 'user_id'=>$_SESSION['user_id']);
 
             $response_faculty = $gateway->genericUpdate($table_faculty, $data_faculty);
             echo json_encode($response_faculty);
@@ -286,7 +286,8 @@ session_start();
                 'sdate'=> $_POST['start_date'],
                 'edate'=> $_POST['end_date'],
                 'remarks'=> $_POST['remark'],
-                'status'=> $_POST['status']
+                'status'=> $_POST['status'],
+                'user_id'=>$_SESSION['user_id']
             );
             $response = $gateway->genericInsert($tableName, $data);
             echo json_encode($response);
@@ -307,7 +308,8 @@ session_start();
                 'sdate'=> $_POST['start_date'],
                 'edate'=> $_POST['end_date'],
                 'remarks'=> $_POST['remark'],
-                'status'=> $_POST['status']
+                'status'=> $_POST['status'],
+                'user_id'=>$_SESSION['user_id']
             );
             $response = $gateway->genericUpdate($tableName, $data);
             echo json_encode($response);
@@ -358,7 +360,7 @@ session_start();
             $tableName = 'users';
             $user_id = $_POST['user_id'];
 
-            $data = array('id'=>$user_id, 'password'=>'default', 'activated'=>0, 'field_name'=>'user_id');
+            $data = array('id'=>$user_id, 'password'=>'default', 'activated'=>0, 'field_name'=>'user_id', 'user'=>$_SESSION['user_id']);
 
             $response = $gateway->genericUpdate($tableName, $data);
             echo json_encode($response);
@@ -368,7 +370,7 @@ session_start();
             $tableName = 'users';
             $user_id = $_POST['user_id'];
 
-            $data = array('all'=>'', 'condition'=>'', 'user_id'=>$user_id);
+            $data = array('all'=>'', 'condition'=>'');
             
             $response = $gateway->genericDelete($tableName, $data);
             echo json_encode($response);
@@ -380,7 +382,7 @@ session_start();
             $user_type = $_POST['user_type'];
             $email = $_POST['email'];
             
-            $data = array('staff_id'=>$personnel_id, 'email'=>$email, 'user_type'=>$user_type);
+            $data = array('staff_id'=>$personnel_id, 'email'=>$email, 'user_type'=>$user_type, 'user'=>$_SESSION['user_id']);
 
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -390,7 +392,7 @@ session_start();
             $tableName = 'traininghost';
             $host_name = $_POST['host_name'];
             
-            $data = array('name' => $host_name);
+            $data = array('name' => $host_name, 'user_id'=>$_SESSION['user_id']);
 
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -414,7 +416,8 @@ session_start();
                             'sponsor_id'=>$training_sponsor,
                             'type_id'=>$training_type,
                             'start_date'=>$start_date,
-                            'end_date'=>$end_date
+                            'end_date'=>$end_date,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -426,7 +429,8 @@ session_start();
             $training = $_POST['training_id'];
 
             $data = array(  'personnel_id'=>$beneficiary,
-                            'training_id'=>$training
+                            'training_id'=>$training,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -440,7 +444,8 @@ session_start();
 
             $data = array(  'vspshipemailid'=>$email,
                             'vspshiphone'=>$phone,
-                            'vspshipname'=>$sponsor
+                            'vspshipname'=>$sponsor,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericInsert($tableName,$data);
             $response['email_response'] = '';
@@ -475,7 +480,8 @@ session_start();
                             'category'=>$category,
                             'directorate_id'=>$directorate_id,
                             'unit_id'=>$unit_id,  // this is the department_id in our system, not the unit_id in the table.
-                            'date_of_birth'=>$dateOfBirth
+                            'date_of_birth'=>$dateOfBirth,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -491,7 +497,8 @@ session_start();
             $data = array(  'vfileno'=>$beneficiary,
                             'ctcode'=>$training,
                             'icadre'=>$cadre,
-                            'ftevaluation'=>$evaluation
+                            'ftevaluation'=>$evaluation,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -501,7 +508,7 @@ session_start();
 
             $trainingName = $_POST['tr_type_name'];
 
-            $data = array('vttypename' => $trainingName);
+            $data = array('vttypename' => $trainingName, 'user_id'=>$_SESSION['user_id']);
 
             $response = $gateway->genericInsert($tableName,$data);
             echo json_encode($response);
@@ -514,7 +521,8 @@ session_start();
             $data = array(
                             'field_name'=>'host_id',
                             'id'=>$id,
-                            'name'=>$host_name
+                            'name'=>$host_name,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericUpdate($tableName, $data);
             echo json_encode($response);
@@ -542,7 +550,8 @@ session_start();
                             'type_id'=>$training_type,
                             'slot'=>$training_slot,
                             'start_date'=>$start_date,
-                            'end_date'=>$end_date
+                            'end_date'=>$end_date,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericUpdate($tableName, $data);
             echo json_encode($response);
@@ -555,7 +564,8 @@ session_start();
 
             $data = array(  'id_name'=>'vtfileno',
                             'id_value'=>$id,
-                            'vtfileno'=>$beneficiary
+                            'vtfileno'=>$beneficiary,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericUpdate($tableName, $data);
             break;
@@ -572,7 +582,8 @@ session_start();
                             'id'=>$id,
                             'vspshipemailid'=>$email,
                             'vspshiphone'=>$phone,
-                            'vspshipname'=>$sponsor
+                            'vspshipname'=>$sponsor,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericUpdate($tableName, $data);
             $response['email_response'] = '';
@@ -586,7 +597,8 @@ session_start();
             
             $data = array(  'field_name'=>'cttypeid',
                             'id'=>$id,
-                            'vttypename'=>$typeName
+                            'vttypename'=>$typeName,
+                            'user_id'=>$_SESSION['user_id']
                         );
                         
             $response = $gateway->genericUpdate($tableName, $data);
@@ -616,7 +628,8 @@ session_start();
                             'category'=>$category,
                             'directorate_id'=>$directorate,
                             'unit_id'=>$unit,
-                            'date_of_birth'=>$dateOfBirth
+                            'date_of_birth'=>$dateOfBirth,
+                            'user_id'=>$_SESSION['user_id']
                         );
             $response = $gateway->genericUpdate($tableName, $data);
             echo json_encode($response);
