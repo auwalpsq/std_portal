@@ -373,3 +373,37 @@
                                             </select>
                                         </div>
                                     </div> -->
+
+
+
+<!-- <script type="text/javascript" src="./css_js/ditty.min.js.download" id="ditty-js"></script>
+<div class="mystickyelements-fixed mystickyelements-position-left mystickyelements-position-screen-center mystickyelements-position-mobile-left mystickyelements-on-hover mystickyelements-size-medium mystickyelements-mobile-size-small mystickyelements-entry-effect-slide-in mystickyelements-templates-default entry-effect" style="transition: all 0s ease 0s;">
+<div class="mystickyelement-lists-wrap">
+<ul class="mystickyelements-lists mysticky">
+<li class="mystickyelements-minimize ">
+	<span class="mystickyelements-minimize minimize-position-left minimize-position-mobile-left" style="background: #dd9933">
+	←								</span>
+</li>
+
+
+								<li id="mystickyelements-social-custom_channel_2" class="mystickyelements-social-icon-li mystickyelements-social-custom_channel_2 element-desktop-on element-mobile-on">
+												<style>
+														</style>
+													
+		<span class="mystickyelements-social-icon social-custom_channel_2 social-custom" data-tab-setting="hover" data-click="0" data-mobile-behavior="disable" data-flyout="disable" style="background: rgb(221, 153, 51); border-bottom-right-radius: 10px;">
+			
+														<a href="https://support.nou.edu.ng/" data-url="https://support.nou.edu.ng/" data-tab-setting="hover" data-mobile-behavior="disable" data-flyout="disable">
+														<i class="fas fa-comments" style="color:#ffffff"></i>
+			<span class="mystickyelements-icon-below-text" style="">e-Ticketing System</span>											</a>
+												</span>									
+										<span class="mystickyelements-social-text " style="background: #dd9933;color: #ffffff;">
+													<a href="https://support.nou.edu.ng/" style="color:#ffffff" data-tab-setting="hover" data-flyout="disable">
+															Launch NOUN e-Ticketing Platform																					</a>
+											</span>
+									</li>
+					</ul>					
+</div>
+</div>
+
+
+<style id="umsMarkerInfoWndStyle_ultimate_maps_1_3781">#ultimate_maps_1_3781 .marker-cluster {background-color: #1c7ba7; opacity:1;}#ultimate_maps_1_3781 .marker-cluster {color: white;}#ultimate_maps_1_3781 .marker-cluster div {background-color: #2196f3; opacity:1;}#ultimate_maps_1_3781 .leaflet-popup-content .umsMarkerTitle {color: #000000; font-size: 19px}#ultimate_maps_1_3781 .leaflet-popup-content .umsMarkerDesc, #ultimate_maps_1_3781 .leaflet-popup-content .umsMarkerDesc * {font-size: 13px}#ultimate_maps_1_3781 .leaflet-popup .leaflet-popup-content-wrapper, #ultimate_maps_1_3781 .leaflet-popup .leaflet-popup-tip {background-color: #FFFFFF;}</style></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html> -->

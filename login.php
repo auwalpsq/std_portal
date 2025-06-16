@@ -222,7 +222,7 @@ right: 0;
 					<!--<div id ="watermark" class ="bg-grey"><img class="watermark" src ="img/noubg.png" style="width:60%;height:100vh"> </div>-->
                 </div>
                 <div class="news-caption">                    
-                   <h3 class="caption-title" style="font-size: 36px;"><i class="fa fa-check-square-o"></i> NOUN-Staff Training Portal...</h3>
+                   <h3 class="caption-title" style="font-size: 36px;"><img src="assets/img/svg/Icon_color.svg" style="height: 60px; margin-top: -10px"> NOUN-Staff Training Portal...</h3>
                     <p class ="text-white" style="width:750px; font-size:20px" >
                        <strong>Staff Training and Development (ST&D)...</strong>
                         

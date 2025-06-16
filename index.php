@@ -328,9 +328,7 @@ $(this).parent().removeClass('active-toggle');
 
 
 <div class="et_pb_module et_pb_image et_pb_image_0">
-
-
-<span class="et_pb_image_wrap "><img decoding="async" loading="lazy" src="../img/Cert-bg.png" alt="" title="IMG_9725" height="auto" width="auto"></span>
+    <span class="et_pb_image_wrap "><img decoding="async" loading="lazy" src="assets/img/std_logo.jpg" alt="ST&D Logo" title="IMG_9725" height="auto" width="auto"></span>
 </div>
 </div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_2_3 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough et-last-child">
 
@@ -338,27 +336,25 @@ $(this).parent().removeClass('active-toggle');
 <div class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
 
 	
-	<h1 style="font-size:34px!important"><i class="fa fa-check-square-o"></i>e-Transcript!</h1>
+	<h1 style="font-size:34px!important"></i>ST&D</h1>
 	
-<div class="et_pb_text_inner"><h2 style="font-size:22px!important">Transcript and Certificate Verification/Confirmation Platform</h2></div>
+<div class="et_pb_text_inner"><h2 style="font-size:22px!important">Staff Training and Development Portal</h2></div>
 </div> <!-- .et_pb_text --><div class="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_left et_pb_bg_layout_light">
 
 
-<div class="et_pb_text_inner"><p style="text-align: justify;">The National Open University of Nigeria (NOUN) e-Transcript is an online solution that facilitates transcript application and enables easy certificate verification/confirmation for Individuals, Candidates, Universities, Polytechnics, Colleges of Education, Organisations and other related institutions. This portal helps to check and verify certificates issued to NOUN graduates from anywhere and at anytime. The solution supports both Local and International Payment (USD).
-
-	Educational institutions can integrate with the student's portal by requesting our API for seamless NOUN transcript request processing and certificate verification. Our excel template is available to fast-track the process of bulk verification data upload to our solution.</p>
+<div class="et_pb_text_inner"><p style="text-align: justify;">Staff Training and Development Portal automate the processess carried out at the Directorate of Staff Development and Training. Training management and Study leave management</p>
 
 <!-- <p style="text-align: justify;">At the National Open University of Nigeria (NOUN), our programmes are tailored to make learning accessible, flexible and available for you, at all times, in any place and at your pace. Our 103 Study Centres spread across the geopolitical zones of Nigeria are equipped with requisite physical infrastructure, human and material resources with top-notch ICT competencies for learning, in compliance with the best global standards of education in all our accredited programmes.</p></div> -->
 </div> <!-- .et_pb_text --><div class="et_pb_module et_pb_toggle et_pb_toggle_0 et-readmore-toggle et_pb_toggle_item et_pb_toggle_close">
 
 
  <h5 class="et_pb_toggle_title">Show More</h5>
-<div class="et_pb_toggle_content clearfix" style="display: none;"><p style="text-align: justify;">With over 500,000 enrolled students that cut across all the strata of society, we are Nigeria’s leading institutional partner for the development of the much-needed skills and competencies, for the attainment of adult literacy and economic empowerment, which education offers.</p>
-<p style="text-align: justify;">As you navigate our flexible, friendly and educative learning environment, I invite you to pay special attention to our programmes which cut across the Sciences (Agricultural, Biological, Computational, Environmental, Health, Management, Mathematical, Physical and Social), Arts, Humanities, ICT and Entrepreneurship studies.</p>
-<p style="text-align: justify;">Our Centres of Excellence have been a source of inspiration to thousands of learners in vocational and special competence programmes for personal improvement. They are ably supported by reputable international partners such as the World Bank and the Commonwealth of Learning.</p>
-<p style="text-align: justify;">We assure you of access to global opportunities offered by our international linkages with the worldwide community of distance learning through institutional partners such as the Commonwealth of Learning (COL, Canada), African Council for Distance Education (ACDE), International Council for Distance Education (ICDE) and Association of Commonwealth Universities (ACU), to mention a few.</p>
-<p style="text-align: justify;">Please take advantage of our online student registration facilities, course facilitation and 24 hours access to open educational resources, to improve your learning experience anywhere and at any time.</p>
-<p style="text-align: justify;">Once again, on behalf of the Council, the Management and the entire University Community, I welcome you.</p>
+<div class="et_pb_toggle_content clearfix" style="display: none;"><p style="text-align: justify;"></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"></p>
 <p style="text-align: justify;">Thank you for your interest in the National Open University of Nigeria.</p></div> <!-- .et_pb_toggle_content -->
 </div> <!-- .et_pb_toggle --><div class="et_pb_module et_pb_code et_pb_code_0"> 
 
@@ -576,7 +572,7 @@ var et_animation_data = [{"class":"et_pb_slider_0","style":"fade","repeat":"once
 var et_link_options_data = [{"class":"et_pb_slide_0","url":"https:\/\/nou.edu.ng\/wp-content\/uploads\/2023\/01\/WEBINAR-on-Evaluation-of-Business-Models-2023.pdf","target":"_blank"},{"class":"et_pb_slider_0","url":"https:\/\/nou.edu.ng\/wp-content\/uploads\/2022\/10\/Data-Analysis-adverts-e1667159632580.png","target":"_blank"},{"class":"et_pb_slide_1","url":"https:\/\/nou.edu.ng\/wp-content\/uploads\/2023\/01\/APPROVED-2022-2023-ACADEMIC-CALENDAR.pdf","target":"_blank"},{"class":"et_pb_slide_2","url":"https:\/\/nou.edu.ng\/upward-review-of-schedule-of-fees-for-the-university\/","target":"_blank"},{"class":"et_pb_slider_2","url":"https:\/\/nou.edu.ng\/wp-content\/uploads\/2022\/10\/Data-Analysis-adverts-e1667159632580.png","target":"_blank"},{"class":"et_pb_slide_3","url":"https:\/\/nou.edu.ng\/admission-advert-for-postgraduate-programmes-in-the-faculty-of-law\/","target":"_blank"},{"class":"et_pb_slider_3","url":"https:\/\/nou.edu.ng\/wp-content\/uploads\/2022\/10\/Data-Analysis-adverts-e1667159632580.png","target":"_blank"},{"class":"et_pb_text_4","url":"https:\/\/fas.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_5","url":"https:\/\/fol.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_6","url":"https:\/\/foa.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_7","url":"https:\/\/fms.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_8","url":"https:\/\/foe.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_9","url":"https:\/\/fos.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_10","url":"https:\/\/fohs.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_11","url":"https:\/\/fss.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_13","url":"https:\/\/spgs.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_14","url":"https:\/\/retridol.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_15","url":"https:\/\/acetel.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_16","url":"https:\/\/deags.nou.edu.ng\/","target":"_blank"},{"class":"et_pb_text_17","url":"https:\/\/nou.edu.ng\/centre-for-human-resource-development\/","target":"_blank"}];
 </script>
 <script> /* <![CDATA[ */var tribe_l10n_datatables = {"aria":{"sort_ascending":": activate to sort column ascending","sort_descending":": activate to sort column descending"},"length_menu":"Show _MENU_ entries","empty_table":"No data available in table","info":"Showing _START_ to _END_ of _TOTAL_ entries","info_empty":"Showing 0 to 0 of 0 entries","info_filtered":"(filtered from _MAX_ total entries)","zero_records":"No matching records found","search":"Search:","all_selected_text":"All items on this page were selected. ","select_all_link":"Select all pages","clear_selection":"Clear Selection.","pagination":{"all":"All","next":"Next","previous":"Previous"},"select":{"rows":{"0":"","_":": Selected %d rows","1":": Selected 1 row"}},"datepicker":{"dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesMin":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Prev","currentText":"Today","closeText":"Done","today":"Today","clear":"Clear"}};/* ]]> */ </script>
-<a href="https://transcript.nou.edu.ng/login" class="sticky-divi-button" style ="background-color: #127a3f!important;" >Apply now</a>
+<a href="login" class="sticky-divi-button" style ="background-color: #127a3f!important;" >Login</a>
 
 <script>
 document.querySelectorAll('.readMoreContent').forEach(function(item){
@@ -691,37 +687,4 @@ var strong_slider_id_1 = {"config":{"mode":"horizontal","speed":1000,"pause":400
 /* <![CDATA[ */
 var strongControllerParms = {"initializeOn":"documentReady","method":"","universalTimer":"500","observerTimer":"500","event":"","script":"","containerId":"page","addedNodeId":"content","debug":""};
 /* ]]> */
-</script>
-
-
-<script type="text/javascript" src="./css_js/ditty.min.js.download" id="ditty-js"></script>
-<div class="mystickyelements-fixed mystickyelements-position-left mystickyelements-position-screen-center mystickyelements-position-mobile-left mystickyelements-on-hover mystickyelements-size-medium mystickyelements-mobile-size-small mystickyelements-entry-effect-slide-in mystickyelements-templates-default entry-effect" style="transition: all 0s ease 0s;">
-<div class="mystickyelement-lists-wrap">
-<ul class="mystickyelements-lists mysticky">
-<li class="mystickyelements-minimize ">
-	<span class="mystickyelements-minimize minimize-position-left minimize-position-mobile-left" style="background: #dd9933">
-	←								</span>
-</li>
-
-
-								<li id="mystickyelements-social-custom_channel_2" class="mystickyelements-social-icon-li mystickyelements-social-custom_channel_2 element-desktop-on element-mobile-on">
-												<style>
-														</style>
-													
-		<span class="mystickyelements-social-icon social-custom_channel_2 social-custom" data-tab-setting="hover" data-click="0" data-mobile-behavior="disable" data-flyout="disable" style="background: rgb(221, 153, 51); border-bottom-right-radius: 10px;">
-			
-														<a href="https://support.nou.edu.ng/" data-url="https://support.nou.edu.ng/" data-tab-setting="hover" data-mobile-behavior="disable" data-flyout="disable">
-														<i class="fas fa-comments" style="color:#ffffff"></i>
-			<span class="mystickyelements-icon-below-text" style="">e-Ticketing System</span>											</a>
-												</span>									
-										<span class="mystickyelements-social-text " style="background: #dd9933;color: #ffffff;">
-													<a href="https://support.nou.edu.ng/" style="color:#ffffff" data-tab-setting="hover" data-flyout="disable">
-															Launch NOUN e-Ticketing Platform																					</a>
-											</span>
-									</li>
-					</ul>					
-</div>
-</div>
-
-
-<style id="umsMarkerInfoWndStyle_ultimate_maps_1_3781">#ultimate_maps_1_3781 .marker-cluster {background-color: #1c7ba7; opacity:1;}#ultimate_maps_1_3781 .marker-cluster {color: white;}#ultimate_maps_1_3781 .marker-cluster div {background-color: #2196f3; opacity:1;}#ultimate_maps_1_3781 .leaflet-popup-content .umsMarkerTitle {color: #000000; font-size: 19px}#ultimate_maps_1_3781 .leaflet-popup-content .umsMarkerDesc, #ultimate_maps_1_3781 .leaflet-popup-content .umsMarkerDesc * {font-size: 13px}#ultimate_maps_1_3781 .leaflet-popup .leaflet-popup-content-wrapper, #ultimate_maps_1_3781 .leaflet-popup .leaflet-popup-tip {background-color: #FFFFFF;}</style></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+</script>/vf
