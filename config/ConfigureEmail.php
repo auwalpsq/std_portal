@@ -11,14 +11,14 @@ function sendEmail($to, $subject, $message) {
         //Server settings
         //$mail->SMTPDebug = 0;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+        $mail->Host       = "smtp.gmail.com";                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'auwalpsq@gmail.com';
-        $mail->Password   = 'hhdh dyhs hweo bjch';                               // SMTP password
+        $mail->Username   = "auwalpsq@gmail.com";
+        $mail->Password   = "hhdh dyhs hweo bjch";                               // SMTP password
         $mail->Port=587;
-        $mail->SMTPSecure = 'tls';        // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        $mail->SMTPSecure = "tls";        // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
 
-        $mail->setFrom('auwalpsq@gmail.com', 'Auwal Usman');
+        $mail->setFrom('aishadauda@gmail.com', 'Auwal Usman');
         foreach($to as $email){
             $mail->addAddress($email); // Add a recipient
         }
