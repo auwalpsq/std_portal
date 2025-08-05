@@ -99,7 +99,7 @@ include_once 'template/custom_style.html';
                 <?php echo $array_leave_status_total['elapsedTotal'] ?>,
                 <?php echo $array_leave_status_total['staffIsDeceasedTotal'] ?>
               ],
-        backgroundColor: ['skyblue', 'lightgreen', 'red', 'black'],
+        backgroundColor: ['blue', 'green', 'red', 'black'],
         borderWidth: 1
       }]
     },
@@ -119,6 +119,7 @@ include_once 'template/custom_style.html';
       datasets: [{
         label: '# of staff trained',
         data: [<?php echo $academic ?>, <?php echo $non_academic ?>, <?php echo $male ?>, <?php echo $female ?>, <?php echo $staff_total ?>],
+        backgroundColor: ['skyblue', 'lightgreen', 'red', 'black', 'orange'],
         borderWidth: 1
       }]
     },

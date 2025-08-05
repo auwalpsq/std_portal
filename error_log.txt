@@ -300,3 +300,17 @@
 
 [2025-05-23 05:03:31] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
 
+[2025-08-04 14:03:33] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-08-04 14:03:33] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-08-04 14:03:33] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-08-04 14:03:33] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-08-04 14:03:33] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-08-04 14:03:33] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
+[2025-08-04 14:03:33] error: [2] - Undefined array key "course" in C:\xampp\htdocs\std_portal\content\report_study_leave_details.php on line 76
+
