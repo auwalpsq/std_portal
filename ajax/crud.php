@@ -370,7 +370,7 @@ session_start();
             $tableName = 'users';
             $user_id = $_POST['user_id'];
 
-            $data = array('all'=>'', 'condition'=>'');
+            $data = array('all'=>'', 'condition'=>'', 'user_id'=>$user_id);
             
             $response = $gateway->genericDelete($tableName, $data);
             echo json_encode($response);
