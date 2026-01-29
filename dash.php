@@ -119,7 +119,7 @@ include_once 'template/custom_style.html';
       datasets: [{
         label: '# of staff trained',
         data: [<?php echo $academic ?>, <?php echo $non_academic ?>, <?php echo $male ?>, <?php echo $female ?>, <?php echo $staff_total ?>],
-        backgroundColor: ['skyblue', 'lightgreen', 'red', 'black', 'orange'],
+        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#e74a3b', '#858796'],
         borderWidth: 1
       }]
     },
